@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+    "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans default-lazy-init="true">
+  <import resource="beans-domain.xml" />
+
+  <bean id="connectionManager" class="jp.rough_diamond.framework.transaction.hibernate.HibernateConnectionManager">
+    <description>Hibernate用のトランザクションマネージャ</description>
+    <property name="interceptor"><bean class="jp.rough_diamond.commons.service.hibernate.BasicServiceInterceptor" /></property>
+    <property name="listenersMap">
+      <map>
+        <entry key="load">
+          <list>
+            <value>jp.rough_diamond.commons.service.hibernate.LoadEventListenerExt</value>
+          </list>
+        </entry>
+      </map>
+    </property>
+  </bean>
+
+  <bean id="transactionInterceptor" class="jp.rough_diamond.framework.transaction.hibernate.HibernateAnotationTransactionManager">
+    <description>アノテーションによってトランザクションを制御するInterceptor</description>
+  </bean>
+
+  <bean id="databaseCharset" class="java.lang.String">
+    <description>データベースの文字コード（文字列長チェックで使用）</description>
+    <constructor-arg index="0" type="java.lang.String"><value>UTF-8</value></constructor-arg>
+  </bean>
+
+  <bean id="localeController" class="jp.rough_diamond.commons.resource.LocaleControllerByThreadLocal">
+    <description>どのレイヤからも透過的にローケルに対してアクセス可能なインタフェース</description>
+  </bean>
+
+  <bean id="resourceName" class="java.lang.String">
+    <description>リソースファイル名</description>
+    <constructor-arg index="0" type="java.lang.String"><value>jp/rough_diamond/account/entity/messageResource, schemaResources</value></constructor-arg>
+  </bean>
+  
+  <bean id="userController" class="jp.rough_diamond.framework.user.UserControllerByThreadLocal">
+    <description>どのレイヤからも透過的にユーザーに対してアクセス可能なインタフェース</description>
+  </bean>
+</beans>

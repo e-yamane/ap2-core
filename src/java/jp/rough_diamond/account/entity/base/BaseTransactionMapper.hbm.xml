@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+
+    <class
+        name="jp.rough_diamond.account.entity.TransactionMapper"
+        table="TRANSACTION_MAPPER"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.Long"
+            length="20"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-BaseTransactionMapper.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <many-to-one
+            name="before"
+            class="jp.rough_diamond.account.entity.Transaction"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="BEFORE_TRANSACTION_ID" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="after"
+            class="jp.rough_diamond.account.entity.Transaction"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="AFTER_TRANSACTION_ID" 
+            />
+        </many-to-one>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-BaseTransactionMapper.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+
+    <class
+        name="jp.rough_diamond.account.entity.Transaction"
+        table="TRANSACTION"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.Long"
+            length="20"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-BaseTransaction.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="actualInDB"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ACTUAL"
+            not-null="true"
+        />
+
+        <property
+            name="registerDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="REGISTER_DATE"
+            not-null="true"
+        />
+
+        <property
+            name="processDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="PROCESS_DATE"
+            not-null="true"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-BaseTransaction.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+        <joined-subclass
+            name="jp.rough_diamond.account.entity.PlanTransaction"
+            table="PLAN_TRANSACTION"
+        >
+            <key
+                column="ID"
+            />
+
+        <property
+            name="processId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PROCESS_ID"
+            length="256"
+            not-null="false"
+        />
+
+        </joined-subclass>
+        <joined-subclass
+            name="jp.rough_diamond.account.entity.ActualTransaction"
+            table="ACTUAL_TRANSACTION"
+        >
+            <key
+                column="ID"
+            />
+
+        <property
+            name="processId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PROCESS_ID"
+            length="256"
+            not-null="false"
+        />
+
+        </joined-subclass>
+
+    </class>
+
+</hibernate-mapping>

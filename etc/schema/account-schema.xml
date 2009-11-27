@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="Shift_JIS" standalone="no"?>
+<!--
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database_3_1.dtd">
+
+DTDは、
+
+ DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database_3_1.dtd"
+です。
+ /database/table/columnタグにencrypt属性（デフォルトfalse）を追加しています。
+-->
+<database defaultIdMethod="none" name="lidic" package="jp.rough_diamond.account.entity" defaultJavaType="object">
+<!-- 
+      Hibernate強引対応拡張ルール
+      その１．
+        親子間のリレーションが有る場合、子の方にはouter joinが自動的に付与
+        その際のアクセサは「/database/table*/foreign-key@name」となる
+      その２．
+        autoIncrementをtrueにすると、そのカラムはバージョニングカラムとなるようにする。
+        （typeはINTEGER)
+        その代わり、自動インクリメント機能はなくなるので注意
+      その３．
+      　required="true"のカラムには必須チェックが自動的に付与される
+      その４．
+      　sizeが指定されている文字列系のカラムについては自動的にサイズチェックが付与される
+-->
+  <external-schema filename="../../../framework/etc/schema/framework-schema.xml" />
+
+  <table name="TRANSACTION_MAPPER" description="トランザクション変遷マッパー">
+    <column name="ID"                   primaryKey="true" required="true"   type="BIGINT" description="OID" />
+    <column name="BEFORE_TRANSACTION_ID"                  required="true"   type="BIGINT" description="元予定トランザクションId" />
+    <column name="AFTER_TRANSACTION_ID"                   required="false"  type="BIGINT" description="先トランザクションId" />
+    <unique name="1">
+      <unique-column name="BEFORE_TRANSACTION_ID" />
+      <unique-column name="AFTER_TRANSACTION_ID" />
+    </unique>
+    <foreign-key foreignTable="TRANSACTION" name="before" onUpdate="cascade" onDelete="cascade">
+      <reference local="BEFORE_TRANSACTION_ID" foreign="ID" />
+    </foreign-key>
+    <foreign-key foreignTable="TRANSACTION" name="after" onUpdate="cascade" onDelete="cascade">
+      <reference local="AFTER_TRANSACTION_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="ENTRY" description="エントリー">
+    <column name="ID"           primaryKey="true" required="true"   type="BIGINT" description="OID" />
+    <column name="QUANTITY"                       required="true"   type="BIGINT" description="移動量" />
+    <column name="ACCOUNT_ID"                     required="true"   type="BIGINT" description="勘定ID" />
+    <column name="TRANSACTION_ID"                 required="true"   type="BIGINT" description="トランザクションID" />
+    <unique name="1">
+      <unique-column name="ACCOUNT_ID" />
+      <unique-column name="TRANSACTION_ID" />
+    </unique>
+    <foreign-key foreignTable="ACCOUNT" name="account" onUpdate="cascade" onDelete="cascade">
+      <reference local="ACCOUNT_ID" foreign="ID" />
+    </foreign-key>
+    <foreign-key foreignTable="TRANSACTION" name="transaction" onUpdate="cascade" onDelete="cascade">
+      <reference local="TRANSACTION_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="PLAN_TRANSACTION" baseClass="Transaction" description="予定トランザクション">
+    <column name="ID"           primaryKey="true"    required="true"   type="BIGINT"  description="OID" />
+    <column name="PROCESS_ID"      required="false"   type="VARCHAR"    size="256"  description="取引番号" />
+   <foreign-key foreignTable="TRANSACTION" name="transaction" onUpdate="cascade" onDelete="cascade">
+      <reference local="ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="ACTUAL_TRANSACTION" baseClass="Transaction" description="実績トランザクション">
+    <column name="ID"           primaryKey="true"    required="true"   type="BIGINT"  description="OID" />
+    <column name="PROCESS_ID"         required="false"   type="VARCHAR"    size="256"  description="取引番号" />
+    <foreign-key foreignTable="TRANSACTION" name="transaction" onUpdate="cascade" onDelete="cascade">
+      <reference local="ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="TRANSACTION" description="トランザクション" >
+    <column name="ID"             primaryKey="true" required="true"   type="BIGINT"      description="OID" />
+    <column name="ACTUAL"                           required="true"   type="BOOLEANCHAR" description="実績の取引の場合はY。予定はN" />
+    <column name="REGISTER_DATE"                    required="true"   type="TIMESTAMP"   description="入力日" />
+    <column name="PROCESS_DATE"                     required="true"   type="TIMESTAMP"   description="取引日" />
+  </table>
+
+  <table name="ACCOUNT" description="勘定">
+    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"          description="OID" />
+    <column name="PLACE_ID"                     required="true"   type="BIGINT"          description="場所ID" />
+    <column name="ITEM_ID"                      required="true"   type="BIGINT"          description="品目ID" />
+    <column name="REGISTER_DATE"                required="true"   type="TIMESTAMP"       description="勘定作成日" />
+    <column name="OWNER_ID"                     required="true"   type="BIGINT"          description="所有者ID" />
+    <unique name="1">
+      <unique-column name="PLACE_ID" />
+      <unique-column name="ITEM_ID" />
+      <unique-column name="OWNER_ID" />
+    </unique>
+    <foreign-key foreignTable="PLACE" name="place" onUpdate="cascade" onDelete="cascade">
+      <reference local="PLACE_ID" foreign="ID" />
+    </foreign-key>
+    <foreign-key foreignTable="ITEM" name="item" onUpdate="cascade" onDelete="cascade">
+      <reference local="ITEM_ID" foreign="ID" />
+    </foreign-key>
+    <foreign-key foreignTable="OWNER" name="owner" onUpdate="cascade" onDelete="cascade">
+      <reference local="OWNER_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="PLACE" description="場所">
+    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"                     description="OID" />
+    <column name="NAME"                         required="true"   type="VARCHAR"      size="256"    description="場所名" />
+    <column name="VIRTUAL"                      required="true"   type="BOOLEANCHAR" default="N"    description="論理的な場所" />
+    <column name="PARENT_ID"                    required="false"  type="BIGINT"                     description="親場所ID" />
+    <column name="OWNER_ID"                     required="true"   type="BIGINT"                     description="所有者OID" />
+    <foreign-key foreignTable="PLACE" name="parent" onUpdate="cascade" onDelete="cascade">
+      <reference local="PARENT_ID" foreign="ID" />
+    </foreign-key>
+    <foreign-key foreignTable="OWNER" name="owner" onUpdate="cascade" onDelete="cascade">
+      <reference local="OWNER_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="ITEM" description="品目">
+    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"               description="OID" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="品目名" />
+    <column name="PARENT_ID"                    required="false"  type="BIGINT"               description="親品目ID" />
+    <foreign-key foreignTable="ITEM" name="parent" onUpdate="cascade" onDelete="cascade">
+      <reference local="PARENT_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="OWNER" description="所有者">
+    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"               description="OID" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="所有者名" />
+  </table>
+</database>

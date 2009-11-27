@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<project name="Account Pattern" basedir="." default="dummy">
+  <property name="lib.dir"                    value="./etc/otherlib" /><!-- dummy -->
+  <property name="dist.dir"                   value="./target"/>
+  <property name="classes.dir"                value="${dist.dir}/classes" />
+  <property name="ci.preprocess.name"         value="makeAndCopyFramework" />
+
+  <import file="../framework/build-common.xml" />
+  
+  <property name="hibernate.fileset.dirs"   value="${src.dir};../framework/src/java" />
+
+  <target name="makeAndCopyFramework">
+    <ant antfile="${framework.root}/build.xml" target="makeJar" dir="${framework.root}" inheritAll="false" />
+    <copy file="${framework.dist.dir}/rd-framework.jar" tofile="${other.lib.dir}/rd-framework.jar" overwrite="true" />
+    <copy file="${framework.dist.dir}/cglib-2.1.3.jar" tofile="${other.lib.dir}/cglib-2.1.3.jar" overwrite="true" />
+  </target>
+
+  <!-- 上書き -->
+  <target name="DB-init" depends="init-task" description="自動生成されたCreate Table文を実行する">
+    <property file="./middlegen.properties" />
+    <copy todir="${torque.sql.dir}" overwrite="true">
+      <fileset dir="${framework.root}/etc/sql/${torque.database.type}">
+        <include name="*.sql" />
+      </fileset>
+    </copy>
+    <antcall target="DB-clear-1" />
+    <antcall target="DB-clear-2" />
+  </target>
+
+  <target name="makeOkumuraConfig" description="奥村開発環境用のbeans.xmlを作成する">
+    <property name="filtering.filename" value="${conf.dir}/filtering.okumura.properties" />
+    <antcall target="makeConfig" />
+  </target>
+
+<!--
+  <target name="makeReleaseConfig" description="リリースモジュール用のbeans.xmlを作成する">
+    <property name="filtering.filename" value="${conf.dir}/filtering.release.properties" />
+    <antcall target="makeConfig" />
+  </target>
+-->
+
+  <target name="makeConfig" depends="init-task, filter-check, filter-exists" if="filtering.filename.present" description="EIを実行する">
+    <antcall target="makeConfigBase" />
+
+    <basename property="conf.target.name" file="${filtering.filename}" />
+    <dirname property="conf.target.dir" file="${filtering.filename}" />
+    <mkdir dir="${conf.dir}/tmp" />
+    <native2ascii src="${conf.target.dir}" dest="${conf.dir}/tmp" includes="${conf.target.name}" />
+    <filter filtersfile="${conf.dir}/tmp/${conf.target.name}" />
+    <copy file="${conf.dir}/template/beans.xml" tofile="${src.dir}/beans.xml" filtering="true" overwrite="true" />
+    <copy file="${conf.dir}/template/beans-domain.xml" tofile="${src.dir}/beans-domain.xml" filtering="true" overwrite="true" />
+    <copy file="${conf.dir}/template/log4j.properties" tofile="${src.dir}/log4j.properties" filtering="true" overwrite="true" />
+    <native2ascii src="${resource.dir}" dest="${src.dir}" includes="**/*.properties" />
+    <delete dir="${conf.dir}/tmp" />
+    <echo message="Eclipse上で実行している場合は、F5を押して最新状態にしてください。" />
+  </target>
+
+  <target name="makeSchemaAccessor" description="テーブルレイアウト、create table文、Javaソース、マッピングファイル、hibernateConfigを作成する">
+    <ant antfile="../framework/build-common.xml" target="makeSchemaAccessor" dir="${my.build.dir}" />
+    <antcall target="makeMultipleSQL" />
+  </target>
+
+  <target name="makeJar" depends="compile" description="Jarファイルを作成する">
+    <jar jarfile="${dist.dir}/rd-accountPattern.jar" basedir="${classes.dir}" />
+  </target>
+
+  <target name="compile" depends="makeAndCopyFramework">
+    <echo message="${dist.dir}" />
+    <echo message="${classes.dir}" />
+    <delete dir="${dist.dir}" />
+    <mkdir dir="${classes.dir}" />
+    <antcall target="do.compile">
+      <param name="compile.src.roots"     value="real.src.path.default" />
+      <param name="compile.classpath"     value="classpath.all" />
+      <param name="compile.dest.dir"      value="${classes.dir}" />
+      <param name="copy.resource.target"  value="copyRealResources" />
+    </antcall>
+  </target>
+
+  <target name="dummy">
+    <pathconvert property="zzz" refid="classpath.all" />
+    <echo message="${zzz}" />
+  </target>
+</project>

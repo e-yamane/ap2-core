@@ -1,0 +1,926 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>lidic</title>
+  <link rel="stylesheet" type="text/css" href="dataModel.css">
+</head>
+
+<body class="normalFont">
+  <table class="summarytable">
+    <tr class=summaryhead">
+      <th class="summaryheadbackground summaryborder summaryheadtablename">Table Name</th>
+      <th class="summaryheadbackground summaryborder summaryheadjavaname">OM Class</th>
+      <th class="summaryheadbackground summaryborder summaryheaddescription">Description</th>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#AMOUNT" class="link summarytablenamelink">AMOUNT</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Amount</td>
+      <td class="summarybackground summaryborder summarydescription"> 量</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#UNIT" class="link summarytablenamelink">UNIT</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Unit</td>
+      <td class="summarybackground summaryborder summarydescription"> 数量尺度</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#SCALABLE_NUMBER" class="link summarytablenamelink">SCALABLE_NUMBER</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">ScalableNumber</td>
+      <td class="summarybackground summaryborder summarydescription"> 小数点位置指定数値</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#numbering" class="link summarytablenamelink">numbering</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Numbering</td>
+      <td class="summarybackground summaryborder summarydescription"> ナンバリングテーブル</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#TRANSACTION_MAPPER" class="link summarytablenamelink">TRANSACTION_MAPPER</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">TransactionMapper</td>
+      <td class="summarybackground summaryborder summarydescription"> トランザクション変遷マッパー</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#ENTRY" class="link summarytablenamelink">ENTRY</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Entry</td>
+      <td class="summarybackground summaryborder summarydescription"> エントリー</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#PLAN_TRANSACTION" class="link summarytablenamelink">PLAN_TRANSACTION</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">PlanTransaction</td>
+      <td class="summarybackground summaryborder summarydescription"> 予定トランザクション</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#ACTUAL_TRANSACTION" class="link summarytablenamelink">ACTUAL_TRANSACTION</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">ActualTransaction</td>
+      <td class="summarybackground summaryborder summarydescription"> 実績トランザクション</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#TRANSACTION" class="link summarytablenamelink">TRANSACTION</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Transaction</td>
+      <td class="summarybackground summaryborder summarydescription"> トランザクション</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#ACCOUNT" class="link summarytablenamelink">ACCOUNT</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Account</td>
+      <td class="summarybackground summaryborder summarydescription"> 勘定</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#PLACE" class="link summarytablenamelink">PLACE</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Place</td>
+      <td class="summarybackground summaryborder summarydescription"> 場所</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#ITEM" class="link summarytablenamelink">ITEM</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Item</td>
+      <td class="summarybackground summaryborder summarydescription"> 品目</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#OWNER" class="link summarytablenamelink">OWNER</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Owner</td>
+      <td class="summarybackground summaryborder summarydescription"> 所有者</td>
+    </tr>
+  </table>
+
+    <a name="AMOUNT"/>
+<h2>AMOUNT （クラスのみ）</h2>
+量
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="AMOUNTUNIT_ID">UNIT_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">unitId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 数量尺度ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERQ_VALUE">Q_VALUE</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">quantity.value</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">量. 量(整数)</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERQ_SCALE">Q_SCALE</td>
+    <td class="normalFont">INTEGER</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">quantity.scale</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">量. 小数点位置。正の数なら左へ、負の数なら右へ移動させる</td>
+  </tr>
+
+
+</table>
+<script>
+</script>
+
+    <a name="UNIT"/>
+<h2>UNIT （クラスのみ）</h2>
+数量尺度
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="UNITID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="UNITNAME">NAME</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (32) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">name</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 数量尺度名</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="UNITDESCRIPTION">DESCRIPTION</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (64) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">description</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 単位説明</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="UNITBASE_UNIT_ID">BASE_UNIT_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">baseUnitId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> ベース数量尺度</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERRATE_VALUE">RATE_VALUE</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">rate.value</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">変換係数. 量(整数)</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERRATE_SCALE">RATE_SCALE</td>
+    <td class="normalFont">INTEGER</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">rate.scale</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">変換係数. 小数点位置。正の数なら左へ、負の数なら右へ移動させる</td>
+  </tr>
+
+  <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERSCALE">SCALE</td>
+    <td class="normalFont">INTEGER</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">scale</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 変換時に保持する少数精度。負数を指定すると整数の切捨て判断する</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERVERSION">VERSION</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">version</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 楽観的ロッキングキー</td>
+  </tr>
+
+</table>
+<script>
+</script>
+
+    <a name="SCALABLE_NUMBER"/>
+<h2>SCALABLE_NUMBER （クラスのみ）</h2>
+小数点位置指定数値
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERVALUE">VALUE</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">value</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 量(整数)</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="SCALABLE_NUMBERSCALE">SCALE</td>
+    <td class="normalFont">INTEGER</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">scale</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 小数点位置。正の数なら左へ、負の数なら右へ移動させる</td>
+  </tr>
+
+</table>
+<script>
+</script>
+
+    <a name="numbering"/>
+<h2>numbering （クラスのみ）</h2>
+ナンバリングテーブル
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="numberingid">id</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (128) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> ＩＤ</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="numberingnext_number">next_number</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">nextNumber</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 現在割り当てている番号</td>
+  </tr>
+
+</table>
+<script>
+</script>
+
+    <a name="TRANSACTION_MAPPER"/>
+<h2>TRANSACTION_MAPPER </h2>
+トランザクション変遷マッパー
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="TRANSACTION_MAPPERID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="TRANSACTION_MAPPERBEFORE_TRANSACTION_ID">BEFORE_TRANSACTION_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">beforeTransactionId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 元予定トランザクションId</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="TRANSACTION_MAPPERAFTER_TRANSACTION_ID">AFTER_TRANSACTION_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">afterTransactionId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 先トランザクションId</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("TRANSACTION_MAPPERBEFORE_TRANSACTION_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from TRANSACTION.ID";
+}
+if( document.getElementById  )
+{
+var col = document.getElementById("TRANSACTION_MAPPERAFTER_TRANSACTION_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from TRANSACTION.ID";
+}
+</script>
+
+    <a name="ENTRY"/>
+<h2>ENTRY </h2>
+エントリー
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="ENTRYID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ENTRYQUANTITY">QUANTITY</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">quantity</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 移動量</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ENTRYACCOUNT_ID">ACCOUNT_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">accountId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 勘定ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ENTRYTRANSACTION_ID">TRANSACTION_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">transactionId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> トランザクションID</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("ENTRYACCOUNT_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from ACCOUNT.ID";
+}
+if( document.getElementById  )
+{
+var col = document.getElementById("ENTRYTRANSACTION_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from TRANSACTION.ID";
+}
+</script>
+
+    <a name="PLAN_TRANSACTION"/>
+<h2>PLAN_TRANSACTION </h2>
+予定トランザクション
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="PLAN_TRANSACTIONID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="PLAN_TRANSACTIONPROCESS_ID">PROCESS_ID</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (256) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">processId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 取引番号</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("PLAN_TRANSACTIONID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from TRANSACTION.ID";
+}
+</script>
+
+    <a name="ACTUAL_TRANSACTION"/>
+<h2>ACTUAL_TRANSACTION </h2>
+実績トランザクション
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="ACTUAL_TRANSACTIONID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ACTUAL_TRANSACTIONPROCESS_ID">PROCESS_ID</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (256) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">processId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 取引番号</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("ACTUAL_TRANSACTIONID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from TRANSACTION.ID";
+}
+</script>
+
+    <a name="TRANSACTION"/>
+<h2>TRANSACTION </h2>
+トランザクション
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="TRANSACTIONID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="TRANSACTIONACTUAL">ACTUAL</td>
+    <td class="normalFont">CHAR</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">actual</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 実績の取引の場合はY。予定はN</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="TRANSACTIONREGISTER_DATE">REGISTER_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">registerDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 入力日</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="TRANSACTIONPROCESS_DATE">PROCESS_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">processDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 取引日</td>
+  </tr>
+
+</table>
+<script>
+</script>
+
+    <a name="ACCOUNT"/>
+<h2>ACCOUNT </h2>
+勘定
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="ACCOUNTID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ACCOUNTPLACE_ID">PLACE_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">placeId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 場所ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ACCOUNTITEM_ID">ITEM_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">itemId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 品目ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ACCOUNTREGISTER_DATE">REGISTER_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">registerDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 勘定作成日</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ACCOUNTOWNER_ID">OWNER_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">ownerId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 所有者ID</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("ACCOUNTPLACE_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from PLACE.ID";
+}
+if( document.getElementById  )
+{
+var col = document.getElementById("ACCOUNTITEM_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from ITEM.ID";
+}
+if( document.getElementById  )
+{
+var col = document.getElementById("ACCOUNTOWNER_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from OWNER.ID";
+}
+</script>
+
+    <a name="PLACE"/>
+<h2>PLACE </h2>
+場所
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="PLACEID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="PLACENAME">NAME</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (256) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">name</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 場所名</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="PLACEVIRTUAL">VIRTUAL</td>
+    <td class="normalFont">CHAR</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> N</td>
+    <td class="normalFont">virtual</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 論理的な場所</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="PLACEPARENT_ID">PARENT_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">parentId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 親場所ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="PLACEOWNER_ID">OWNER_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">ownerId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 所有者OID</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("PLACEPARENT_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from PLACE.ID";
+}
+if( document.getElementById  )
+{
+var col = document.getElementById("PLACEOWNER_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from OWNER.ID";
+}
+</script>
+
+    <a name="ITEM"/>
+<h2>ITEM </h2>
+品目
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="ITEMID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ITEMNAME">NAME</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (256) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">name</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 品目名</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ITEMPARENT_ID">PARENT_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">parentId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 親品目ID</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("ITEMPARENT_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from ITEM.ID";
+}
+</script>
+
+    <a name="OWNER"/>
+<h2>OWNER </h2>
+所有者
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="OWNERID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="OWNERNAME">NAME</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (256) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">name</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 所有者名</td>
+  </tr>
+
+</table>
+<script>
+</script>
+
+
+</body>
+</html>

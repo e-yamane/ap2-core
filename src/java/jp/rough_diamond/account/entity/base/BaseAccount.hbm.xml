@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+
+    <class
+        name="jp.rough_diamond.account.entity.Account"
+        table="ACCOUNT"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.Long"
+            length="20"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-BaseAccount.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="registerDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="REGISTER_DATE"
+            not-null="true"
+        />
+
+        <many-to-one
+            name="place"
+            class="jp.rough_diamond.account.entity.Place"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="PLACE_ID" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="item"
+            class="jp.rough_diamond.account.entity.Item"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="ITEM_ID" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="owner"
+            class="jp.rough_diamond.account.entity.Owner"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="OWNER_ID" 
+            />
+        </many-to-one>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-BaseAccount.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
