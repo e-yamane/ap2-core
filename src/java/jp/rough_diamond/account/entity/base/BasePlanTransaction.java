@@ -38,7 +38,6 @@ public abstract class BasePlanTransaction extends jp.rough_diamond.account.entit
      *    generator-class="assigned"
      *    column="ID"
      *    not-null="true"
-     *    length="20"
      * @return OID
     **/
     public Long getId() {

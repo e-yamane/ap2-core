@@ -38,7 +38,6 @@ public abstract class BaseActualTransaction extends jp.rough_diamond.account.ent
      *    generator-class="assigned"
      *    column="ID"
      *    not-null="true"
-     *    length="20"
      * @return OID
     **/
     public Long getId() {

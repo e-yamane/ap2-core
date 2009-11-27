@@ -45,7 +45,6 @@ public abstract class BaseEntry  implements Serializable {
      *    generator-class="assigned"
      *    column="ID"
      *    not-null="true"
-     *    length="20"
      * @return OID
     **/
     public Long getId() {
@@ -137,7 +136,6 @@ public abstract class BaseEntry  implements Serializable {
      * @hibernate.property
      *    column="QUANTITY"
      *    not-null="true"
-     *    length="20"
      * @return ˆÚ“®—Ê
     **/
     public Long getQuantity() {

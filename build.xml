@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="Shift_JIS"?>
 
-<project name="Account Pattern" basedir="." default="dummy">
+<project name="AP2-Core" basedir="." default="dummy">
   <property name="lib.dir"                    value="./etc/otherlib" /><!-- dummy -->
   <property name="dist.dir"                   value="./target"/>
   <property name="classes.dir"                value="${dist.dir}/classes" />

@@ -45,7 +45,6 @@ public abstract class BaseTransactionMapper  implements Serializable {
      *    generator-class="assigned"
      *    column="ID"
      *    not-null="true"
-     *    length="20"
      * @return OID
     **/
     public Long getId() {
