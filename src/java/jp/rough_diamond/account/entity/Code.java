@@ -9,7 +9,7 @@
 package jp.rough_diamond.account.entity;
 
 /**
- * コードのHibernateマッピングクラス
+ * 繧ｳ繝ｼ繝峨�ｮHibernate繝槭ャ繝斐Φ繧ｰ繧ｯ繝ｩ繧ｹ
 **/
 public class Code extends jp.rough_diamond.account.entity.base.BaseCode {
     private static final long serialVersionUID = 1L;
