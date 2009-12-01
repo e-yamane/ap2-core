@@ -1,7 +1,9 @@
 package jp.rough_diamond.account.entity;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import jp.rough_diamond.NumberingLoader;
 import jp.rough_diamond.commons.extractor.Condition;
@@ -69,6 +71,66 @@ public class TransactionTest extends DataLoadingTestCase {
 		}
 	}
 
+	public void testInsert() throws Exception {
+		Transaction pt = new Transaction();
+		pt.setActual(false);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		pt.setProcessDate(sdf.parse("20080827101112"));
+		pt.setRegisterDate(sdf.parse("20070827101112"));
+		Entry e = new Entry();
+		BasicService service = BasicService.getService();
+		e.setAccount(service.findByPK(Account.class, 1L));
+		e.setQuantity(10L);
+		pt.setEntries(Arrays.asList(new Entry[]{e}));
+		service.insert(pt);
+		Extractor ex = new Extractor(TransactionMapper.class);
+		ex.add(Condition.eq(new Property(TransactionMapper.BEFORE), pt));
+		List<TransactionMapper> list = service.findByExtractor(ex);
+		assertEquals("TransactionMapperが生成されていません。", 1, list.size());
+		assertNull("Afterがnullになっていません。", list.get(0).getAfter());
+	}
+
+	public void testInsertAndChain() throws Exception {
+		Transaction pt = new Transaction();
+		pt.setActual(false);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		pt.setProcessDate(sdf.parse("20080827101112"));
+		pt.setRegisterDate(sdf.parse("20070827101112"));
+		Entry e = new Entry();
+		BasicService service = BasicService.getService();
+		e.setAccount(service.findByPK(Account.class, 1L));
+		e.setQuantity(10L);
+		pt.setEntries(Arrays.asList(new Entry[]{e}));
+
+		TransactionMapper tm = service.findByPK(TransactionMapper.class, 10L);
+		tm.setAfter(pt);
+		
+		service.update(tm);
+		
+		Transaction t = service.findByPK(Transaction.class, pt.getId());
+		assertNotNull("正しく保存されています。", t);
+		
+		Extractor ex = new Extractor(TransactionMapper.class);
+		ex.add(Condition.eq(new Property(TransactionMapper.BEFORE), pt));
+		List<TransactionMapper> list = service.findByExtractor(ex);
+		assertEquals("TransactionMapperが生成されていません。", 1, list.size());
+		assertNull("Afterがnullになっていません。", list.get(0).getAfter());
+	}
+
+	public void testIsNewestTransaction() throws Exception {
+		Transaction pt = BasicService.getService().findByPK(Transaction.class, 3L);
+		assertTrue("最新じゃないと言われています。", pt.isNewestTransaction());
+		pt = BasicService.getService().findByPK(Transaction.class, 5L);
+		assertFalse("最新だと言われています。", pt.isNewestTransaction());
+	}
+
+	public void testGetNewestTransactionExtractorBase() {
+		Extractor ex2 = Transaction.getNewestTransactionExtractorBase(Transaction.class);
+		assertEquals("Targetが誤っています。", Transaction.class, ex2.target);
+		List<Transaction> list = BasicService.getService().findByExtractor(ex2);
+		assertEquals("最新データのみ取得できていません。", 9, list.size());
+	}
+
 	//これはFrameworkで検証できなかったためテストとしてこっとに加えてみた
 	public void test条件に日付を加えて集計関数を使用した結果の件数を取得してみる() throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -79,4 +141,35 @@ public class TransactionTest extends DataLoadingTestCase {
 		ex.addExtractValue(new ExtractValue("count", new Count()));
 		assertEquals("返却数が誤っています。", 4, BasicService.getService().getCountByExtractor(ex));
 	}
+
+//TODO ActualTransactionの遺品。性能劣化が多分著しいので一端コメントアウト
+//	public void testVerify() throws Exception {
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//		Date d = sdf.parse("20080421");
+//		BasicService service = BasicService.getService();
+//		Account from = service.findByPK(Account.class, 3L);
+//		Account to = service.findByPK(Account.class, 5L);
+//		Transaction at = makeTransaction(from, to, 70, d);
+//		Messages msgs = service.validate(at, WhenVerifier.INSERT);
+//		System.out.println(msgs);
+//		assertFalse("エラーが発生しています。", msgs.hasError());
+//		at = makeTransaction(from, to, 71, d);
+//		msgs = service.validate(at, WhenVerifier.INSERT);
+//		System.out.println(msgs);
+//		assertTrue("エラーが発生していません。", msgs.hasError());
+//	}
+//
+//	Transaction makeTransaction(Account from, Account to, long quantity, Date d) {
+//		Transaction ret = new Transaction();
+//		ret.setActual(true);
+//		Entry fromE = new Entry();
+//		fromE.setAccount(from);
+//		Entry toE = new Entry();
+//		toE.setAccount(to);
+//		fromE.setQuantity(quantity * -1);
+//		toE.setQuantity(quantity);
+//		ret.setEntries(Arrays.asList(fromE, toE));
+//		ret.setProcessDate(d);
+//		return ret;
+//	}
 }

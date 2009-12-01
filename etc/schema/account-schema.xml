@@ -54,22 +54,6 @@ DTDは、
     </foreign-key>
   </table>
 
-  <table name="PLAN_TRANSACTION" baseClass="Transaction" description="予定トランザクション">
-    <column name="ID"           primaryKey="true"    required="true"   type="BIGINT"  description="OID" />
-    <column name="PROCESS_ID"      required="false"   type="VARCHAR"    size="256"  description="取引番号" />
-   <foreign-key foreignTable="TRANSACTION" name="transaction" onUpdate="cascade" onDelete="cascade">
-      <reference local="ID" foreign="ID" />
-    </foreign-key>
-  </table>
-
-  <table name="ACTUAL_TRANSACTION" baseClass="Transaction" description="実績トランザクション">
-    <column name="ID"           primaryKey="true"    required="true"   type="BIGINT"  description="OID" />
-    <column name="PROCESS_ID"         required="false"   type="VARCHAR"    size="256"  description="取引番号" />
-    <foreign-key foreignTable="TRANSACTION" name="transaction" onUpdate="cascade" onDelete="cascade">
-      <reference local="ID" foreign="ID" />
-    </foreign-key>
-  </table>
-
   <table name="TRANSACTION" description="トランザクション" >
     <column name="ID"             primaryKey="true" required="true"   type="BIGINT"      description="OID" />
     <column name="ACTUAL"                           required="true"   type="BOOLEANCHAR" description="実績の取引の場合はY。予定はN" />

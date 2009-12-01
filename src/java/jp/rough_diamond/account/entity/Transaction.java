@@ -213,4 +213,23 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     		oldId = null;
     	}
     }
+
+//TODO ActualTransactionの遺品。これやると遅いんだよねぇ。一端コメントアウト
+//    @Verifier
+//    public Messages checkBalance() {
+//    	Messages m = new Messages();
+//    	for(Entry e : getEntries()) {
+//    		if(e.getAccount().getPlace().isVirtual()) {
+//    			continue;
+//    		}
+//    		long balance = e.getAccount().getBalance(getProcessDate());
+//    		if(balance + e.getQuantity() < 0) {
+//    			m.add("quantity", new Message(
+//    					"errors.blance.under.zero",
+//    					e.getAccount().getPlace().getName(),
+//    					e.getAccount().getItem().getName()));
+//    		}
+//    	}
+//    	return m;
+//    }
 }

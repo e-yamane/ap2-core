@@ -23,8 +23,6 @@ public class TransactionLoader extends DBInitializer {
      */
     final static String[] NAMES = new String[]{
         "jp/rough_diamond/account/entity/TRANSACTION.xls",
-        "jp/rough_diamond/account/entity/PLAN_TRANSACTION.xls",
-        "jp/rough_diamond/account/entity/ACTUAL_TRANSACTION.xls",
         "jp/rough_diamond/account/entity/ENTRY.xls",
         "jp/rough_diamond/account/entity/TRANSACTION_MAPPER.xls",
     };

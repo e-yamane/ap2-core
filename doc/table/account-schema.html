@@ -43,16 +43,6 @@
       <td class="summarybackground summaryborder summarydescription"> エントリー</td>
     </tr>
     <tr class=summaryrow">
-      <td class="summarybackground summaryborder summarytablename"><a href="#PLAN_TRANSACTION" class="link summarytablenamelink">PLAN_TRANSACTION</a></td>
-      <td class="summarybackground summaryborder summaryjavaname">PlanTransaction</td>
-      <td class="summarybackground summaryborder summarydescription"> 予定トランザクション</td>
-    </tr>
-    <tr class=summaryrow">
-      <td class="summarybackground summaryborder summarytablename"><a href="#ACTUAL_TRANSACTION" class="link summarytablenamelink">ACTUAL_TRANSACTION</a></td>
-      <td class="summarybackground summaryborder summaryjavaname">ActualTransaction</td>
-      <td class="summarybackground summaryborder summarydescription"> 実績トランザクション</td>
-    </tr>
-    <tr class=summaryrow">
       <td class="summarybackground summaryborder summarytablename"><a href="#TRANSACTION" class="link summarytablenamelink">TRANSACTION</a></td>
       <td class="summarybackground summaryborder summaryjavaname">Transaction</td>
       <td class="summarybackground summaryborder summarydescription"> トランザクション</td>
@@ -468,104 +458,6 @@ col.title="Foreignkey from ACCOUNT.ID";
 if( document.getElementById  )
 {
 var col = document.getElementById("ENTRYTRANSACTION_ID");
-col.style.backgroundColor = "afe295";
-col.title="Foreignkey from TRANSACTION.ID";
-}
-</script>
-
-    <a name="PLAN_TRANSACTION"/>
-<h2>PLAN_TRANSACTION </h2>
-予定トランザクション
-<p/>
-<table border="1" cellspacing="0">
-  <tr>
-    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
-    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
-    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
-    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
-    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
-  </tr>
-    <tr>
-    <td class="normalFont" id="PLAN_TRANSACTIONID">ID</td>
-    <td class="normalFont">BIGINT</td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont">id</td>
-    <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"> OID</td>
-  </tr>
-  <tr>
-    <td class="normalFont" id="PLAN_TRANSACTIONPROCESS_ID">PROCESS_ID</td>
-    <td class="normalFont">VARCHAR</td>
-    <td class="normalFont"> (256) </td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont">processId</td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"> 取引番号</td>
-  </tr>
-
-</table>
-<script>
-if( document.getElementById  )
-{
-var col = document.getElementById("PLAN_TRANSACTIONID");
-col.style.backgroundColor = "afe295";
-col.title="Foreignkey from TRANSACTION.ID";
-}
-</script>
-
-    <a name="ACTUAL_TRANSACTION"/>
-<h2>ACTUAL_TRANSACTION </h2>
-実績トランザクション
-<p/>
-<table border="1" cellspacing="0">
-  <tr>
-    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
-    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
-    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
-    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
-    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
-    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
-  </tr>
-    <tr>
-    <td class="normalFont" id="ACTUAL_TRANSACTIONID">ID</td>
-    <td class="normalFont">BIGINT</td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont">id</td>
-    <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"> OID</td>
-  </tr>
-  <tr>
-    <td class="normalFont" id="ACTUAL_TRANSACTIONPROCESS_ID">PROCESS_ID</td>
-    <td class="normalFont">VARCHAR</td>
-    <td class="normalFont"> (256) </td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont">processId</td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"> 取引番号</td>
-  </tr>
-
-</table>
-<script>
-if( document.getElementById  )
-{
-var col = document.getElementById("ACTUAL_TRANSACTIONID");
 col.style.backgroundColor = "afe295";
 col.title="Foreignkey from TRANSACTION.ID";
 }

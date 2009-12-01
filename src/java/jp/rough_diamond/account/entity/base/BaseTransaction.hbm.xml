@@ -59,45 +59,6 @@
             containing the additional properties and place it in your merge dir.
         -->
 
-        <joined-subclass
-            name="jp.rough_diamond.account.entity.PlanTransaction"
-            table="PLAN_TRANSACTION"
-        >
-            <key
-                column="ID"
-            />
-
-        <property
-            name="processId"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="PROCESS_ID"
-            length="256"
-            not-null="false"
-        />
-
-        </joined-subclass>
-        <joined-subclass
-            name="jp.rough_diamond.account.entity.ActualTransaction"
-            table="ACTUAL_TRANSACTION"
-        >
-            <key
-                column="ID"
-            />
-
-        <property
-            name="processId"
-            type="java.lang.String"
-            update="true"
-            insert="true"
-            column="PROCESS_ID"
-            length="256"
-            not-null="false"
-        />
-
-        </joined-subclass>
-
     </class>
 
 </hibernate-mapping>
