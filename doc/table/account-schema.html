@@ -63,9 +63,24 @@
       <td class="summarybackground summaryborder summarydescription"> 品目</td>
     </tr>
     <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#OWNER_CODE" class="link summarytablenamelink">OWNER_CODE</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">OwnerCode</td>
+      <td class="summarybackground summaryborder summarydescription"> 所有者コード</td>
+    </tr>
+    <tr class=summaryrow">
       <td class="summarybackground summaryborder summarytablename"><a href="#OWNER" class="link summarytablenamelink">OWNER</a></td>
       <td class="summarybackground summaryborder summaryjavaname">Owner</td>
       <td class="summarybackground summaryborder summarydescription"> 所有者</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#CODE" class="link summarytablenamelink">CODE</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Code</td>
+      <td class="summarybackground summaryborder summarydescription"> コード</td>
+    </tr>
+    <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#CODE_SYSTEM" class="link summarytablenamelink">CODE_SYSTEM</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">CodeSystem</td>
+      <td class="summarybackground summaryborder summarydescription"> コード体系</td>
     </tr>
   </table>
 
@@ -578,17 +593,6 @@ col.title="Foreignkey from TRANSACTION.ID";
     <td class="normalFont"> 品目ID</td>
   </tr>
   <tr>
-    <td class="normalFont" id="ACCOUNTREGISTER_DATE">REGISTER_DATE</td>
-    <td class="normalFont">TIMESTAMP</td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont">registerDate</td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"> 勘定作成日</td>
-  </tr>
-  <tr>
     <td class="normalFont" id="ACCOUNTOWNER_ID">OWNER_ID</td>
     <td class="normalFont">BIGINT</td>
     <td class="normalFont"> &nbsp;</td>
@@ -598,6 +602,17 @@ col.title="Foreignkey from TRANSACTION.ID";
     <td class="normalFont"><center> X </center></td>
     <td class="normalFont"><center> X </center></td>
     <td class="normalFont"> 所有者ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="ACCOUNTREGISTER_DATE">REGISTER_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">registerDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 勘定作成日</td>
   </tr>
 
 </table>
@@ -770,6 +785,122 @@ col.title="Foreignkey from ITEM.ID";
 }
 </script>
 
+    <a name="OWNER_CODE"/>
+<h2>OWNER_CODE </h2>
+所有者コード
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="OWNER_CODEID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="OWNER_CODEOWNER_ID">OWNER_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">ownerId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 所有者ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_CODE_SYSTEM_ID">CI_CODE_SYSTEM_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.codeSystemId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">所有者コード情報. コード体系ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_CODE">CI_CODE</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (1024) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.code</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">所有者コード情報. コード</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_REVISION">CI_REVISION</td>
+    <td class="normalFont">INTEGER</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.revision</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">所有者コード情報. リビジョン</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_REGISTERER_DATE">CI_REGISTERER_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.registererDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">所有者コード情報. 登録日時</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_VALID_DATE">CI_VALID_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.validDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont">所有者コード情報. 有効開始日時</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_INVALID_DATE">CI_INVALID_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.invalidDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont">所有者コード情報. 無効開始日時</td>
+  </tr>
+
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("CODECODE_SYSTEM_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from CODE_SYSTEM.ID";
+}
+</script>
+
     <a name="OWNER"/>
 <h2>OWNER </h2>
 所有者
@@ -807,6 +938,142 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center> X </center></td>
     <td class="normalFont"> 所有者名</td>
+  </tr>
+
+</table>
+<script>
+</script>
+
+    <a name="CODE"/>
+<h2>CODE （クラスのみ）</h2>
+コード
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="CODECODE_SYSTEM_ID">CODE_SYSTEM_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeSystemId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> コード体系ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECODE">CODE</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (1024) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">code</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> コード</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODEREVISION">REVISION</td>
+    <td class="normalFont">INTEGER</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">revision</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> リビジョン</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODEREGISTERER_DATE">REGISTERER_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">registererDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 登録日時</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODEVALID_DATE">VALID_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">validDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 有効開始日時</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODEINVALID_DATE">INVALID_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">invalidDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"> 無効開始日時</td>
+  </tr>
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("CODECODE_SYSTEM_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from CODE_SYSTEM.ID";
+}
+</script>
+
+    <a name="CODE_SYSTEM"/>
+<h2>CODE_SYSTEM </h2>
+コード体系
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="CODE_SYSTEMID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODE_SYSTEMNAME">NAME</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (256) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">name</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> コード体系名</td>
   </tr>
 
 </table>

@@ -26,9 +26,9 @@ DTDは、
   <external-schema filename="../../../framework/etc/schema/framework-schema.xml" />
 
   <table name="TRANSACTION_MAPPER" description="トランザクション変遷マッパー">
-    <column name="ID"                   primaryKey="true" required="true"   type="BIGINT" description="OID" />
-    <column name="BEFORE_TRANSACTION_ID"                  required="true"   type="BIGINT" description="元予定トランザクションId" />
-    <column name="AFTER_TRANSACTION_ID"                   required="false"  type="BIGINT" description="先トランザクションId" />
+    <column name="ID"                   primaryKey="true" required="true"   domain="oid"  description="OID" />
+    <column name="BEFORE_TRANSACTION_ID"                  required="true"   domain="oid"  description="元予定トランザクションId" />
+    <column name="AFTER_TRANSACTION_ID"                   required="false"  domain="oid"  description="先トランザクションId" />
     <unique name="1">
       <unique-column name="BEFORE_TRANSACTION_ID" />
       <unique-column name="AFTER_TRANSACTION_ID" />
@@ -42,10 +42,10 @@ DTDは、
   </table>
 
   <table name="ENTRY" description="エントリー">
-    <column name="ID"           primaryKey="true" required="true"   type="BIGINT" description="OID" />
+    <column name="ID"           primaryKey="true" required="true"   domain="oid"  description="OID" />
     <column name="QUANTITY"                       required="true"   type="BIGINT" description="移動量" />
-    <column name="ACCOUNT_ID"                     required="true"   type="BIGINT" description="勘定ID" />
-    <column name="TRANSACTION_ID"                 required="true"   type="BIGINT" description="トランザクションID" />
+    <column name="ACCOUNT_ID"                     required="true"   domain="oid"  description="勘定ID" />
+    <column name="TRANSACTION_ID"                 required="true"   domain="oid"  description="トランザクションID" />
     <foreign-key foreignTable="ACCOUNT" name="account" onUpdate="cascade" onDelete="cascade">
       <reference local="ACCOUNT_ID" foreign="ID" />
     </foreign-key>
@@ -55,18 +55,18 @@ DTDは、
   </table>
 
   <table name="TRANSACTION" description="トランザクション" >
-    <column name="ID"             primaryKey="true" required="true"   type="BIGINT"      description="OID" />
+    <column name="ID"             primaryKey="true" required="true"   domain="oid"       description="OID" />
     <column name="ACTUAL"                           required="true"   type="BOOLEANCHAR" description="実績の取引の場合はY。予定はN" />
     <column name="REGISTER_DATE"                    required="true"   type="TIMESTAMP"   description="入力日" />
     <column name="PROCESS_DATE"                     required="true"   type="TIMESTAMP"   description="取引日" />
   </table>
 
   <table name="ACCOUNT" description="勘定">
-    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"          description="OID" />
-    <column name="PLACE_ID"                     required="true"   type="BIGINT"          description="場所ID" />
-    <column name="ITEM_ID"                      required="true"   type="BIGINT"          description="品目ID" />
+    <column name="ID"         primaryKey="true" required="true"   domain="oid"           description="OID" />
+    <column name="PLACE_ID"                     required="true"   domain="oid"           description="場所ID" />
+    <column name="ITEM_ID"                      required="true"   domain="oid"           description="品目ID" />
+    <column name="OWNER_ID"                     required="true"   domain="oid"           description="所有者ID" />
     <column name="REGISTER_DATE"                required="true"   type="TIMESTAMP"       description="勘定作成日" />
-    <column name="OWNER_ID"                     required="true"   type="BIGINT"          description="所有者ID" />
     <unique name="1">
       <unique-column name="PLACE_ID" />
       <unique-column name="ITEM_ID" />
@@ -84,11 +84,11 @@ DTDは、
   </table>
 
   <table name="PLACE" description="場所">
-    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"                     description="OID" />
+    <column name="ID"         primaryKey="true" required="true"   domain="oid"                      description="OID" />
     <column name="NAME"                         required="true"   type="VARCHAR"      size="256"    description="場所名" />
     <column name="VIRTUAL"                      required="true"   type="BOOLEANCHAR" default="N"    description="論理的な場所" />
-    <column name="PARENT_ID"                    required="false"  type="BIGINT"                     description="親場所ID" />
-    <column name="OWNER_ID"                     required="true"   type="BIGINT"                     description="所有者OID" />
+    <column name="PARENT_ID"                    required="false"  domain="oid"                      description="親場所ID" />
+    <column name="OWNER_ID"                     required="true"   domain="oid"                      description="所有者OID" />
     <foreign-key foreignTable="PLACE" name="parent" onUpdate="cascade" onDelete="cascade">
       <reference local="PARENT_ID" foreign="ID" />
     </foreign-key>
@@ -98,16 +98,50 @@ DTDは、
   </table>
 
   <table name="ITEM" description="品目">
-    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"               description="OID" />
+    <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
     <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="品目名" />
-    <column name="PARENT_ID"                    required="false"  type="BIGINT"               description="親品目ID" />
+    <column name="PARENT_ID"                    required="false"  domain="oid"                description="親品目ID" />
     <foreign-key foreignTable="ITEM" name="parent" onUpdate="cascade" onDelete="cascade">
       <reference local="PARENT_ID" foreign="ID" />
     </foreign-key>
   </table>
 
+  <table name="OWNER_CODE" description="所有者コード">
+    <column name="ID"         primaryKey="true"   required="true"   domain="oid"  description="OID" />
+    <column name="OWNER_ID"                       required="true"   domain="oid"  description="所有者ID" />
+    <column name="CI"         javaName="codeInfo" required="true"   type="CODE"   description="所有者コード情報" />
+    <foreign-key foreignTable="OWNER" name="target" onUpdate="cascade" onDelete="cascade">
+      <reference local="OWNER_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
   <table name="OWNER" description="所有者">
-    <column name="ID"         primaryKey="true" required="true"   type="BIGINT"               description="OID" />
+    <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
     <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="所有者名" />
+  </table>
+
+  <table name="CODE" description="コード" skipSql="true">
+    <column name="CODE_SYSTEM_ID"               required="true"   domain="oid"                description="コード体系ID" />
+    <column name="CODE"                         required="true"   type="VARCHAR"  size="1024" description="コード" />
+    <column name="REVISION"                     required="true"   type="INTEGER"              description="リビジョン" />
+    <column name="REGISTERER_DATE"              required="true"   type="TIMESTAMP"            description="登録日時" />
+    <column name="VALID_DATE"                                     type="TIMESTAMP"            description="有効開始日時" />
+    <column name="INVALID_DATE"                                   type="TIMESTAMP"            description="無効開始日時" />
+    <unique name="1">
+      <unique-column name="CODE" />
+      <unique-column name="CODE_SYSTEM_ID" />
+      <unique-column name="REVISION" />
+    </unique>
+    <foreign-key foreignTable="CODE_SYSTEM" name="codeSystem" onUpdate="restrict" onDelete="restrict">
+      <reference local="CODE_SYSTEM_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
+  <table name="CODE_SYSTEM" description="コード体系">
+    <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="コード体系名" />
+    <unique name="1">
+      <unique-column name="NAME" />
+    </unique>
   </table>
 </database>

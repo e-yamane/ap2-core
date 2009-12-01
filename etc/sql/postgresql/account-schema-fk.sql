@@ -1,6 +1,6 @@
 
 ----------------------------------------------------------------------
--- OWNER                                                      
+-- CODE_SYSTEM                                                      
 ----------------------------------------------------------------------
 
 ALTER TABLE TRANSACTION_MAPPER
@@ -111,5 +111,31 @@ ALTER TABLE ITEM
 
 ----------------------------------------------------------------------
 -- ITEM                                                      
+----------------------------------------------------------------------
+
+ALTER TABLE OWNER_CODE
+    ADD CONSTRAINT fk_OWNER_CODE__1 FOREIGN KEY (
+      OWNER_ID
+    )
+    REFERENCES OWNER (ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE 
+;
+ALTER TABLE OWNER_CODE
+    ADD CONSTRAINT fk_OWNER_CODE__2 FOREIGN KEY (
+      CI_CODE_SYSTEM_ID
+    )
+    REFERENCES CODE_SYSTEM (ID)
+    ON UPDATE RESTRICT
+    ON DELETE RESTRICT 
+;
+
+----------------------------------------------------------------------
+-- OWNER_CODE                                                      
+----------------------------------------------------------------------
+
+
+----------------------------------------------------------------------
+-- OWNER                                                      
 ----------------------------------------------------------------------
 
