@@ -46,10 +46,6 @@ DTDは、
     <column name="QUANTITY"                       required="true"   type="BIGINT" description="移動量" />
     <column name="ACCOUNT_ID"                     required="true"   type="BIGINT" description="勘定ID" />
     <column name="TRANSACTION_ID"                 required="true"   type="BIGINT" description="トランザクションID" />
-    <unique name="1">
-      <unique-column name="ACCOUNT_ID" />
-      <unique-column name="TRANSACTION_ID" />
-    </unique>
     <foreign-key foreignTable="ACCOUNT" name="account" onUpdate="cascade" onDelete="cascade">
       <reference local="ACCOUNT_ID" foreign="ID" />
     </foreign-key>

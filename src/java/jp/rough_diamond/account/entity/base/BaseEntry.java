@@ -17,15 +17,6 @@ import  java.io.Serializable;
  *    table="ENTRY"
  *    realClass="jp.rough_diamond.account.entity.Entry"
 **/
-@jp.rough_diamond.commons.service.annotation.Unique(
-    entity="Entry",
-    groups= {
-          @jp.rough_diamond.commons.service.annotation.Check(properties={
-              "account"
-            , "transaction"
-        })
-    }
-)
 public abstract class BaseEntry  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**
