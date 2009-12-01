@@ -266,4 +266,92 @@ public class OwnerTest extends DataLoadingTestCase {
 		System.out.println(cal.getTime());
 		assertEquals("返却コードが誤っています。", "code_2", o.getCode(cs, cal.getTime()));
 	}
+	
+	public void testGetOwnerByCode() throws Exception {
+		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
+		
+		Owner o = Owner.getOwnerByCode(cs, "code_x", sdf.parse("2009/12/01"));
+		assertEquals("所有者IDが誤っています。", 5L, o.getId().longValue());
+
+		Calendar cal = Calendar.getInstance();
+
+		//12/1
+		cal.setTime(sdf.parse("2009/12/01"));
+		System.out.println(cal.getTime());
+		Owner o1 = Owner.getOwnerByCode(cs, "code_1", cal.getTime());
+		Owner o2 = Owner.getOwnerByCode(cs, "code_2", cal.getTime());
+		Owner o3 = Owner.getOwnerByCode(cs, "code_3", cal.getTime());
+		Owner o4 = Owner.getOwnerByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", o1);
+		assertNull("返却値が誤っています。", o2);
+		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
+		assertNull("返却値が誤っています。", o4);
+
+		cal.setTime(sdf.parse("2009/12/19"));
+		System.out.println(cal.getTime());
+		o1 = Owner.getOwnerByCode(cs, "code_1", cal.getTime());
+		o2 = Owner.getOwnerByCode(cs, "code_2", cal.getTime());
+		o3 = Owner.getOwnerByCode(cs, "code_3", cal.getTime());
+		o4 = Owner.getOwnerByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", o1);
+		assertNull("返却値が誤っています。", o2);
+		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
+		assertNull("返却値が誤っています。", o4);
+
+		cal.setTime(sdf.parse("2009/12/20"));
+		System.out.println(cal.getTime());
+		o1 = Owner.getOwnerByCode(cs, "code_1", cal.getTime());
+		o2 = Owner.getOwnerByCode(cs, "code_2", cal.getTime());
+		o3 = Owner.getOwnerByCode(cs, "code_3", cal.getTime());
+		o4 = Owner.getOwnerByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", o1);
+		assertNull("返却値が誤っています。", o2);
+		assertNull("返却値が誤っています。", o3);
+		assertEquals("返却値が誤っています。", 4L, o4.getId().longValue());
+
+		cal.setTime(sdf.parse("2009/12/24"));
+		System.out.println(cal.getTime());
+		o1 = Owner.getOwnerByCode(cs, "code_1", cal.getTime());
+		o2 = Owner.getOwnerByCode(cs, "code_2", cal.getTime());
+		o3 = Owner.getOwnerByCode(cs, "code_3", cal.getTime());
+		o4 = Owner.getOwnerByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", o1);
+		assertNull("返却値が誤っています。", o2);
+		assertNull("返却値が誤っています。", o3);
+		assertEquals("返却値が誤っています。", 4L, o4.getId().longValue());
+
+		cal.setTime(sdf.parse("2009/12/25"));
+		System.out.println(cal.getTime());
+		o1 = Owner.getOwnerByCode(cs, "code_1", cal.getTime());
+		o2 = Owner.getOwnerByCode(cs, "code_2", cal.getTime());
+		o3 = Owner.getOwnerByCode(cs, "code_3", cal.getTime());
+		o4 = Owner.getOwnerByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", o1);
+		assertNull("返却値が誤っています。", o2);
+		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
+		assertNull("返却値が誤っています。", o4);
+
+		cal.setTime(sdf.parse("2009/12/30"));
+		System.out.println(cal.getTime());
+		o1 = Owner.getOwnerByCode(cs, "code_1", cal.getTime());
+		o2 = Owner.getOwnerByCode(cs, "code_2", cal.getTime());
+		o3 = Owner.getOwnerByCode(cs, "code_3", cal.getTime());
+		o4 = Owner.getOwnerByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", o1);
+		assertNull("返却値が誤っています。", o2);
+		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
+		assertNull("返却値が誤っています。", o4);
+
+		cal.setTime(sdf.parse("2009/12/31"));
+		System.out.println(cal.getTime());
+		o1 = Owner.getOwnerByCode(cs, "code_1", cal.getTime());
+		o2 = Owner.getOwnerByCode(cs, "code_2", cal.getTime());
+		o3 = Owner.getOwnerByCode(cs, "code_3", cal.getTime());
+		o4 = Owner.getOwnerByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", o1);
+		assertEquals("返却値が誤っています。", 4L, o2.getId().longValue());
+		assertNull("返却値が誤っています。", o3);
+		assertNull("返却値が誤っています。", o4);
+	}
 }

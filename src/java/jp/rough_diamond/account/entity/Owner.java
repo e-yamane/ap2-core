@@ -23,6 +23,33 @@ public class Owner extends jp.rough_diamond.account.entity.base.BaseOwner {
     	return BasicService.getService().findByExtractor(extractor);
     }
     
+    public static Owner getOwnerByCode(String systemName, String code) {
+    	return getOwnerByCode(CodeSystem.getCodeSystemByName(systemName), code);
+    }
+    
+    public static Owner getOwnerByCode(String systemName, String code, Date date) {
+    	return getOwnerByCode(CodeSystem.getCodeSystemByName(systemName), code, date);
+    }
+    
+    public static Owner getOwnerByCode(CodeSystem system, String code) {
+    	return getOwnerByCode(system, code, new Date());
+    }
+    
+    public static Owner getOwnerByCode(CodeSystem system, String code, Date date) {
+    	Extractor ex = new Extractor(OwnerCode.class);
+    	ex.add(Condition.eq(new Property(OwnerCode.CI + Code.CODESYSTEM), system));
+    	ex.add(Condition.eq(new Property(OwnerCode.CI + Code.CODE), code));
+    	ex.addOrder(Order.asc(new Property(OwnerCode.TARGET)));
+    	List<OwnerCode> list = BasicService.getService().findByExtractor(ex);
+    	for(OwnerCode oc : list) {
+    		String code2 = oc.getTarget().getCode(system, date);
+    		if(code2.equals(code)) {
+    			return oc.getTarget();
+    		}
+    	}
+    	return null;
+    }
+    
     public String getCode(String systemName) {
     	return getCode(CodeSystem.getCodeSystemByName(systemName));
     }
@@ -35,16 +62,23 @@ public class Owner extends jp.rough_diamond.account.entity.base.BaseOwner {
     	return getCode(system, new Date());
     }
     
-    @SuppressWarnings("unchecked")
 	public String getCode(CodeSystem system, Date date) {
-    	Extractor ex = new Extractor(OwnerCode.class);
+		Extractor ex = makeExtractor(system, date);
+    	ex.add(Condition.eq(new Property(OwnerCode.TARGET), this));
     	ex.addExtractValue(new ExtractValue("code", new Property(OwnerCode.CI + Code.CODE)));
     	ex.setReturnType(String.class);
     	ex.setLimit(1);
+		
+    	List<String> ret = BasicService.getService().findByExtractor(ex);
+    	return (ret.size() == 0) ? null : ret.get(0);
+    }
+    
+    @SuppressWarnings("unchecked")
+    static Extractor makeExtractor(CodeSystem system, Date date) {
+    	Extractor ex = new Extractor(OwnerCode.class);
     	ex.addOrder(Order.desc(new Property(OwnerCode.CI + Code.REVISION)));
     	ex.add(Condition.eq(new Property(OwnerCode.CI + Code.CODESYSTEM), system));
-    	ex.add(Condition.eq(new Property(OwnerCode.TARGET), this));
-    	
+
     	Property valid = new Property(OwnerCode.CI + Code.VALID_DATE);
     	CombineCondition validCon = Condition.or();
     	validCon.add(Condition.isNull(valid));
@@ -57,7 +91,6 @@ public class Owner extends jp.rough_diamond.account.entity.base.BaseOwner {
     	invalidCon.add(Condition.gt(invalid, date));
     	ex.add(invalidCon);
 
-    	List<String> ret = BasicService.getService().findByExtractor(ex);
-    	return (ret.size() == 0) ? null : ret.get(0);
+    	return ex;
     }
 }
