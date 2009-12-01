@@ -33,12 +33,12 @@ public class TransactionTest extends DataLoadingTestCase {
 		Extractor eCountEx = new Extractor(Entry.class);
 		long eCount = BasicService.getService().getCountByExtractor(eCountEx);
 		Transaction t = doInsert();
-		assertEquals("Transaction‚ÌŒ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", tCount + 1, BasicService.getService().getCountByExtractor(tCountEx));
-		assertEquals("Entry‚ÌŒ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", eCount + 2, BasicService.getService().getCountByExtractor(eCountEx));
+		assertEquals("Transactionã®ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", tCount + 1, BasicService.getService().getCountByExtractor(tCountEx));
+		assertEquals("Entryã®ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", eCount + 2, BasicService.getService().getCountByExtractor(eCountEx));
 		Extractor ex = new Extractor(TransactionMapper.class);
 		ex.add(Condition.eq(new Property(TransactionMapper.BEFORE + "." + Transaction.ID), 10L));
 		ex.add(Condition.eq(new Property(TransactionMapper.AFTER), t));
-		assertEquals("TransactionMapper‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ", 1, BasicService.getService().getCountByExtractor(ex));
+		assertEquals("TransactionMapperãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“", 1, BasicService.getService().getCountByExtractor(ex));
 	}
 	
 	public void testSaveWhenUpdateInTransaction() throws Exception {
@@ -47,12 +47,12 @@ public class TransactionTest extends DataLoadingTestCase {
 		Extractor eCountEx = new Extractor(Entry.class);
 		long eCount = BasicService.getService().getCountByExtractor(eCountEx);
 		Transaction t = ServiceLocator.getService(TransactionTestService.class).doIt();
-		assertEquals("Transaction‚ÌŒ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", tCount + 1, BasicService.getService().getCountByExtractor(tCountEx));
-		assertEquals("Entry‚ÌŒ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", eCount + 2, BasicService.getService().getCountByExtractor(eCountEx));
+		assertEquals("Transactionã®ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", tCount + 1, BasicService.getService().getCountByExtractor(tCountEx));
+		assertEquals("Entryã®ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", eCount + 2, BasicService.getService().getCountByExtractor(eCountEx));
 		Extractor ex = new Extractor(TransactionMapper.class);
 		ex.add(Condition.eq(new Property(TransactionMapper.BEFORE + "." + Transaction.ID), 10L));
 		ex.add(Condition.eq(new Property(TransactionMapper.AFTER), t));
-		assertEquals("TransactionMapper‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ", 1, BasicService.getService().getCountByExtractor(ex));
+		assertEquals("TransactionMapperãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“", 1, BasicService.getService().getCountByExtractor(ex));
 	}
 	
 	static Transaction doInsert() throws VersionUnmuchException, MessagesIncludingException {
@@ -86,8 +86,8 @@ public class TransactionTest extends DataLoadingTestCase {
 		Extractor ex = new Extractor(TransactionMapper.class);
 		ex.add(Condition.eq(new Property(TransactionMapper.BEFORE), pt));
 		List<TransactionMapper> list = service.findByExtractor(ex);
-		assertEquals("TransactionMapper‚ª¶¬‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB", 1, list.size());
-		assertNull("After‚ªnull‚É‚È‚Á‚Ä‚¢‚Ü‚¹‚ñB", list.get(0).getAfter());
+		assertEquals("TransactionMapperãŒç”Ÿæˆã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", 1, list.size());
+		assertNull("AfterãŒnullã«ãªã£ã¦ã„ã¾ã›ã‚“ã€‚", list.get(0).getAfter());
 	}
 
 	public void testInsertAndChain() throws Exception {
@@ -108,41 +108,41 @@ public class TransactionTest extends DataLoadingTestCase {
 		service.update(tm);
 		
 		Transaction t = service.findByPK(Transaction.class, pt.getId());
-		assertNotNull("³‚µ‚­•Û‘¶‚³‚ê‚Ä‚¢‚Ü‚·B", t);
+		assertNotNull("æ­£ã—ãä¿å­˜ã•ã‚Œã¦ã„ã¾ã™ã€‚", t);
 		
 		Extractor ex = new Extractor(TransactionMapper.class);
 		ex.add(Condition.eq(new Property(TransactionMapper.BEFORE), pt));
 		List<TransactionMapper> list = service.findByExtractor(ex);
-		assertEquals("TransactionMapper‚ª¶¬‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB", 1, list.size());
-		assertNull("After‚ªnull‚É‚È‚Á‚Ä‚¢‚Ü‚¹‚ñB", list.get(0).getAfter());
+		assertEquals("TransactionMapperãŒç”Ÿæˆã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", 1, list.size());
+		assertNull("AfterãŒnullã«ãªã£ã¦ã„ã¾ã›ã‚“ã€‚", list.get(0).getAfter());
 	}
 
 	public void testIsNewestTransaction() throws Exception {
 		Transaction pt = BasicService.getService().findByPK(Transaction.class, 3L);
-		assertTrue("ÅV‚¶‚á‚È‚¢‚ÆŒ¾‚í‚ê‚Ä‚¢‚Ü‚·B", pt.isNewestTransaction());
+		assertTrue("æœ€æ–°ã˜ã‚ƒãªã„ã¨è¨€ã‚ã‚Œã¦ã„ã¾ã™ã€‚", pt.isNewestTransaction());
 		pt = BasicService.getService().findByPK(Transaction.class, 5L);
-		assertFalse("ÅV‚¾‚ÆŒ¾‚í‚ê‚Ä‚¢‚Ü‚·B", pt.isNewestTransaction());
+		assertFalse("æœ€æ–°ã ã¨è¨€ã‚ã‚Œã¦ã„ã¾ã™ã€‚", pt.isNewestTransaction());
 	}
 
 	public void testGetNewestTransactionExtractorBase() {
 		Extractor ex2 = Transaction.getNewestTransactionExtractorBase(Transaction.class);
-		assertEquals("Target‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", Transaction.class, ex2.target);
+		assertEquals("TargetãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", Transaction.class, ex2.target);
 		List<Transaction> list = BasicService.getService().findByExtractor(ex2);
-		assertEquals("ÅVƒf[ƒ^‚Ì‚İæ“¾‚Å‚«‚Ä‚¢‚Ü‚¹‚ñB", 9, list.size());
+		assertEquals("æœ€æ–°ãƒ‡ãƒ¼ã‚¿ã®ã¿å–å¾—ã§ãã¦ã„ã¾ã›ã‚“ã€‚", 9, list.size());
 	}
 
-	//‚±‚ê‚ÍFramework‚ÅŒŸØ‚Å‚«‚È‚©‚Á‚½‚½‚ßƒeƒXƒg‚Æ‚µ‚Ä‚±‚Á‚Æ‚É‰Á‚¦‚Ä‚İ‚½
-	public void testğŒ‚É“ú•t‚ğ‰Á‚¦‚ÄWŒvŠÖ”‚ğg—p‚µ‚½Œ‹‰Ê‚ÌŒ”‚ğæ“¾‚µ‚Ä‚İ‚é() throws Exception {
+	//ã“ã‚Œã¯Frameworkã§æ¤œè¨¼ã§ããªã‹ã£ãŸãŸã‚ãƒ†ã‚¹ãƒˆã¨ã—ã¦ã“ã£ã¨ã«åŠ ãˆã¦ã¿ãŸ
+	public void testæ¡ä»¶ã«æ—¥ä»˜ã‚’åŠ ãˆã¦é›†è¨ˆé–¢æ•°ã‚’ä½¿ç”¨ã—ãŸçµæœã®ä»¶æ•°ã‚’å–å¾—ã—ã¦ã¿ã‚‹() throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080501");
 		Extractor ex = new Extractor(Transaction.class);
 		ex.add(Condition.gt(new Property(Transaction.REGISTER_DATE), d));
 		ex.addExtractValue(new ExtractValue("date", new Property(Transaction.REGISTER_DATE)));
 		ex.addExtractValue(new ExtractValue("count", new Count()));
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 4, BasicService.getService().getCountByExtractor(ex));
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 4, BasicService.getService().getCountByExtractor(ex));
 	}
 
-//TODO ActualTransaction‚Ìˆâ•iB«”\—ò‰»‚ª‘½•ª’˜‚µ‚¢‚Ì‚Åˆê’[ƒRƒƒ“ƒgƒAƒEƒg
+//TODO ActualTransactionã®éºå“ã€‚æ€§èƒ½åŠ£åŒ–ãŒå¤šåˆ†è‘—ã—ã„ã®ã§ä¸€ç«¯ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 //	public void testVerify() throws Exception {
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 //		Date d = sdf.parse("20080421");
@@ -152,11 +152,11 @@ public class TransactionTest extends DataLoadingTestCase {
 //		Transaction at = makeTransaction(from, to, 70, d);
 //		Messages msgs = service.validate(at, WhenVerifier.INSERT);
 //		System.out.println(msgs);
-//		assertFalse("ƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B", msgs.hasError());
+//		assertFalse("ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚", msgs.hasError());
 //		at = makeTransaction(from, to, 71, d);
 //		msgs = service.validate(at, WhenVerifier.INSERT);
 //		System.out.println(msgs);
-//		assertTrue("ƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚¹‚ñB", msgs.hasError());
+//		assertTrue("ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã›ã‚“ã€‚", msgs.hasError());
 //	}
 //
 //	Transaction makeTransaction(Account from, Account to, long quantity, Date d) {

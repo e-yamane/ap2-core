@@ -12,7 +12,7 @@ import  java.util.Date;
 
 
 /**
- * Š¨’è‚ÌHibernateƒ}ƒbƒsƒ“ƒOƒx[ƒXƒNƒ‰ƒX
+ * å‹˜å®šã®Hibernateãƒãƒƒãƒ”ãƒ³ã‚°ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
  * @hibernate.class
  *    table="ACCOUNT"
  *    realClass="jp.rough_diamond.account.entity.Account"
@@ -30,7 +30,7 @@ import  java.util.Date;
 public abstract class BaseAccount  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**
-     * ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     **/
     public BaseAccount() {
     }
@@ -41,7 +41,7 @@ public abstract class BaseAccount  implements Serializable {
     private Long id;
     public final static String ID = "id";
     /**
-     * OID‚ğæ“¾‚·‚é
+     * OIDã‚’å–å¾—ã™ã‚‹
      * @hibernate.id
      *    generator-class="assigned"
      *    column="ID"
@@ -53,7 +53,7 @@ public abstract class BaseAccount  implements Serializable {
     }
 
     /**
-     * OID‚ğİ’è‚·‚é
+     * OIDã‚’è¨­å®šã™ã‚‹
      * @param id  OID
     **/
     public void setId(Long id) {
@@ -90,17 +90,17 @@ public abstract class BaseAccount  implements Serializable {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ‰i‘±‰»‚·‚é
-     * ‰i‘±‰»ƒ‹[ƒ‹‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚·B
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ°¸ç¶šåŒ–ã™ã‚‹
+     * æ°¸ç¶šåŒ–ãƒ«ãƒ¼ãƒ«ã¯ä»¥ä¸‹ã®é€šã‚Šã§ã™ã€‚
      * <ul>
-     *   <li>new‚µ‚½’¼Œã‚ÌƒIƒuƒWƒFƒNƒg‚Ìê‡‚Íinsert</li>
-     *   <li>load‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìê‡‚Íupdate</li>
-     *   <li>load‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Å‚àåƒL[‚ğ·‚µ‘Ö‚¦‚½ê‡‚Íinsert</li>
-     *   <li>insert‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğÄ“xsave‚µ‚½ê‡‚Íupdate</li>
-     *   <li>setLoadingFlagƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚½ê‡‚Í‹­§“I‚Éupdatei”ñ„§j</li>
+     *   <li>newã—ãŸç›´å¾Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯insert</li>
+     *   <li>loadã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯update</li>
+     *   <li>loadã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã‚‚ä¸»ã‚­ãƒ¼ã‚’å·®ã—æ›¿ãˆãŸå ´åˆã¯insert</li>
+     *   <li>insertã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å†åº¦saveã—ãŸå ´åˆã¯update</li>
+     *   <li>setLoadingFlagãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ãŸå ´åˆã¯å¼·åˆ¶çš„ã«updateï¼ˆéæ¨å¥¨ï¼‰</li>
      * </ul>
-     * @throws VersionUnmuchException   ŠyŠÏ“IƒƒbƒLƒ“ƒOƒGƒ‰[
-     * @throws MessagesIncludingException ŒŸØ—áŠO
+     * @throws VersionUnmuchException   æ¥½è¦³çš„ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚¨ãƒ©ãƒ¼
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
     **/
     public void save() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
         if(isLoaded) {
@@ -111,33 +111,33 @@ public abstract class BaseAccount  implements Serializable {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ‰i‘±‰»‚·‚é
-     * @throws MessagesIncludingException ŒŸØ—áŠO
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ°¸ç¶šåŒ–ã™ã‚‹
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
     **/
     protected void insert() throws jp.rough_diamond.commons.resource.MessagesIncludingException {
         jp.rough_diamond.commons.service.BasicService.getService().insert(this);
     }
 
     /**
-     * ‰i‘±‰»ƒIƒuƒWƒFƒNƒg‚ğXV‚·‚é
-     * @throws MessagesIncludingException ŒŸØ—áŠO
-     * @throws VersionUnmuchException   ŠyŠÏ“IƒƒbƒLƒ“ƒOƒGƒ‰[
+     * æ°¸ç¶šåŒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ›´æ–°ã™ã‚‹
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
+     * @throws VersionUnmuchException   æ¥½è¦³çš„ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚¨ãƒ©ãƒ¼
     **/
     protected void update() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
         jp.rough_diamond.commons.service.BasicService.getService().update(this);
     }
     /**
-     * Š¨’èì¬“ú
+     * å‹˜å®šä½œæˆæ—¥
     **/ 
     private Date registerDate;
     public final static String REGISTER_DATE = "registerDate";
 
     /**
-     * Š¨’èì¬“ú‚ğæ“¾‚·‚é
+     * å‹˜å®šä½œæˆæ—¥ã‚’å–å¾—ã™ã‚‹
      * @hibernate.property
      *    column="REGISTER_DATE"
      *    not-null="true"
-     * @return Š¨’èì¬“ú
+     * @return å‹˜å®šä½œæˆæ—¥
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Account.registerDate")
     public Date getRegisterDate() {
@@ -145,8 +145,8 @@ public abstract class BaseAccount  implements Serializable {
     }
 
     /**
-     * Š¨’èì¬“ú‚ğİ’è‚·‚é
-     * @param registerDate  Š¨’èì¬“ú
+     * å‹˜å®šä½œæˆæ—¥ã‚’è¨­å®šã™ã‚‹
+     * @param registerDate  å‹˜å®šä½œæˆæ—¥
     **/
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;

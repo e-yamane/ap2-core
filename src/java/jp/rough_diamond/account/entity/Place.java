@@ -20,7 +20,7 @@ import jp.rough_diamond.commons.service.annotation.PostLoad;
 import jp.rough_diamond.framework.transaction.TransactionManager;
 
 /**
- * 場所のHibernateマッピングクラス
+ * 蝣ｴ謇縺ｮHibernate繝槭ャ繝斐Φ繧ｰ繧ｯ繝ｩ繧ｹ
 **/
 public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     private static final long serialVersionUID = 1L;

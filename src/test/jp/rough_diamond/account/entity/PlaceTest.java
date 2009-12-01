@@ -23,31 +23,31 @@ public class PlaceTest extends DataLoadingTestCase {
 	public void testGetChildren() throws Exception {
 		Place place = BasicService.getService().findByPK(Place.class, 1L);
 		List<Place> list = place.getChildren();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3L, list.get(1).getId().longValue());
-		assertEquals("q‹Ÿ‚ª‚¢‚Ü‚·B", 0, list.get(1).getChildren().size());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3L, list.get(1).getId().longValue());
+		assertEquals("å­ä¾›ãŒã„ã¾ã™ã€‚", 0, list.get(1).getChildren().size());
 	}
 
 	public void testGetRoutes() throws Exception {
 		Place place = BasicService.getService().findByPK(Place.class, 4L);
 		List<Place> list = place.getRoutes();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2L, list.get(1).getId().longValue());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2L, list.get(1).getId().longValue());
 	}
 	
 	public void testGetRootPlaces() throws Exception {
 		List<Place> list = Place.getRootPlaces();
-//		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3, list.size());
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 4, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 5L, list.get(1).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 6L, list.get(2).getId().longValue());
+//		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3, list.size());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 4, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 5L, list.get(1).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 6L, list.get(2).getId().longValue());
 	}
 
 	public void testMultilevelUniqueCheckWhenUpdate() throws Exception {
-		//ƒ†ƒj[ƒN‘®«‚ğ•Ï‰»‚³‚¹‚¸‚ÉƒAƒbƒvƒf[ƒg‚Å‚«‚é‚±‚Æ
+		//ãƒ¦ãƒ‹ãƒ¼ã‚¯å±æ€§ã‚’å¤‰åŒ–ã•ã›ãšã«ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã§ãã‚‹ã“ã¨
 		BasicService service = BasicService.getService();
 		Place target = service.findByPK(Place.class, 2L);
 		target.setVirtual(true);
@@ -55,53 +55,53 @@ public class PlaceTest extends DataLoadingTestCase {
 			service.update(target);
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
-//XXX ƒ†ƒj[ƒN‰ğœ	
-//		//–¼‘O‚Ìd•¡ƒ`ƒFƒbƒN
-//		target.setName("•ºŒÉ");
+//XXX ãƒ¦ãƒ‹ãƒ¼ã‚¯è§£é™¤	
+//		//åå‰ã®é‡è¤‡ãƒã‚§ãƒƒã‚¯
+//		target.setName("å…µåº«");
 //		target.setVirtual(false);
-//		int i = 0;	//FindBug‘Î‰
+//		int i = 0;	//FindBugå¯¾å¿œ
 //		try {
 //			service.update(target);
-//			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+//			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã›ã‚“ã€‚");
 //		} catch(MessagesIncludingException e) {
 //			i++;
 //		} catch(Exception e) {
 //			e.printStackTrace();
-//			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+//			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 //		}
 	}
 
 	public void testPlaceInsert() throws Exception {
-		// 1.eİ’è‚È‚µ
+		// 1.è¦ªè¨­å®šãªã—
 		BasicService service = BasicService.getService();
-		// place‚ÌV‹K“o˜^ƒ`ƒFƒbƒN
+		// placeã®æ–°è¦ç™»éŒ²ãƒã‚§ãƒƒã‚¯
 		Place newPlace = new Place();
-		newPlace.setName("‘åã");
+		newPlace.setName("å¤§é˜ª");
 		newPlace.setVirtual(false);
 		
-		// Š—LÒİ’è
+		// æ‰€æœ‰è€…è¨­å®š
 		Owner newOwner = service.findByPK(Owner.class, 2L);
 		newPlace.setOwner(newOwner);
 		try {
 			service.insert(newPlace);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 		
-		// 2.eİ’è‚ ‚è
+		// 2.è¦ªè¨­å®šã‚ã‚Š
 		Place kansai = service.findByPK(Place.class, 1L);
 		newPlace = new Place();
-		newPlace.setName("‘åã");
+		newPlace.setName("å¤§é˜ª");
 		newPlace.setVirtual(false);
 		newPlace.setParent(kansai);
 		
-		// Š—LÒİ’è
+		// æ‰€æœ‰è€…è¨­å®š
 		newOwner = service.findByPK(Owner.class, 2L);
 		newPlace.setOwner(newOwner);
 		
@@ -109,19 +109,19 @@ public class PlaceTest extends DataLoadingTestCase {
 			service.insert(newPlace);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 		
-		// 3.‰¼‘zİ’è‚Ì‚İ•ÏX(ƒ†ƒj[ƒN€–Ú‚ªˆê‚È‚Ì‚Å“o˜^•s‰Â)
+		// 3.ä»®æƒ³è¨­å®šã®ã¿å¤‰æ›´(ãƒ¦ãƒ‹ãƒ¼ã‚¯é …ç›®ãŒä¸€ç·’ãªã®ã§ç™»éŒ²ä¸å¯)
 		newPlace = new Place();
-		newPlace.setName("‘åã");
+		newPlace.setName("å¤§é˜ª");
 		newPlace.setVirtual(true);
 		newPlace.setParent(kansai);
 		
-		// Š—LÒİ’è
+		// æ‰€æœ‰è€…è¨­å®š
 		newPlace.setOwner(newOwner);
 		
 		try {
@@ -130,7 +130,7 @@ public class PlaceTest extends DataLoadingTestCase {
 			e.printStackTrace();
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 	}
 
@@ -138,10 +138,10 @@ public class PlaceTest extends DataLoadingTestCase {
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 1L);
 		Set<Long> ids = p.getChildIds();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3, ids.size());
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(2L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(3L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(4L));
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3, ids.size());
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(2L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(3L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(4L));
 	}
 
 	public void testGetChildIdsWhenRecesive() throws Exception {
@@ -149,9 +149,9 @@ public class PlaceTest extends DataLoadingTestCase {
 		Owner o = service.findByPK(Owner.class, 1L);
 		Place p1 = new Place();
 		p1.setOwner(o);
-		p1.setName("Ä‹A€–Ú‚P");
+		p1.setName("å†å¸°é …ç›®ï¼‘");
 		Place p2 = new Place();
-		p2.setName("Ä‹A€–Ú‚Q");
+		p2.setName("å†å¸°é …ç›®ï¼’");
 		p2.setOwner(o);
 		service.insert(p1, p2);
 		p1.setParent(p2);
@@ -159,8 +159,8 @@ public class PlaceTest extends DataLoadingTestCase {
 		p2.setParent(p1);
 		service.update(p2);
 		Set<Long> ids = p1.getChildIds();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2, ids.size());
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(p1.getId()));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(p2.getId()));
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2, ids.size());
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(p1.getId()));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(p2.getId()));
 	}
 }

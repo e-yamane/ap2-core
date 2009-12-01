@@ -16,21 +16,21 @@ public class AccountTest extends DataLoadingTestCase {
 		NumberingLoader.init();
 	}
 
-	//–{“–‚ÍƒtƒŒ[ƒ€ƒ[ƒN‚Å‚·‚é‚×‚«
+	//æœ¬å½“ã¯ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã§ã™ã‚‹ã¹ã
 	public void testUniqueCheck() throws Exception {
 		Account account = Account.getService().getAccount(1L, 4L, 1L);
 		account.setId(null);
 		try {
 			account.save();
-			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã›ã‚“ã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		//ID3‚Ìƒf[ƒ^‚ğXV
+		//ID3ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
 		account.setId(3L);
 		try {
 			BasicService.getService().update(account);
-			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã›ã‚“ã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -38,53 +38,53 @@ public class AccountTest extends DataLoadingTestCase {
 	
 	public void testGetAccount() throws Exception {
 		Account account = Account.getService().getAccount(1L, 4L, 1L);
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2L, account.getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2L, account.getId().longValue());
 		account = Account.getService().getAccount(Long.MAX_VALUE, 4L, 1L);
-		assertNull("•Ï‚Èƒf[ƒ^‚ª•Ô‹p‚³‚ê‚Ä‚¢‚Ü‚·B", account);
+		assertNull("å¤‰ãªãƒ‡ãƒ¼ã‚¿ãŒè¿”å´ã•ã‚Œã¦ã„ã¾ã™ã€‚", account);
 	}
 
 	public void testGetBlance() throws Exception {
 		Account account = Account.getService().getAccount(4L, 4L, 1L);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080410");
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 0L, account.getBalance(d).longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 0L, account.getBalance(d).longValue());
 		d = sdf.parse("20080411");
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 100L, account.getBalance(d).longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 100L, account.getBalance(d).longValue());
 		d = sdf.parse("20080420");
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 100L, account.getBalance(d).longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 100L, account.getBalance(d).longValue());
 		d = sdf.parse("20080421");
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 70L, account.getBalance(d).longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 70L, account.getBalance(d).longValue());
 
 		Account account2 = Account.getService().getAccount(4L, 5L, 3L);
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1000L, account2.getBalance().longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1000L, account2.getBalance().longValue());
 	}
 	
 	public void testGetTrend() throws Exception {
 		Account account = Account.getService().getAccount(4L, 4L, 1L);
 		List<Entry> list = account.getTrend();
-		assertEquals("Œ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 4, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3L, list.get(1).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 5L, list.get(2).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 7L, list.get(3).getId().longValue());
+		assertEquals("ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 4, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3L, list.get(1).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 5L, list.get(2).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 7L, list.get(3).getId().longValue());
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
 		list = account.getTrend(null, sdf.parse("20080411"));
-		assertEquals("Œ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
+		assertEquals("ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
 
 		list = account.getTrend(sdf.parse("20080411"), null);
-		assertEquals("Œ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 5L, list.get(1).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 7L, list.get(2).getId().longValue());
+		assertEquals("ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 5L, list.get(1).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 7L, list.get(2).getId().longValue());
 
 		
 		Account account2 = Account.getService().getAccount(4L, 5L, 3L);
 		List<Entry> list2 = account2.getTrend();
-		assertEquals("Œ”‚ªŒë‚Ü‚Á‚Ä‚¢‚Ü‚·B", 1, list2.size());
-		assertEquals("ID‚ªŒë‚Ü‚Á‚Ä‚¢‚Ü‚·B",  12L, list2.get(0).getId().longValue());
+		assertEquals("ä»¶æ•°ãŒèª¤ã¾ã£ã¦ã„ã¾ã™ã€‚", 1, list2.size());
+		assertEquals("IDãŒèª¤ã¾ã£ã¦ã„ã¾ã™ã€‚",  12L, list2.get(0).getId().longValue());
 	}
 	
 	public void testGrossItemBalance() throws Exception {
@@ -98,7 +98,7 @@ public class AccountTest extends DataLoadingTestCase {
 		a.setOwner(o);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080720");
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 20L, a.getBalance(d, true, false).longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 20L, a.getBalance(d, true, false).longValue());
 	}
 	
 	public void testGrossItemTrend() throws Exception {
@@ -113,7 +113,7 @@ public class AccountTest extends DataLoadingTestCase {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080720");
 		List<Entry> entries = a.getTrend(null, d, true, false);
-		assertEquals("Œ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 4, entries.size());
+		assertEquals("ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 4, entries.size());
 	}
 	
 	public void testGrossPlaceBalance() throws Exception {
@@ -127,7 +127,7 @@ public class AccountTest extends DataLoadingTestCase {
 		a.setOwner(o);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080720");
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 20L, a.getBalance(d, false, true).longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 20L, a.getBalance(d, false, true).longValue());
 	}
 	
 	public void testGrossPlaceTrend() throws Exception {
@@ -142,7 +142,7 @@ public class AccountTest extends DataLoadingTestCase {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080720");
 		List<Entry> entries = a.getTrend(null, d, false, true);
-		assertEquals("Œ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 4, entries.size());
+		assertEquals("ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 4, entries.size());
 	}
 
 	public void testGrossPlaceAndItemBalance() throws Exception {
@@ -156,7 +156,7 @@ public class AccountTest extends DataLoadingTestCase {
 		a.setOwner(o);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080720");
-		assertEquals("c—Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 20L, a.getBalance(d, true, true).longValue());
+		assertEquals("æ®‹é‡ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 20L, a.getBalance(d, true, true).longValue());
 	}
 	
 	public void testGrossPlaceAndItemTrend() throws Exception {
@@ -171,7 +171,7 @@ public class AccountTest extends DataLoadingTestCase {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date d = sdf.parse("20080720");
 		List<Entry> entries = a.getTrend(null, d, true, true);
-		assertEquals("Œ”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 4, entries.size());
+		assertEquals("ä»¶æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 4, entries.size());
 	}
 	
 	public static void main(String[] args) throws Exception {

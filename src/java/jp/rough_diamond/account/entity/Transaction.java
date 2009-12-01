@@ -24,7 +24,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌHibernateƒ}ƒbƒsƒ“ƒOƒNƒ‰ƒX
+ * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®Hibernateãƒãƒƒãƒ”ãƒ³ã‚°ã‚¯ãƒ©ã‚¹
 **/
 public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransaction {
     private static final long serialVersionUID = 1L;
@@ -50,11 +50,11 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     }
     
     /**
-     * ÅVƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ğæ“¾‚·‚é‚½‚ß‚Ìƒx[ƒX‚Æ‚È‚éExtractor‚ğ’Ç‰Á‚·‚é
-     * ‘ÎÛ‚Æ‚È‚éTransaction‚ÌAlias‚ÍnullATransactionMapper‚ÌAlias‚Ítm‚ğw’è‚µ‚Ä‚¢‚é‚½‚ßA
-     * ‚»‚Ì‘¼‚Ìƒe[ƒuƒ‹‚âğŒ‚ÅInnerJoin‚ğ‚·‚éê‡‚Í‚»‚êˆÈŠO‚ÌAlias‚ğ‚µ‚Ä‚¢‚·‚é‚±‚ÆB
-     * @param cl æ“¾‚·‚éƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚Ìƒ^ƒCƒv
-     * @return ÅV‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ğæ“¾‚·‚é‚½‚ß‚ÌğŒ‚ªƒZƒbƒg‚³‚ê‚½ExtractorƒIƒuƒWƒFƒNƒg
+     * æœ€æ–°ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒ™ãƒ¼ã‚¹ã¨ãªã‚‹Extractorã‚’è¿½åŠ ã™ã‚‹
+     * å¯¾è±¡ã¨ãªã‚‹Transactionã®Aliasã¯nullã€TransactionMapperã®Aliasã¯tmã‚’æŒ‡å®šã—ã¦ã„ã‚‹ãŸã‚ã€
+     * ãã®ä»–ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚„æ¡ä»¶ã§InnerJoinã‚’ã™ã‚‹å ´åˆã¯ãã‚Œä»¥å¤–ã®Aliasã‚’ã—ã¦ã„ã™ã‚‹ã“ã¨ã€‚
+     * @param cl å–å¾—ã™ã‚‹ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¿ã‚¤ãƒ—
+     * @return æœ€æ–°ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®æ¡ä»¶ãŒã‚»ãƒƒãƒˆã•ã‚ŒãŸExtractorã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     public static Extractor getNewestTransactionExtractorBase(Class<? extends Transaction> cl) {
         Extractor ex = new Extractor(cl);
@@ -63,13 +63,13 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     }
 
     /**
-     * w’è‚³‚ê‚½Extractor‚ÉÅV‚Ìƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚Ì‚İ‚ğæ“¾‘ÎÛ‚Æ‚·‚é‚½‚ß‚ÌğŒ‚ğ•t—^‚·‚é
-     * @param ex		•t—^‚·‚éŒ³‚Æ‚È‚éExtractorƒIƒuƒWƒFƒNƒg
-     * @param cl@@@@@@TransactionMapper‚ÌbeforeƒIƒuƒWƒFƒNƒg‚ÆƒŠƒ“ƒN‚ğ“\‚é‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg‚ğ•Û‚·‚éƒNƒ‰ƒX
-     * @param property	TransactionMapper‚ÌbeforeƒIƒuƒWƒFƒNƒg‚ÆƒŠƒ“ƒN‚ğ“\‚é‚½‚ß‚ÌƒvƒƒpƒeƒBBnull‚ğw’è‚·‚é‚ÆA
-     * 					cl‚Åw’è‚³‚ê‚½ƒNƒ‰ƒX©‘Ì‚ÆƒŠƒ“ƒN‚³‚¹‚é
-     * @param alias		TransactionMapper‚ÆƒŠƒ“ƒN‚ğ“\‚é‚½‚ß‚ÌƒNƒ‰ƒX‚Éw’è‚µ‚½ƒGƒCƒŠƒAƒXBƒGƒCƒŠƒAƒX‚ğ–¾‚Éw’è‚µ‚Ä‚¢‚È‚¢ê‡‚Í
-     * 					null‚ğƒZƒbƒg‚·‚é
+     * æŒ‡å®šã•ã‚ŒãŸExtractorã«æœ€æ–°ã®ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®ã¿ã‚’å–å¾—å¯¾è±¡ã¨ã™ã‚‹ãŸã‚ã®æ¡ä»¶ã‚’ä»˜ä¸ã™ã‚‹
+     * @param ex		ä»˜ä¸ã™ã‚‹å…ƒã¨ãªã‚‹Extractorã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param clã€€ã€€ã€€ã€€ã€€ã€€TransactionMapperã®beforeã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ãƒªãƒ³ã‚¯ã‚’è²¼ã‚‹ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹
+     * @param property	TransactionMapperã®beforeã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ãƒªãƒ³ã‚¯ã‚’è²¼ã‚‹ãŸã‚ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã€‚nullã‚’æŒ‡å®šã™ã‚‹ã¨ã€
+     * 					clã§æŒ‡å®šã•ã‚ŒãŸã‚¯ãƒ©ã‚¹è‡ªä½“ã¨ãƒªãƒ³ã‚¯ã•ã›ã‚‹
+     * @param alias		TransactionMapperã¨ãƒªãƒ³ã‚¯ã‚’è²¼ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã«æŒ‡å®šã—ãŸã‚¨ã‚¤ãƒªã‚¢ã‚¹ã€‚ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‚’æ˜ã«æŒ‡å®šã—ã¦ã„ãªã„å ´åˆã¯
+     * 					nullã‚’ã‚»ãƒƒãƒˆã™ã‚‹
      */
     public static void addNewestTransactionCondition(Extractor ex, Class<?> cl, String property, String alias) {
         ex.addInnerJoin(new InnerJoin(cl, property, alias, TransactionMapper.class, TransactionMapper.BEFORE, "tm"));
@@ -86,7 +86,7 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
         isNewestTransaction = (BasicService.getService().getCountByExtractor(e) > 0L);
     }
     
-    //XXX Œµ–§‚É‚Í”r‘¼‘‚¯‚é‚¯‚Ç‚Ü‚Ÿ‚¢‚¢‚âBBB
+    //XXX å³å¯†ã«ã¯æ’ä»–æ›¸ã‘ã‚‹ã‘ã©ã¾ãã„ã„ã‚„ã€‚ã€‚ã€‚
     public boolean isNewestTransaction() {
     	if(isNewestTransaction == null) {
     		if(getId() == null) {
@@ -180,7 +180,7 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     protected void update() throws MessagesIncludingException, VersionUnmuchException {
     	oldId = getId();
     	setId(null);
-    	//”O‚Ì‚½‚ß
+    	//å¿µã®ãŸã‚
     	BasicService.getService().clearCache(this);
     	insert();
     }
@@ -203,7 +203,7 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
 			e.add(Condition.isNull(new Property(TransactionMapper.AFTER)));
 			List<TransactionMapper> tmList = BasicService.getService().findByExtractor(e, true);
 			if(tmList.size() == 0) {
-		        log.warn("ƒoƒO‚©‚àEEE’¼‘O‚Ìƒ}ƒbƒp[‚ª‚ ‚è‚Ü‚¹‚ñB");
+		        log.warn("ãƒã‚°ã‹ã‚‚ãƒ»ãƒ»ãƒ»ç›´å‰ã®ãƒãƒƒãƒ‘ãƒ¼ãŒã‚ã‚Šã¾ã›ã‚“ã€‚");
 				return;
 			}
 			TransactionMapper tm = tmList.get(0);
@@ -214,7 +214,7 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     	}
     }
 
-//TODO ActualTransaction‚Ìˆâ•iB‚±‚ê‚â‚é‚Æ’x‚¢‚ñ‚¾‚æ‚Ë‚¥Bˆê’[ƒRƒƒ“ƒgƒAƒEƒg
+//TODO ActualTransactionã®éºå“ã€‚ã“ã‚Œã‚„ã‚‹ã¨é…ã„ã‚“ã ã‚ˆã­ã‡ã€‚ä¸€ç«¯ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 //    @Verifier
 //    public Messages checkBalance() {
 //    	Messages m = new Messages();

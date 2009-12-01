@@ -6,8 +6,8 @@ import jp.rough_diamond.framework.service.Service;
 
 public interface TransactionService extends Service {
 	/**
-	 * �\��ɑ΂�����т�ǉ�����
-	 * ���Ƀ}�b�s���O����Ă��Ă��悢�B
+	 * 予定に対する実績を追加する
+	 * 既にマッピングされていてもよい。
 	 * @param plan
 	 * @param actual
 	 */

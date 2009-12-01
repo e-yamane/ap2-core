@@ -6,7 +6,7 @@ import jp.rough_diamond.commons.service.annotation.PrePersist;
 import jp.rough_diamond.commons.service.annotation.PreUpdate;
 
 /**
- * 予実マッパーのHibernateマッピングクラス
+ * 莠亥ｮ溘�槭ャ繝代�ｼ縺ｮHibernate繝槭ャ繝斐Φ繧ｰ繧ｯ繝ｩ繧ｹ
 **/
 public class TransactionMapper extends jp.rough_diamond.account.entity.base.BaseTransactionMapper {
     private static final long serialVersionUID = 1L;

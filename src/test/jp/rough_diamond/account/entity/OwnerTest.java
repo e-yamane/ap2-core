@@ -24,40 +24,40 @@ public class OwnerTest extends DataLoadingTestCase {
 	
     public void testGetAll() {
 		List<Owner> list = Owner.getAll();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2L, list.get(1).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3L, list.get(2).getId().longValue());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2L, list.get(1).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3L, list.get(2).getId().longValue());
     }
 
 	public void testOwnerInsert() {
 		BasicService service = BasicService.getService();
 		
     	try {
-    		// 1.V‹K“o˜^
+    		// 1.æ–°è¦ç™»éŒ²
     		Owner newOwner = new Owner();
-        	newOwner.setName("’n“ª");
+        	newOwner.setName("åœ°é ­");
 			service.insert(newOwner);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 
-//XXX ƒ†ƒj[ƒN‰ğœ		
+//XXX ãƒ¦ãƒ‹ãƒ¼ã‚¯è§£é™¤		
 //    	try {
-//    		// 2.“¯ˆê–¼Ì‚Í“o˜^•s‰Â
+//    		// 2.åŒä¸€åç§°ã¯ç™»éŒ²ä¸å¯
 //    		Owner newOwner = new Owner();
-//        	newOwner.setName("–{“c");
+//        	newOwner.setName("æœ¬ç”°");
 //			service.insert(newOwner);
-//			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+//			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã›ã‚“ã€‚");
 //		} catch(MessagesIncludingException e) {
 //			e.printStackTrace();
 //		} catch(Exception e) {
 //			e.printStackTrace();
-//			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+//			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 //		}
 	}
 	
@@ -65,30 +65,30 @@ public class OwnerTest extends DataLoadingTestCase {
 		BasicService service = BasicService.getService();
 		
     	try {
-    		// 1.–¼ÌXV
+    		// 1.åç§°æ›´æ–°
     		Owner newOwner = service.findByPK(Owner.class, 1L);
-        	newOwner.setName("–{“c@Æ÷");
+        	newOwner.setName("æœ¬ç”°ã€€å“‰æ¨¹");
 			service.update(newOwner);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 
-//XXX ƒ†ƒj[ƒN‰ğœ		
+//XXX ãƒ¦ãƒ‹ãƒ¼ã‚¯è§£é™¤		
 //    	try {
-//    		// 2.“¯ˆê–¼Ì‚Í“o˜^•s‰Â
+//    		// 2.åŒä¸€åç§°ã¯ç™»éŒ²ä¸å¯
 //    		Owner newOwner = service.findByPK(Owner.class, 1L);
-//        	newOwner.setName("]•À");
+//        	newOwner.setName("æ±Ÿä¸¦");
 //			service.update(newOwner);
-//			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+//			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã›ã‚“ã€‚");
 //		} catch(MessagesIncludingException e) {
 //			e.printStackTrace();
 //		} catch(Exception e) {
 //			e.printStackTrace();
-//			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+//			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 //		}
 	}
 }

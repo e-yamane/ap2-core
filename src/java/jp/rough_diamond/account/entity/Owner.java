@@ -8,7 +8,7 @@ import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
 
 /**
- * 所有者のHibernateマッピングクラス
+ * 謇譛芽�縺ｮHibernate繝槭ャ繝斐Φ繧ｰ繧ｯ繝ｩ繧ｹ
 **/
 public class Owner extends jp.rough_diamond.account.entity.base.BaseOwner {
     private static final long serialVersionUID = 1L;

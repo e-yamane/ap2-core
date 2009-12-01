@@ -8,7 +8,7 @@ import jp.rough_diamond.commons.service.annotation.PrePersist;
 import jp.rough_diamond.framework.service.ServiceLocator;
 
 /**
- * 勘定のHibernateマッピングクラス
+ * 蜍伜ｮ壹�ｮHibernate繝槭ャ繝斐Φ繧ｰ繧ｯ繝ｩ繧ｹ
 **/
 public class Account extends jp.rough_diamond.account.entity.base.BaseAccount {
     private static final long serialVersionUID = 1L;

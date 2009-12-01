@@ -12,7 +12,7 @@ import  java.util.Date;
 
 
 /**
- * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌHibernateƒ}ƒbƒsƒ“ƒOƒx[ƒXƒNƒ‰ƒX
+ * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®Hibernateãƒãƒƒãƒ”ãƒ³ã‚°ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
  * @hibernate.class
  *    table="TRANSACTION"
  *    realClass="jp.rough_diamond.account.entity.Transaction"
@@ -20,7 +20,7 @@ import  java.util.Date;
 public abstract class BaseTransaction  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**
-     * ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     **/
     public BaseTransaction() {
     }
@@ -31,7 +31,7 @@ public abstract class BaseTransaction  implements Serializable {
     private Long id;
     public final static String ID = "id";
     /**
-     * OID‚ğæ“¾‚·‚é
+     * OIDã‚’å–å¾—ã™ã‚‹
      * @hibernate.id
      *    generator-class="assigned"
      *    column="ID"
@@ -43,7 +43,7 @@ public abstract class BaseTransaction  implements Serializable {
     }
 
     /**
-     * OID‚ğİ’è‚·‚é
+     * OIDã‚’è¨­å®šã™ã‚‹
      * @param id  OID
     **/
     public void setId(Long id) {
@@ -80,17 +80,17 @@ public abstract class BaseTransaction  implements Serializable {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ‰i‘±‰»‚·‚é
-     * ‰i‘±‰»ƒ‹[ƒ‹‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚·B
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ°¸ç¶šåŒ–ã™ã‚‹
+     * æ°¸ç¶šåŒ–ãƒ«ãƒ¼ãƒ«ã¯ä»¥ä¸‹ã®é€šã‚Šã§ã™ã€‚
      * <ul>
-     *   <li>new‚µ‚½’¼Œã‚ÌƒIƒuƒWƒFƒNƒg‚Ìê‡‚Íinsert</li>
-     *   <li>load‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìê‡‚Íupdate</li>
-     *   <li>load‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Å‚àåƒL[‚ğ·‚µ‘Ö‚¦‚½ê‡‚Íinsert</li>
-     *   <li>insert‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğÄ“xsave‚µ‚½ê‡‚Íupdate</li>
-     *   <li>setLoadingFlagƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚½ê‡‚Í‹­§“I‚Éupdatei”ñ„§j</li>
+     *   <li>newã—ãŸç›´å¾Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯insert</li>
+     *   <li>loadã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯update</li>
+     *   <li>loadã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã‚‚ä¸»ã‚­ãƒ¼ã‚’å·®ã—æ›¿ãˆãŸå ´åˆã¯insert</li>
+     *   <li>insertã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å†åº¦saveã—ãŸå ´åˆã¯update</li>
+     *   <li>setLoadingFlagãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ãŸå ´åˆã¯å¼·åˆ¶çš„ã«updateï¼ˆéæ¨å¥¨ï¼‰</li>
      * </ul>
-     * @throws VersionUnmuchException   ŠyŠÏ“IƒƒbƒLƒ“ƒOƒGƒ‰[
-     * @throws MessagesIncludingException ŒŸØ—áŠO
+     * @throws VersionUnmuchException   æ¥½è¦³çš„ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚¨ãƒ©ãƒ¼
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
     **/
     public void save() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
         if(isLoaded) {
@@ -101,33 +101,33 @@ public abstract class BaseTransaction  implements Serializable {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ‰i‘±‰»‚·‚é
-     * @throws MessagesIncludingException ŒŸØ—áŠO
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ°¸ç¶šåŒ–ã™ã‚‹
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
     **/
     protected void insert() throws jp.rough_diamond.commons.resource.MessagesIncludingException {
         jp.rough_diamond.commons.service.BasicService.getService().insert(this);
     }
 
     /**
-     * ‰i‘±‰»ƒIƒuƒWƒFƒNƒg‚ğXV‚·‚é
-     * @throws MessagesIncludingException ŒŸØ—áŠO
-     * @throws VersionUnmuchException   ŠyŠÏ“IƒƒbƒLƒ“ƒOƒGƒ‰[
+     * æ°¸ç¶šåŒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ›´æ–°ã™ã‚‹
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
+     * @throws VersionUnmuchException   æ¥½è¦³çš„ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚¨ãƒ©ãƒ¼
     **/
     protected void update() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
         jp.rough_diamond.commons.service.BasicService.getService().update(this);
     }
     /**
-     * ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN
+     * å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯N
     **/ 
     private Boolean actual = Boolean.FALSE;
     public final static String ACTUAL = "actualInDB";
 
     /**
-     * ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN‚ğæ“¾‚·‚é
+     * å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯Nã‚’å–å¾—ã™ã‚‹
      * @hibernate.property
      *    column="ACTUAL"
      *    not-null="true"
-     * @return ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN
+     * @return å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯N
     **/
     @jp.rough_diamond.commons.service.annotation.MaxLength(length=1, property="Transaction.actual")
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Transaction.actual")
@@ -136,16 +136,16 @@ public abstract class BaseTransaction  implements Serializable {
     }
 
     /**
-     * ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN‚ğæ“¾‚·‚é
-     * @return ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN
+     * å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯Nã‚’å–å¾—ã™ã‚‹
+     * @return å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯N
     **/
     public Boolean isActual() {
         return actual;
     }
 
     /**
-     * ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN‚ğæ“¾‚·‚é
-     * @return ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN
+     * å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯Nã‚’å–å¾—ã™ã‚‹
+     * @return å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯N
     **/
     public Boolean getActual() {
         return actual;
@@ -153,32 +153,32 @@ public abstract class BaseTransaction  implements Serializable {
 
 
     /**
-     * ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN‚ğİ’è‚·‚é
-     * @param actual  ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN
+     * å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯Nã‚’è¨­å®šã™ã‚‹
+     * @param actual  å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯N
     **/
     public void setActualInDB(String actual) {
         this.actual = ("Y".equalsIgnoreCase(actual));
     }
 
     /**
-     * ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN‚ğİ’è‚·‚é
-     * @param actual  ÀÑ‚Ìæˆø‚Ìê‡‚ÍYB—\’è‚ÍN
+     * å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯Nã‚’è¨­å®šã™ã‚‹
+     * @param actual  å®Ÿç¸¾ã®å–å¼•ã®å ´åˆã¯Yã€‚äºˆå®šã¯N
     **/
     public void setActual(Boolean actual) {
         this.actual = actual;
     }
     /**
-     * “ü—Í“ú
+     * å…¥åŠ›æ—¥
     **/ 
     private Date registerDate;
     public final static String REGISTER_DATE = "registerDate";
 
     /**
-     * “ü—Í“ú‚ğæ“¾‚·‚é
+     * å…¥åŠ›æ—¥ã‚’å–å¾—ã™ã‚‹
      * @hibernate.property
      *    column="REGISTER_DATE"
      *    not-null="true"
-     * @return “ü—Í“ú
+     * @return å…¥åŠ›æ—¥
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Transaction.registerDate")
     public Date getRegisterDate() {
@@ -186,24 +186,24 @@ public abstract class BaseTransaction  implements Serializable {
     }
 
     /**
-     * “ü—Í“ú‚ğİ’è‚·‚é
-     * @param registerDate  “ü—Í“ú
+     * å…¥åŠ›æ—¥ã‚’è¨­å®šã™ã‚‹
+     * @param registerDate  å…¥åŠ›æ—¥
     **/
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
     }
     /**
-     * æˆø“ú
+     * å–å¼•æ—¥
     **/ 
     private Date processDate;
     public final static String PROCESS_DATE = "processDate";
 
     /**
-     * æˆø“ú‚ğæ“¾‚·‚é
+     * å–å¼•æ—¥ã‚’å–å¾—ã™ã‚‹
      * @hibernate.property
      *    column="PROCESS_DATE"
      *    not-null="true"
-     * @return æˆø“ú
+     * @return å–å¼•æ—¥
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Transaction.processDate")
     public Date getProcessDate() {
@@ -211,8 +211,8 @@ public abstract class BaseTransaction  implements Serializable {
     }
 
     /**
-     * æˆø“ú‚ğİ’è‚·‚é
-     * @param processDate  æˆø“ú
+     * å–å¼•æ—¥ã‚’è¨­å®šã™ã‚‹
+     * @param processDate  å–å¼•æ—¥
     **/
     public void setProcessDate(Date processDate) {
         this.processDate = processDate;

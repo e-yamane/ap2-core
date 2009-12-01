@@ -1,13 +1,13 @@
 package jp.rough_diamond.account.entity;
 
 /**
- * エントリーのHibernateマッピングクラス
+ * 繧ｨ繝ｳ繝医Μ繝ｼ縺ｮHibernate繝槭ャ繝斐Φ繧ｰ繧ｯ繝ｩ繧ｹ
 **/
 public class Entry extends jp.rough_diamond.account.entity.base.BaseEntry {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 現時点のバランスを返却する
+     * 迴ｾ譎らせ縺ｮ繝舌Λ繝ｳ繧ｹ繧定ｿ泌唆縺吶ｋ
      * @return
      */
     public Long getBalance() {
@@ -15,7 +15,7 @@ public class Entry extends jp.rough_diamond.account.entity.base.BaseEntry {
     }
 
     /**
-     * 現時点のバランスを返却する
+     * 迴ｾ譎らせ縺ｮ繝舌Λ繝ｳ繧ｹ繧定ｿ泌唆縺吶ｋ
      * @return
      */
     public Long getBalance(boolean isGrossItem, boolean isGrossPlace) {

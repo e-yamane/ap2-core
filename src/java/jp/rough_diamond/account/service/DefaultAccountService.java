@@ -32,16 +32,16 @@ public class DefaultAccountService implements AccountService {
 	}
 
 	public Account getAccount(Place place, Item item, Owner owner) {
-		//@‚¢‚¸‚ê‚©‚ª–¢İ’è‚Ìê‡‚Íˆ—’†’f
+		//ã€€ã„ãšã‚Œã‹ãŒæœªè¨­å®šã®å ´åˆã¯å‡¦ç†ä¸­æ–­
 		if(place == null || item == null || owner ==null) {
 			return null;
 		}
-		// Š¨’è‚ÌŒŸõğŒİ’è
+		// å‹˜å®šã®æ¤œç´¢æ¡ä»¶è¨­å®š
 		Extractor extractor = new Extractor(Account.class);
 		extractor.add(Condition.eq(new Property(Account.PLACE),  place));
 		extractor.add(Condition.eq(new Property(Account.ITEM), item));
 		extractor.add(Condition.eq(new Property(Account.OWNER), owner));
-		// Š¨’è‚ÌŒŸõ
+		// å‹˜å®šã®æ¤œç´¢
 		List<Account> list = BasicService.getService().findByExtractor(extractor);
 
 		if(list.size() == 0) {
@@ -102,7 +102,7 @@ public class DefaultAccountService implements AccountService {
 	
 	public Long getBalance(Account account,
 			Date date, boolean isGrossItem, boolean isGrossPlace) {
-		//TODO ŒvZŒ‹‰Ê‚ğƒLƒƒƒbƒVƒ…‚µ‚½ê‡‚Ìˆ—‚Í–¢À‘•
+		//TODO è¨ˆç®—çµæœã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ãŸå ´åˆã®å‡¦ç†ã¯æœªå®Ÿè£…
 /*
 		Extractor e = new Extractor(Entry.class);
 		e.add(Condition.eq(Entry.ACCOUNT, this));
@@ -130,7 +130,7 @@ public class DefaultAccountService implements AccountService {
 		}
 	}
 	
-	// TODO: AccountTest‚Å‚ÌƒeƒXƒg‚ğAccountServiceTest‚ÉˆÚ“®H
+	// TODO: AccountTestã§ã®ãƒ†ã‚¹ãƒˆã‚’AccountServiceTestã«ç§»å‹•ï¼Ÿ
 	public List<Entry> getTrend(Account account,
 			Date from, Date to, boolean isGrossItem, boolean isGrossPlace) {
 		Extractor e = getTrendExtractor(account, from, to, isGrossItem, isGrossPlace);

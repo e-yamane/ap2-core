@@ -6,12 +6,12 @@ import jp.rough_diamond.framework.service.ServiceLocator;
 
 public class NumberingLoader extends DBInitializer {
 	/**
-	 * インスタンス
+	 * 繧､繝ｳ繧ｹ繧ｿ繝ｳ繧ｹ
 	 */
 	public final static DBInitializer INSTANCE = ServiceLocator.getService(NumberingLoader.class);
 
 	/**
-	 * 初期処理
+	 * 蛻晄悄蜃ｦ逅�
 	 * @throws Exception
 	 */
     public static void init() throws Exception {
@@ -20,7 +20,7 @@ public class NumberingLoader extends DBInitializer {
     }
 
     /**
-     * ロードするファイル名群
+     * 繝ｭ繝ｼ繝峨☆繧九ヵ繧｡繧､繝ｫ蜷咲ｾ､
      */
     final static String[] NAMES = new String[]{
         "jp/rough_diamond/numbering.xls",

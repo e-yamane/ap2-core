@@ -12,7 +12,7 @@ import  java.io.Serializable;
 
 
 /**
- * ƒGƒ“ƒgƒŠ[‚ÌHibernateƒ}ƒbƒsƒ“ƒOƒx[ƒXƒNƒ‰ƒX
+ * ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã®Hibernateãƒãƒƒãƒ”ãƒ³ã‚°ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
  * @hibernate.class
  *    table="ENTRY"
  *    realClass="jp.rough_diamond.account.entity.Entry"
@@ -20,7 +20,7 @@ import  java.io.Serializable;
 public abstract class BaseEntry  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**
-     * ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     **/
     public BaseEntry() {
     }
@@ -31,7 +31,7 @@ public abstract class BaseEntry  implements Serializable {
     private Long id;
     public final static String ID = "id";
     /**
-     * OID‚ğæ“¾‚·‚é
+     * OIDã‚’å–å¾—ã™ã‚‹
      * @hibernate.id
      *    generator-class="assigned"
      *    column="ID"
@@ -43,7 +43,7 @@ public abstract class BaseEntry  implements Serializable {
     }
 
     /**
-     * OID‚ğİ’è‚·‚é
+     * OIDã‚’è¨­å®šã™ã‚‹
      * @param id  OID
     **/
     public void setId(Long id) {
@@ -80,17 +80,17 @@ public abstract class BaseEntry  implements Serializable {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ‰i‘±‰»‚·‚é
-     * ‰i‘±‰»ƒ‹[ƒ‹‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚·B
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ°¸ç¶šåŒ–ã™ã‚‹
+     * æ°¸ç¶šåŒ–ãƒ«ãƒ¼ãƒ«ã¯ä»¥ä¸‹ã®é€šã‚Šã§ã™ã€‚
      * <ul>
-     *   <li>new‚µ‚½’¼Œã‚ÌƒIƒuƒWƒFƒNƒg‚Ìê‡‚Íinsert</li>
-     *   <li>load‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ìê‡‚Íupdate</li>
-     *   <li>load‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Å‚àåƒL[‚ğ·‚µ‘Ö‚¦‚½ê‡‚Íinsert</li>
-     *   <li>insert‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğÄ“xsave‚µ‚½ê‡‚Íupdate</li>
-     *   <li>setLoadingFlagƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚½ê‡‚Í‹­§“I‚Éupdatei”ñ„§j</li>
+     *   <li>newã—ãŸç›´å¾Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯insert</li>
+     *   <li>loadã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å ´åˆã¯update</li>
+     *   <li>loadã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã‚‚ä¸»ã‚­ãƒ¼ã‚’å·®ã—æ›¿ãˆãŸå ´åˆã¯insert</li>
+     *   <li>insertã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å†åº¦saveã—ãŸå ´åˆã¯update</li>
+     *   <li>setLoadingFlagãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ãŸå ´åˆã¯å¼·åˆ¶çš„ã«updateï¼ˆéæ¨å¥¨ï¼‰</li>
      * </ul>
-     * @throws VersionUnmuchException   ŠyŠÏ“IƒƒbƒLƒ“ƒOƒGƒ‰[
-     * @throws MessagesIncludingException ŒŸØ—áŠO
+     * @throws VersionUnmuchException   æ¥½è¦³çš„ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚¨ãƒ©ãƒ¼
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
     **/
     public void save() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
         if(isLoaded) {
@@ -101,41 +101,41 @@ public abstract class BaseEntry  implements Serializable {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ‰i‘±‰»‚·‚é
-     * @throws MessagesIncludingException ŒŸØ—áŠO
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ°¸ç¶šåŒ–ã™ã‚‹
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
     **/
     protected void insert() throws jp.rough_diamond.commons.resource.MessagesIncludingException {
         jp.rough_diamond.commons.service.BasicService.getService().insert(this);
     }
 
     /**
-     * ‰i‘±‰»ƒIƒuƒWƒFƒNƒg‚ğXV‚·‚é
-     * @throws MessagesIncludingException ŒŸØ—áŠO
-     * @throws VersionUnmuchException   ŠyŠÏ“IƒƒbƒLƒ“ƒOƒGƒ‰[
+     * æ°¸ç¶šåŒ–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ›´æ–°ã™ã‚‹
+     * @throws MessagesIncludingException æ¤œè¨¼ä¾‹å¤–
+     * @throws VersionUnmuchException   æ¥½è¦³çš„ãƒ­ãƒƒã‚­ãƒ³ã‚°ã‚¨ãƒ©ãƒ¼
     **/
     protected void update() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
         jp.rough_diamond.commons.service.BasicService.getService().update(this);
     }
     /**
-     * ˆÚ“®—Ê
+     * ç§»å‹•é‡
     **/ 
     private Long quantity;
     public final static String QUANTITY = "quantity";
 
     /**
-     * ˆÚ“®—Ê‚ğæ“¾‚·‚é
+     * ç§»å‹•é‡ã‚’å–å¾—ã™ã‚‹
      * @hibernate.property
      *    column="QUANTITY"
      *    not-null="true"
-     * @return ˆÚ“®—Ê
+     * @return ç§»å‹•é‡
     **/
     public Long getQuantity() {
         return quantity;
     }
 
     /**
-     * ˆÚ“®—Ê‚ğİ’è‚·‚é
-     * @param quantity  ˆÚ“®—Ê
+     * ç§»å‹•é‡ã‚’è¨­å®šã™ã‚‹
+     * @param quantity  ç§»å‹•é‡
     **/
     public void setQuantity(Long quantity) {
         this.quantity = quantity;

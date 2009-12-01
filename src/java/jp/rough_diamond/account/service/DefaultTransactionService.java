@@ -30,7 +30,7 @@ public class DefaultTransactionService implements TransactionService {
 			try {
 				service.update(mapper);
 			} catch (VersionUnmuchException e1) {
-				//¡‚Ì‚Æ‚±‚ë‚ ‚è‚¦‚È‚¢—áŠO
+				//ä»Šã®ã¨ã“ã‚ã‚ã‚Šãˆãªã„ä¾‹å¤–
 				throw new RuntimeException(e1);
 			}
 		}

@@ -22,63 +22,63 @@ public class ItemTest extends DataLoadingTestCase {
 	public void testGetChildren() throws Exception {
 		Item item = BasicService.getService().findByPK(Item.class, 1L);
 		List<Item> list = item.getChildren();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 5, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3L, list.get(1).getId().longValue());
-		assertEquals("q‹Ÿ‚ª‚¢‚Ü‚·B", 0, list.get(1).getChildren().size());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 5, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3L, list.get(1).getId().longValue());
+		assertEquals("å­ä¾›ãŒã„ã¾ã™ã€‚", 0, list.get(1).getChildren().size());
 	}
 
 	public void testGetRoutes() throws Exception {
 		Item item = BasicService.getService().findByPK(Item.class, 4L);
 		List<Item> list = item.getRoutes();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2L, list.get(1).getId().longValue());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2L, list.get(1).getId().longValue());
 	}
 	
 	public void testGetRootItems() throws Exception {
 		List<Item> list = Item.getRootItems();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
 	}
 	
-	//Šî”Õ‚ÌƒeƒXƒg
+	//åŸºç›¤ã®ãƒ†ã‚¹ãƒˆ
 	public void testIn() throws Exception {
 		Extractor e = new Extractor(Item.class);
 		e.add(Condition.in(new Property(Item.ID), 1L, 2L, 3L));
 		e.addOrder(Order.asc(new Property(Item.ID)));
 		List<Item> list = BasicService.getService().findByExtractor(e);
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1L, list.get(0).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2L, list.get(1).getId().longValue());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3L, list.get(2).getId().longValue());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1L, list.get(0).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2L, list.get(1).getId().longValue());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3L, list.get(2).getId().longValue());
 	}
 
-	//Šî”Õ‚ÌƒeƒXƒg
+	//åŸºç›¤ã®ãƒ†ã‚¹ãƒˆ
 	public void testNotIn() throws Exception {
 		Extractor e = new Extractor(Item.class);
 		e.add(Condition.notIn(new Property(Item.ID), 1L, 2L, 3L));
 		List<Item> all = BasicService.getService().findAll(Item.class);
 		List<Item> list = BasicService.getService().findByExtractor(e);
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 3, all.size() - list.size());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 3, all.size() - list.size());
 	}
 	
-	//Oracle10g‚Å‚Ì³‹K•\Œ»æ“¾‚ÌƒeƒXƒg
+	//Oracle10gã§ã®æ­£è¦è¡¨ç¾å–å¾—ã®ãƒ†ã‚¹ãƒˆ
 	public void testRegExp() throws Exception {
 		Extractor e = new Extractor(Item.class);
 		e.add(Condition.regex(new Property(Item.NAME), "^N"));
 		List<Item> list = BasicService.getService().findByExtractor(e);
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 1, list.size());
-		assertEquals("ID‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", "NDS", list.get(0).getName());
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 1, list.size());
+		assertEquals("IDãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", "NDS", list.get(0).getName());
 	}
 
 	public void testItemInsert() throws Exception {
 		BasicService service = BasicService.getService();
 		Item newItem;
 
-		// V‹K“o˜^
+		// æ–°è¦ç™»éŒ²
 		newItem = new Item();
-		newItem.setName("PCƒGƒ“ƒWƒ“");
+		newItem.setName("PCã‚¨ãƒ³ã‚¸ãƒ³");
 		newItem.setParent(null);
 		
 		Item parent = service.findByPK(Item.class, 1L);
@@ -87,31 +87,31 @@ public class ItemTest extends DataLoadingTestCase {
 			service.insert(newItem);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 		
 
-		// e‚È‚µ‚Å“o˜^‰Â”\
+		// è¦ªãªã—ã§ç™»éŒ²å¯èƒ½
 		newItem = new Item();
-		newItem.setName("ƒtƒ@ƒCƒiƒ‹ƒtƒ@ƒ“ƒ^ƒW[‚U");
+		newItem.setName("ãƒ•ã‚¡ã‚¤ãƒŠãƒ«ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼ï¼–");
 		newItem.setParent(null);
 		try {
 			service.insert(newItem);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}		
 
 		
-		// e‚ªˆá‚¦‚Î“o˜^‰Â”\
+		// è¦ªãŒé•ãˆã°ç™»éŒ²å¯èƒ½
 		newItem = new Item();
-		newItem.setName("ƒtƒ@ƒCƒiƒ‹ƒtƒ@ƒ“ƒ^ƒW[‚U");
+		newItem.setName("ãƒ•ã‚¡ã‚¤ãƒŠãƒ«ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼ï¼–");
 
 		parent = service.findByPK(Item.class, 10L);
 		newItem.setParent(parent);
@@ -119,30 +119,30 @@ public class ItemTest extends DataLoadingTestCase {
 			service.insert(newItem);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}	
 	}
 
-//XXX ƒ†ƒj[ƒN‰ğœ	
+//XXX ãƒ¦ãƒ‹ãƒ¼ã‚¯è§£é™¤	
 //	public void testDuppulicateInsert() throws Exception {
-//		//–¼‘O‚Ìd•¡ƒ`ƒFƒbƒN
+//		//åå‰ã®é‡è¤‡ãƒã‚§ãƒƒã‚¯
 //		BasicService service = BasicService.getService();
 //		Item parent = service.findByPK(Item.class, 8L);
 //		
 //		Item newItem = new Item();
-//		newItem.setName("ƒtƒ@ƒCƒiƒ‹ƒtƒ@ƒ“ƒ^ƒW[‚U");
+//		newItem.setName("ãƒ•ã‚¡ã‚¤ãƒŠãƒ«ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼ï¼–");
 //		newItem.setParent(parent);
 //		try {
 //			service.insert(newItem);
-//			fail("—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+//			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã›ã‚“ã€‚");
 //		} catch(MessagesIncludingException e) {
 //			e.printStackTrace();
 //		} catch(Exception e) {
 //			e.printStackTrace();
-//			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+//			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 //		}
 //	}
 
@@ -150,19 +150,19 @@ public class ItemTest extends DataLoadingTestCase {
 		BasicService service = BasicService.getService();
 		Item editItem = service.findByPK(Item.class, 9L);
 
-		// –¼‘O•ÏX
-		editItem.setName("ƒtƒ@ƒCƒiƒ‹ƒtƒ@ƒ“ƒ^ƒW[‚T");
+		// åå‰å¤‰æ›´
+		editItem.setName("ãƒ•ã‚¡ã‚¤ãƒŠãƒ«ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼ï¼•");
 		try {
 			service.update(editItem);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 		
-		// e•ÏX
+		// è¦ªå¤‰æ›´
 		editItem = service.findByPK(Item.class, 9L);
 		Item parent = service.findByPK(Item.class, 10L);
 		editItem.setParent(parent);
@@ -170,25 +170,25 @@ public class ItemTest extends DataLoadingTestCase {
 			service.update(editItem);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 	
-		// —¼•û•ÏX
+		// ä¸¡æ–¹å¤‰æ›´
 		editItem = service.findByPK(Item.class, 9L);
-		editItem.setName("ƒtƒ@ƒCƒiƒ‹ƒtƒ@ƒ“ƒ^ƒW[‚U");
+		editItem.setName("ãƒ•ã‚¡ã‚¤ãƒŠãƒ«ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼ï¼–");
 		parent = service.findByPK(Item.class, 8L);
 		editItem.setParent(parent);
 		try {
 			service.update(editItem);
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
-			fail("—áŠO‚ª”­¶‚µ‚Ü‚µ‚½B");
+			fail("ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
 		} catch(Exception e) {
 			e.printStackTrace();
-			fail("‚»‚Ì‘¼—áŠO‚ª”­¶‚µ‚Ä‚¢‚Ü‚·B");
+			fail("ãã®ä»–ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ã€‚");
 		}
 	}
 	
@@ -196,38 +196,38 @@ public class ItemTest extends DataLoadingTestCase {
 		BasicService service = BasicService.getService();
 		Item i = service.findByPK(Item.class, 2L);
 		Set<Long> ids = i.getChildIds();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2, ids.size());
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(4L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(5L));
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2, ids.size());
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(4L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(5L));
 
 		Item i2 = service.findByPK(Item.class, 1L);
 		Set<Long> ids2 = i2.getChildIds();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 9, ids2.size());
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(2L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(3L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(4L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(5L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(6L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(7L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(8L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(9L));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids2.contains(10L));
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 9, ids2.size());
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(2L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(3L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(4L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(5L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(6L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(7L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(8L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(9L));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids2.contains(10L));
 	}
 
 	public void testGetChildIdsWhenRecesive() throws Exception {
 		BasicService service = BasicService.getService();
 		Item i1 = new Item();
-		i1.setName("Ä‹A€–Ú‚P");
+		i1.setName("å†å¸°é …ç›®ï¼‘");
 		Item i2 = new Item();
-		i2.setName("Ä‹A€–Ú‚Q");
+		i2.setName("å†å¸°é …ç›®ï¼’");
 		service.insert(i1, i2);
 		i1.setParent(i2);
 		service.update(i1);
 		i2.setParent(i1);
 		service.update(i2);
 		Set<Long> ids = i1.getChildIds();
-		assertEquals("•Ô‹p”‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", 2, ids.size());
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(i1.getId()));
-		assertTrue("ID‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB", ids.contains(i2.getId()));
+		assertEquals("è¿”å´æ•°ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", 2, ids.size());
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(i1.getId()));
+		assertTrue("IDãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", ids.contains(i2.getId()));
 	}
 }

@@ -20,7 +20,7 @@ import jp.rough_diamond.commons.service.annotation.PostLoad;
 import jp.rough_diamond.framework.transaction.TransactionManager;
 
 /**
- * 品目のHibernateマッピングクラス
+ * 蜩∫岼縺ｮHibernate繝槭ャ繝斐Φ繧ｰ繧ｯ繝ｩ繧ｹ
 **/
 public class Item extends jp.rough_diamond.account.entity.base.BaseItem {
     private static final long serialVersionUID = 1L;
