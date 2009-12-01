@@ -28,11 +28,6 @@
     <antcall target="DB-clear-2" />
   </target>
 
-  <target name="makeOkumuraConfig" description="奥村開発環境用のbeans.xmlを作成する">
-    <property name="filtering.filename" value="${conf.dir}/filtering.okumura.properties" />
-    <antcall target="makeConfig" />
-  </target>
-
 <!--
   <target name="makeReleaseConfig" description="リリースモジュール用のbeans.xmlを作成する">
     <property name="filtering.filename" value="${conf.dir}/filtering.release.properties" />
