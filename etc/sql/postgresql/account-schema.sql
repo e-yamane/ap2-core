@@ -97,6 +97,39 @@ COMMENT ON COLUMN ACCOUNT.REGISTER_DATE IS '勘定作成日';
 
 
 -----------------------------------------------------------------------------
+-- PLACE_CODE
+-----------------------------------------------------------------------------
+DROP TABLE PLACE_CODE;
+
+
+CREATE TABLE PLACE_CODE
+(
+    ID int8 NOT NULL,
+      -- REFERENCES PLACE (ID)
+    PLACE_ID int8 NOT NULL,
+          -- REFERENCES CODE_SYSTEM (ID)
+    CI_CODE_SYSTEM_ID int8 NOT NULL,
+    CI_CODE varchar (1024) NOT NULL,
+    CI_REVISION integer NOT NULL,
+    CI_REGISTERER_DATE timestamp NOT NULL,
+    CI_VALID_DATE timestamp,
+    CI_INVALID_DATE timestamp,
+    PRIMARY KEY (ID)
+);
+
+COMMENT ON TABLE PLACE_CODE IS '場所コード';
+COMMENT ON COLUMN PLACE_CODE.ID IS 'OID';
+COMMENT ON COLUMN PLACE_CODE.PLACE_ID IS '場所ID';
+COMMENT ON COLUMN PLACE_CODE.CI_CODE_SYSTEM_ID IS '場所コード情報 コード体系ID';
+COMMENT ON COLUMN PLACE_CODE.CI_CODE IS '場所コード情報 コード';
+COMMENT ON COLUMN PLACE_CODE.CI_REVISION IS '場所コード情報 リビジョン';
+COMMENT ON COLUMN PLACE_CODE.CI_REGISTERER_DATE IS '場所コード情報 登録日時';
+COMMENT ON COLUMN PLACE_CODE.CI_VALID_DATE IS '場所コード情報 有効開始日時';
+COMMENT ON COLUMN PLACE_CODE.CI_INVALID_DATE IS '場所コード情報 無効開始日時';
+
+
+
+-----------------------------------------------------------------------------
 -- PLACE
 -----------------------------------------------------------------------------
 DROP TABLE PLACE;

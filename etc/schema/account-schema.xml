@@ -83,6 +83,15 @@ DTDは、
     </foreign-key>
   </table>
 
+  <table name="PLACE_CODE" description="場所コード">
+    <column name="ID"         primaryKey="true"   required="true"   domain="oid"  description="OID" />
+    <column name="PLACE_ID"                       required="true"   domain="oid"  description="場所ID" />
+    <column name="CI"         javaName="codeInfo" required="true"   type="CODE"   description="場所コード情報" />
+    <foreign-key foreignTable="PLACE" name="target" onUpdate="cascade" onDelete="cascade">
+      <reference local="PLACE_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
   <table name="PLACE" description="場所">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                      description="OID" />
     <column name="NAME"                         required="true"   type="VARCHAR"      size="256"    description="場所名" />

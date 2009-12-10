@@ -53,6 +53,11 @@
       <td class="summarybackground summaryborder summarydescription"> 勘定</td>
     </tr>
     <tr class=summaryrow">
+      <td class="summarybackground summaryborder summarytablename"><a href="#PLACE_CODE" class="link summarytablenamelink">PLACE_CODE</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">PlaceCode</td>
+      <td class="summarybackground summaryborder summarydescription"> 場所コード</td>
+    </tr>
+    <tr class=summaryrow">
       <td class="summarybackground summaryborder summarytablename"><a href="#PLACE" class="link summarytablenamelink">PLACE</a></td>
       <td class="summarybackground summaryborder summaryjavaname">Place</td>
       <td class="summarybackground summaryborder summarydescription"> 場所</td>
@@ -634,6 +639,122 @@ if( document.getElementById  )
 var col = document.getElementById("ACCOUNTOWNER_ID");
 col.style.backgroundColor = "afe295";
 col.title="Foreignkey from OWNER.ID";
+}
+</script>
+
+    <a name="PLACE_CODE"/>
+<h2>PLACE_CODE </h2>
+場所コード
+<p/>
+<table border="1" cellspacing="0">
+  <tr>
+    <th class="normalFont" bgcolor="#CCCCCC">Name</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Type</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Size</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Default</th>
+    <th class="normalFont" bgcolor="#CCCCCC">JavaName</th>
+    <th class="normalFont" bgcolor="#CCCCCC">PK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">FK</th>
+    <th class="normalFont" bgcolor="#CCCCCC">not null</th>
+    <th class="normalFont" bgcolor="#CCCCCC">Description</th>
+  </tr>
+    <tr>
+    <td class="normalFont" id="PLACE_CODEID">ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">id</td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> OID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="PLACE_CODEPLACE_ID">PLACE_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">placeId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"> 場所ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_CODE_SYSTEM_ID">CI_CODE_SYSTEM_ID</td>
+    <td class="normalFont">BIGINT</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.codeSystemId</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">場所コード情報. コード体系ID</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_CODE">CI_CODE</td>
+    <td class="normalFont">VARCHAR</td>
+    <td class="normalFont"> (1024) </td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.code</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">場所コード情報. コード</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_REVISION">CI_REVISION</td>
+    <td class="normalFont">INTEGER</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.revision</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">場所コード情報. リビジョン</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_REGISTERER_DATE">CI_REGISTERER_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.registererDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center> X </center></td>
+    <td class="normalFont">場所コード情報. 登録日時</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_VALID_DATE">CI_VALID_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.validDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont">場所コード情報. 有効開始日時</td>
+  </tr>
+  <tr>
+    <td class="normalFont" id="CODECI_INVALID_DATE">CI_INVALID_DATE</td>
+    <td class="normalFont">TIMESTAMP</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont"> &nbsp;</td>
+    <td class="normalFont">codeInfo.invalidDate</td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont"><center>  &nbsp; </center></td>
+    <td class="normalFont">場所コード情報. 無効開始日時</td>
+  </tr>
+
+
+</table>
+<script>
+if( document.getElementById  )
+{
+var col = document.getElementById("CODECODE_SYSTEM_ID");
+col.style.backgroundColor = "afe295";
+col.title="Foreignkey from CODE_SYSTEM.ID";
 }
 </script>
 

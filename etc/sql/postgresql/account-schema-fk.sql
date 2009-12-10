@@ -79,6 +79,27 @@ ALTER TABLE ACCOUNT
 -- ACCOUNT                                                      
 ----------------------------------------------------------------------
 
+ALTER TABLE PLACE_CODE
+    ADD CONSTRAINT fk_PLACE_CODE__1 FOREIGN KEY (
+      PLACE_ID
+    )
+    REFERENCES PLACE (ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE 
+;
+ALTER TABLE PLACE_CODE
+    ADD CONSTRAINT fk_PLACE_CODE__2 FOREIGN KEY (
+      CI_CODE_SYSTEM_ID
+    )
+    REFERENCES CODE_SYSTEM (ID)
+    ON UPDATE RESTRICT
+    ON DELETE RESTRICT 
+;
+
+----------------------------------------------------------------------
+-- PLACE_CODE                                                      
+----------------------------------------------------------------------
+
 ALTER TABLE PLACE
     ADD CONSTRAINT fk_PLACE__1 FOREIGN KEY (
       PARENT_ID

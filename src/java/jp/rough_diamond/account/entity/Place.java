@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -108,4 +109,44 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     		super.loadParents();
     	}
     }    
+
+    public static Place getPlaceByCode(String systemName, String code) {
+    	return getPlaceByCode(CodeSystem.getCodeSystemByName(systemName), code);
+    }
+    
+    public static Place getPlaceByCode(String systemName, String code, Date date) {
+    	return getPlaceByCode(CodeSystem.getCodeSystemByName(systemName), code, date);
+    }
+    
+    public static Place getPlaceByCode(CodeSystem system, String code) {
+    	return getPlaceByCode(system, code, new Date());
+    }
+    
+    public static Place getPlaceByCode(CodeSystem system, String code, Date date) {
+    	List<PlaceCode> targets = Code.getTargetHoldersByCode(PlaceCode.class, PlaceCode.CI, system, code, date);
+    	for(PlaceCode target : targets) {
+    		String code2 = target.getTarget().getCode(system, date);
+    		if(code2.equals(code)) {
+    			return target.getTarget();
+    		}
+    	}
+    	return null;
+    }
+    
+
+    public String getCode(String systemName) {
+    	return getCode(CodeSystem.getCodeSystemByName(systemName));
+    }
+    
+    public String getCode(String systemName, Date date) {
+    	return getCode(CodeSystem.getCodeSystemByName(systemName), date);
+    }
+    
+    public String getCode(CodeSystem system) {
+    	return getCode(system, new Date());
+    }
+    
+	public String getCode(CodeSystem system, Date date) {
+		return Code.getCode(PlaceCode.class, this, PlaceCode.TARGET, PlaceCode.CI, system, date);
+	}
 }

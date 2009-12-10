@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+
+    <class
+        name="jp.rough_diamond.account.entity.PlaceCode"
+        table="PLACE_CODE"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-BasePlaceCode.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <component
+            name="codeInfo"
+            class="jp.rough_diamond.account.entity.Code"
+        >
+        <property
+            name="code"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CI_CODE"
+            length="1024"
+            not-null="true"
+        />
+
+        <property
+            name="revision"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="CI_REVISION"
+            not-null="true"
+        />
+
+        <property
+            name="registererDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="CI_REGISTERER_DATE"
+            not-null="true"
+        />
+
+        <property
+            name="validDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="CI_VALID_DATE"
+            not-null="false"
+        />
+
+        <property
+            name="invalidDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="CI_INVALID_DATE"
+            not-null="false"
+        />
+
+        <many-to-one
+            name="codeSystem"
+            class="jp.rough_diamond.account.entity.CodeSystem"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="CI_CODE_SYSTEM_ID" 
+            />
+        </many-to-one>
+
+        </component>
+
+        <many-to-one
+            name="target"
+            class="jp.rough_diamond.account.entity.Place"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="PLACE_ID" 
+            />
+        </many-to-one>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-BasePlaceCode.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

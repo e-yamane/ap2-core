@@ -1,5 +1,7 @@
 package jp.rough_diamond.account.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
@@ -162,5 +164,264 @@ public class PlaceTest extends DataLoadingTestCase {
 		assertEquals("返却数が誤っています。", 2, ids.size());
 		assertTrue("IDが含まれていません。", ids.contains(p1.getId()));
 		assertTrue("IDが含まれていません。", ids.contains(p2.getId()));
+	}
+
+	public void testGetCode() throws Exception {
+		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
+		
+		Place p = BasicService.getService().findByPK(Place.class, 2L);
+		String code = p.getCode(cs, sdf.parse("2009/12/01"));
+		assertEquals("返却コードが誤っています。", "code_x", code);
+		
+		p = BasicService.getService().findByPK(Place.class, 1L);
+		Calendar cal = Calendar.getInstance();
+
+		cal.setTime(sdf.parse("2009/12/01"));
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/2
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+
+		//12/3
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/4
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/5
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/6
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/7
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/8
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/9
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/10
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/11
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/12
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/13
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/14
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/15
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/16
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/17
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/18
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/19
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/20
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/21
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/22
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/23
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/24
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_4", p.getCode(cs, cal.getTime()));
+		
+		//12/25
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/26
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/27
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/28
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/29
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/30
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_3", p.getCode(cs, cal.getTime()));
+		
+		//12/31
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_2", p.getCode(cs, cal.getTime()));
+		
+		//1/1
+		cal.add(Calendar.DATE, 1);
+		System.out.println(cal.getTime());
+		assertEquals("返却コードが誤っています。", "code_2", p.getCode(cs, cal.getTime()));
+	}
+	
+	public void testGetPlaceByCode() throws Exception {
+		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
+		
+		Place p = Place.getPlaceByCode(cs, "code_x", sdf.parse("2009/12/01"));
+		assertEquals("所有者IDが誤っています。", 2L, p.getId().longValue());
+
+		Calendar cal = Calendar.getInstance();
+
+		//12/1
+		cal.setTime(sdf.parse("2009/12/01"));
+		System.out.println(cal.getTime());
+		Place p1 = Place.getPlaceByCode(cs, "code_1", cal.getTime());
+		Place p2 = Place.getPlaceByCode(cs, "code_2", cal.getTime());
+		Place p3 = Place.getPlaceByCode(cs, "code_3", cal.getTime());
+		Place p4 = Place.getPlaceByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", p1);
+		assertNull("返却値が誤っています。", p2);
+		assertEquals("返却値が誤っています。", 1L, p3.getId().longValue());
+		assertNull("返却値が誤っています。", p4);
+
+		cal.setTime(sdf.parse("2009/12/19"));
+		System.out.println(cal.getTime());
+		p1 = Place.getPlaceByCode(cs, "code_1", cal.getTime());
+		p2 = Place.getPlaceByCode(cs, "code_2", cal.getTime());
+		p3 = Place.getPlaceByCode(cs, "code_3", cal.getTime());
+		p4 = Place.getPlaceByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", p1);
+		assertNull("返却値が誤っています。", p2);
+		assertNull("返却値が誤っています。", p3);
+		assertEquals("返却値が誤っています。", 1L, p4.getId().longValue());
+
+		cal.setTime(sdf.parse("2009/12/20"));
+		System.out.println(cal.getTime());
+		p1 = Place.getPlaceByCode(cs, "code_1", cal.getTime());
+		p2 = Place.getPlaceByCode(cs, "code_2", cal.getTime());
+		p3 = Place.getPlaceByCode(cs, "code_3", cal.getTime());
+		p4 = Place.getPlaceByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", p1);
+		assertNull("返却値が誤っています。", p2);
+		assertNull("返却値が誤っています。", p3);
+		assertEquals("返却値が誤っています。", 1L, p4.getId().longValue());
+
+		cal.setTime(sdf.parse("2009/12/24"));
+		System.out.println(cal.getTime());
+		p1 = Place.getPlaceByCode(cs, "code_1", cal.getTime());
+		p2 = Place.getPlaceByCode(cs, "code_2", cal.getTime());
+		p3 = Place.getPlaceByCode(cs, "code_3", cal.getTime());
+		p4 = Place.getPlaceByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", p1);
+		assertNull("返却値が誤っています。", p2);
+		assertNull("返却値が誤っています。", p3);
+		assertEquals("返却値が誤っています。", 1L, p4.getId().longValue());
+
+		cal.setTime(sdf.parse("2009/12/25"));
+		System.out.println(cal.getTime());
+		p1 = Place.getPlaceByCode(cs, "code_1", cal.getTime());
+		p2 = Place.getPlaceByCode(cs, "code_2", cal.getTime());
+		p3 = Place.getPlaceByCode(cs, "code_3", cal.getTime());
+		p4 = Place.getPlaceByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", p1);
+		assertNull("返却値が誤っています。", p2);
+		assertEquals("返却値が誤っています。", 1L, p3.getId().longValue());
+		assertNull("返却値が誤っています。", p4);
+
+		cal.setTime(sdf.parse("2009/12/30"));
+		System.out.println(cal.getTime());
+		p1 = Place.getPlaceByCode(cs, "code_1", cal.getTime());
+		p2 = Place.getPlaceByCode(cs, "code_2", cal.getTime());
+		p3 = Place.getPlaceByCode(cs, "code_3", cal.getTime());
+		p4 = Place.getPlaceByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", p1);
+		assertNull("返却値が誤っています。", p2);
+		assertEquals("返却値が誤っています。", 1L, p3.getId().longValue());
+		assertNull("返却値が誤っています。", p4);
+
+		cal.setTime(sdf.parse("2009/12/31"));
+		System.out.println(cal.getTime());
+		p1 = Place.getPlaceByCode(cs, "code_1", cal.getTime());
+		p2 = Place.getPlaceByCode(cs, "code_2", cal.getTime());
+		p3 = Place.getPlaceByCode(cs, "code_3", cal.getTime());
+		p4 = Place.getPlaceByCode(cs, "code_4", cal.getTime());
+		assertNull("返却値が誤っています。", p1);
+		assertEquals("返却値が誤っています。", 1L, p2.getId().longValue());
+		assertNull("返却値が誤っています。", p3);
+		assertNull("返却値が誤っています。", p4);
 	}
 }

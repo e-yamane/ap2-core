@@ -28,6 +28,7 @@ public class MasterLoader extends DBInitializer {
         "jp/rough_diamond/account/entity/OWNER_CODE.xls",    	
         "jp/rough_diamond/account/entity/ITEM.xls",
         "jp/rough_diamond/account/entity/PLACE.xls",
+        "jp/rough_diamond/account/entity/PLACE_CODE.xls",    	
         "jp/rough_diamond/account/entity/ACCOUNT.xls",
     };
 
