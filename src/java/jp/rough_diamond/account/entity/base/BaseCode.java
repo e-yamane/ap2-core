@@ -14,16 +14,6 @@ import  java.util.Date;
 /**
  * コードのHibernateマッピングベースクラス
 **/
-@jp.rough_diamond.commons.service.annotation.Unique(
-    entity="Code",
-    groups= {
-          @jp.rough_diamond.commons.service.annotation.Check(properties={
-              "code"
-            , "codeSystem"
-            , "revision"
-        })
-    }
-)
 public abstract class BaseCode  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**

@@ -127,11 +127,6 @@ DTDは、
     <column name="REGISTERER_DATE"              required="true"   type="TIMESTAMP"            description="登録日時" />
     <column name="VALID_DATE"                                     type="TIMESTAMP"            description="有効開始日時" />
     <column name="INVALID_DATE"                                   type="TIMESTAMP"            description="無効開始日時" />
-    <unique name="1">
-      <unique-column name="CODE" />
-      <unique-column name="CODE_SYSTEM_ID" />
-      <unique-column name="REVISION" />
-    </unique>
     <foreign-key foreignTable="CODE_SYSTEM" name="codeSystem" onUpdate="restrict" onDelete="restrict">
       <reference local="CODE_SYSTEM_ID" foreign="ID" />
     </foreign-key>
