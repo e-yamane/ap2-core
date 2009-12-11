@@ -10,7 +10,7 @@ import java.util.Set;
 import jp.rough_diamond.account.entity.Account;
 import jp.rough_diamond.account.entity.Entry;
 import jp.rough_diamond.account.entity.Item;
-import jp.rough_diamond.account.entity.Owner;
+import jp.rough_diamond.account.entity.Party;
 import jp.rough_diamond.account.entity.Place;
 import jp.rough_diamond.account.entity.Transaction;
 import jp.rough_diamond.commons.extractor.Condition;
@@ -28,10 +28,10 @@ public class DefaultAccountService implements AccountService {
 		return getAccount(
 				service.findByPK(Place.class, placeId),
 				service.findByPK(Item.class, itemId),
-				service.findByPK(Owner.class, ownerId));
+				service.findByPK(Party.class, ownerId));
 	}
 
-	public Account getAccount(Place place, Item item, Owner owner) {
+	public Account getAccount(Place place, Item item, Party owner) {
 		//　いずれかが未設定の場合は処理中断
 		if(place == null || item == null || owner ==null) {
 			return null;
@@ -56,7 +56,7 @@ public class DefaultAccountService implements AccountService {
 		return getAccount(
 				place,
 				service.findByPK(Item.class, itemId),
-				service.findByPK(Owner.class, ownerId));
+				service.findByPK(Party.class, ownerId));
 
 	}
 
@@ -65,10 +65,10 @@ public class DefaultAccountService implements AccountService {
 		return getAccount(
 				place,
 				item,
-				service.findByPK(Owner.class, ownerId));
+				service.findByPK(Party.class, ownerId));
 	}
 
-	public Account getAccount(Place place, Long itemId, Owner owner) {
+	public Account getAccount(Place place, Long itemId, Party owner) {
 		BasicService service = BasicService.getService();
 		return getAccount(
 				place,
@@ -81,10 +81,10 @@ public class DefaultAccountService implements AccountService {
 		return getAccount(
 				service.findByPK(Place.class, placeId),
 				item,
-				service.findByPK(Owner.class, ownerId));
+				service.findByPK(Party.class, ownerId));
 	}
 
-	public Account getAccount(Long placeId, Item item, Owner owner) {
+	public Account getAccount(Long placeId, Item item, Party owner) {
 		BasicService service = BasicService.getService();
 		return getAccount(
 				service.findByPK(Place.class, placeId),
@@ -92,7 +92,7 @@ public class DefaultAccountService implements AccountService {
 				owner);
 	}
 
-	public Account getAccount(Long placeId, Long itemId, Owner owner) {
+	public Account getAccount(Long placeId, Long itemId, Party owner) {
 		BasicService service = BasicService.getService();
 		return getAccount(
 				service.findByPK(Place.class, placeId),

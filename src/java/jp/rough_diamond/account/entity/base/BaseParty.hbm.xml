@@ -8,8 +8,8 @@
 >
 
     <class
-        name="jp.rough_diamond.account.entity.Owner"
-        table="OWNER"
+        name="jp.rough_diamond.account.entity.Party"
+        table="PARTY"
     >
 
         <id
@@ -20,7 +20,7 @@
             <generator class="assigned">
               <!--  
                   To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-BaseOwner.xml 
+                  hibernate-generator-params-BaseParty.xml 
                   containing the additional parameters and place it in your merge dir. 
               --> 
             </generator>
@@ -38,7 +38,7 @@
 
         <!--
             To add non XDoclet property mappings, create a file named
-                hibernate-properties-BaseOwner.xml
+                hibernate-properties-BaseParty.xml
             containing the additional properties and place it in your merge dir.
         -->
 

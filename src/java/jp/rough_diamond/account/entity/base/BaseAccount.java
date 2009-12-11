@@ -226,38 +226,38 @@ public abstract class BaseAccount  implements Serializable {
         }
     }
 
-    private jp.rough_diamond.account.entity.Owner owner;
+    private jp.rough_diamond.account.entity.Party owner;
     public final static String OWNER = "owner";
 
     /**
-     * Get the associated Owner object
+     * Get the associated Party object
      * @hibernate.many-to-one
      *   outer-join = "true"
      * @hibernate.column name = "OWNER_ID"
      *
-     * @return the associated Owner object
+     * @return the associated Party object
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Account.ownerId")
-    public jp.rough_diamond.account.entity.Owner getOwner() {
+    public jp.rough_diamond.account.entity.Party getOwner() {
         return this.owner;
     }
 
     /**
-     * Declares an association between this object and a Owner object
+     * Declares an association between this object and a Party object
      *
-     * @param v Owner
+     * @param v Party
      */
-    public void setOwner(jp.rough_diamond.account.entity.Owner v) {
+    public void setOwner(jp.rough_diamond.account.entity.Party v) {
         this.owner = v;
     }
 
     @jp.rough_diamond.commons.service.annotation.PostLoad
     public void loadOwner() {
-        jp.rough_diamond.account.entity.Owner owner = getOwner();
+        jp.rough_diamond.account.entity.Party owner = getOwner();
         if(owner != null) {
             Long pk = owner.getId();
             setOwner(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Owner.class, pk)
+                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Party.class, pk)
             );
         }
     }

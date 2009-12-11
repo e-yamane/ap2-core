@@ -68,14 +68,14 @@
       <td class="summarybackground summaryborder summarydescription"> 品目</td>
     </tr>
     <tr class=summaryrow">
-      <td class="summarybackground summaryborder summarytablename"><a href="#OWNER_CODE" class="link summarytablenamelink">OWNER_CODE</a></td>
-      <td class="summarybackground summaryborder summaryjavaname">OwnerCode</td>
-      <td class="summarybackground summaryborder summarydescription"> 所有者コード</td>
+      <td class="summarybackground summaryborder summarytablename"><a href="#PARTY_CODE" class="link summarytablenamelink">PARTY_CODE</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">PartyCode</td>
+      <td class="summarybackground summaryborder summarydescription"> パーティコード</td>
     </tr>
     <tr class=summaryrow">
-      <td class="summarybackground summaryborder summarytablename"><a href="#OWNER" class="link summarytablenamelink">OWNER</a></td>
-      <td class="summarybackground summaryborder summaryjavaname">Owner</td>
-      <td class="summarybackground summaryborder summarydescription"> 所有者</td>
+      <td class="summarybackground summaryborder summarytablename"><a href="#PARTY" class="link summarytablenamelink">PARTY</a></td>
+      <td class="summarybackground summaryborder summaryjavaname">Party</td>
+      <td class="summarybackground summaryborder summarydescription"> パーティ</td>
     </tr>
     <tr class=summaryrow">
       <td class="summarybackground summaryborder summarytablename"><a href="#CODE" class="link summarytablenamelink">CODE</a></td>
@@ -638,7 +638,7 @@ if( document.getElementById  )
 {
 var col = document.getElementById("ACCOUNTOWNER_ID");
 col.style.backgroundColor = "afe295";
-col.title="Foreignkey from OWNER.ID";
+col.title="Foreignkey from PARTY.ID";
 }
 </script>
 
@@ -842,7 +842,7 @@ if( document.getElementById  )
 {
 var col = document.getElementById("PLACEOWNER_ID");
 col.style.backgroundColor = "afe295";
-col.title="Foreignkey from OWNER.ID";
+col.title="Foreignkey from PARTY.ID";
 }
 </script>
 
@@ -906,9 +906,9 @@ col.title="Foreignkey from ITEM.ID";
 }
 </script>
 
-    <a name="OWNER_CODE"/>
-<h2>OWNER_CODE </h2>
-所有者コード
+    <a name="PARTY_CODE"/>
+<h2>PARTY_CODE </h2>
+パーティコード
 <p/>
 <table border="1" cellspacing="0">
   <tr>
@@ -923,7 +923,7 @@ col.title="Foreignkey from ITEM.ID";
     <th class="normalFont" bgcolor="#CCCCCC">Description</th>
   </tr>
     <tr>
-    <td class="normalFont" id="OWNER_CODEID">ID</td>
+    <td class="normalFont" id="PARTY_CODEID">ID</td>
     <td class="normalFont">BIGINT</td>
     <td class="normalFont"> &nbsp;</td>
     <td class="normalFont"> &nbsp;</td>
@@ -934,15 +934,15 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"> OID</td>
   </tr>
   <tr>
-    <td class="normalFont" id="OWNER_CODEOWNER_ID">OWNER_ID</td>
+    <td class="normalFont" id="PARTY_CODEPARTY_ID">PARTY_ID</td>
     <td class="normalFont">BIGINT</td>
     <td class="normalFont"> &nbsp;</td>
     <td class="normalFont"> &nbsp;</td>
-    <td class="normalFont">ownerId</td>
+    <td class="normalFont">partyId</td>
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center> X </center></td>
     <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"> 所有者ID</td>
+    <td class="normalFont"> パーティID</td>
   </tr>
   <tr>
     <td class="normalFont" id="CODECI_CODE_SYSTEM_ID">CI_CODE_SYSTEM_ID</td>
@@ -953,7 +953,7 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center> X </center></td>
     <td class="normalFont"><center> X </center></td>
-    <td class="normalFont">所有者コード情報. コード体系ID</td>
+    <td class="normalFont">パーティコード情報. コード体系ID</td>
   </tr>
   <tr>
     <td class="normalFont" id="CODECI_CODE">CI_CODE</td>
@@ -964,7 +964,7 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center> X </center></td>
-    <td class="normalFont">所有者コード情報. コード</td>
+    <td class="normalFont">パーティコード情報. コード</td>
   </tr>
   <tr>
     <td class="normalFont" id="CODECI_REVISION">CI_REVISION</td>
@@ -975,7 +975,7 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center> X </center></td>
-    <td class="normalFont">所有者コード情報. リビジョン</td>
+    <td class="normalFont">パーティコード情報. リビジョン</td>
   </tr>
   <tr>
     <td class="normalFont" id="CODECI_REGISTERER_DATE">CI_REGISTERER_DATE</td>
@@ -986,7 +986,7 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center> X </center></td>
-    <td class="normalFont">所有者コード情報. 登録日時</td>
+    <td class="normalFont">パーティコード情報. 登録日時</td>
   </tr>
   <tr>
     <td class="normalFont" id="CODECI_VALID_DATE">CI_VALID_DATE</td>
@@ -997,7 +997,7 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont">所有者コード情報. 有効開始日時</td>
+    <td class="normalFont">パーティコード情報. 有効開始日時</td>
   </tr>
   <tr>
     <td class="normalFont" id="CODECI_INVALID_DATE">CI_INVALID_DATE</td>
@@ -1008,7 +1008,7 @@ col.title="Foreignkey from ITEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
-    <td class="normalFont">所有者コード情報. 無効開始日時</td>
+    <td class="normalFont">パーティコード情報. 無効開始日時</td>
   </tr>
 
 
@@ -1022,9 +1022,9 @@ col.title="Foreignkey from CODE_SYSTEM.ID";
 }
 </script>
 
-    <a name="OWNER"/>
-<h2>OWNER </h2>
-所有者
+    <a name="PARTY"/>
+<h2>PARTY </h2>
+パーティ
 <p/>
 <table border="1" cellspacing="0">
   <tr>
@@ -1039,7 +1039,7 @@ col.title="Foreignkey from CODE_SYSTEM.ID";
     <th class="normalFont" bgcolor="#CCCCCC">Description</th>
   </tr>
     <tr>
-    <td class="normalFont" id="OWNERID">ID</td>
+    <td class="normalFont" id="PARTYID">ID</td>
     <td class="normalFont">BIGINT</td>
     <td class="normalFont"> &nbsp;</td>
     <td class="normalFont"> &nbsp;</td>
@@ -1050,7 +1050,7 @@ col.title="Foreignkey from CODE_SYSTEM.ID";
     <td class="normalFont"> OID</td>
   </tr>
   <tr>
-    <td class="normalFont" id="OWNERNAME">NAME</td>
+    <td class="normalFont" id="PARTYNAME">NAME</td>
     <td class="normalFont">VARCHAR</td>
     <td class="normalFont"> (256) </td>
     <td class="normalFont"> &nbsp;</td>
@@ -1058,7 +1058,7 @@ col.title="Foreignkey from CODE_SYSTEM.ID";
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center>  &nbsp; </center></td>
     <td class="normalFont"><center> X </center></td>
-    <td class="normalFont"> 所有者名</td>
+    <td class="normalFont"> パーティ名</td>
   </tr>
 
 </table>

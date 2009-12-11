@@ -78,7 +78,7 @@ DTDは、
     <foreign-key foreignTable="ITEM" name="item" onUpdate="cascade" onDelete="cascade">
       <reference local="ITEM_ID" foreign="ID" />
     </foreign-key>
-    <foreign-key foreignTable="OWNER" name="owner" onUpdate="cascade" onDelete="cascade">
+    <foreign-key foreignTable="PARTY" name="owner" onUpdate="cascade" onDelete="cascade">
       <reference local="OWNER_ID" foreign="ID" />
     </foreign-key>
   </table>
@@ -101,7 +101,7 @@ DTDは、
     <foreign-key foreignTable="PLACE" name="parent" onUpdate="cascade" onDelete="cascade">
       <reference local="PARENT_ID" foreign="ID" />
     </foreign-key>
-    <foreign-key foreignTable="OWNER" name="owner" onUpdate="cascade" onDelete="cascade">
+    <foreign-key foreignTable="PARTY" name="owner" onUpdate="cascade" onDelete="cascade">
       <reference local="OWNER_ID" foreign="ID" />
     </foreign-key>
   </table>
@@ -115,18 +115,18 @@ DTDは、
     </foreign-key>
   </table>
 
-  <table name="OWNER_CODE" description="所有者コード">
+  <table name="PARTY_CODE" description="パーティコード">
     <column name="ID"         primaryKey="true"   required="true"   domain="oid"  description="OID" />
-    <column name="OWNER_ID"                       required="true"   domain="oid"  description="所有者ID" />
-    <column name="CI"         javaName="codeInfo" required="true"   type="CODE"   description="所有者コード情報" />
-    <foreign-key foreignTable="OWNER" name="target" onUpdate="cascade" onDelete="cascade">
-      <reference local="OWNER_ID" foreign="ID" />
+    <column name="PARTY_ID"                       required="true"   domain="oid"  description="パーティID" />
+    <column name="CI"         javaName="codeInfo" required="true"   type="CODE"   description="パーティコード情報" />
+    <foreign-key foreignTable="PARTY" name="target" onUpdate="cascade" onDelete="cascade">
+      <reference local="PARTY_ID" foreign="ID" />
     </foreign-key>
   </table>
 
-  <table name="OWNER" description="所有者">
+  <table name="PARTY" description="パーティ">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
-    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="所有者名" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="パーティ名" />
   </table>
 
   <table name="CODE" description="コード" skipSql="true">

@@ -81,7 +81,7 @@ CREATE TABLE ACCOUNT
     PLACE_ID int8 NOT NULL,
       -- REFERENCES ITEM (ID)
     ITEM_ID int8 NOT NULL,
-      -- REFERENCES OWNER (ID)
+      -- REFERENCES PARTY (ID)
     OWNER_ID int8 NOT NULL,
     REGISTER_DATE timestamp NOT NULL,
     PRIMARY KEY (ID),
@@ -142,7 +142,7 @@ CREATE TABLE PLACE
     VIRTUAL char default 'N' NOT NULL,
       -- REFERENCES PLACE (ID)
     PARENT_ID int8,
-      -- REFERENCES OWNER (ID)
+      -- REFERENCES PARTY (ID)
     OWNER_ID int8 NOT NULL,
     PRIMARY KEY (ID)
 );
@@ -177,16 +177,16 @@ COMMENT ON COLUMN ITEM.PARENT_ID IS '親品目ID';
 
 
 -----------------------------------------------------------------------------
--- OWNER_CODE
+-- PARTY_CODE
 -----------------------------------------------------------------------------
-DROP TABLE OWNER_CODE;
+DROP TABLE PARTY_CODE;
 
 
-CREATE TABLE OWNER_CODE
+CREATE TABLE PARTY_CODE
 (
     ID int8 NOT NULL,
-      -- REFERENCES OWNER (ID)
-    OWNER_ID int8 NOT NULL,
+      -- REFERENCES PARTY (ID)
+    PARTY_ID int8 NOT NULL,
           -- REFERENCES CODE_SYSTEM (ID)
     CI_CODE_SYSTEM_ID int8 NOT NULL,
     CI_CODE varchar (1024) NOT NULL,
@@ -197,34 +197,34 @@ CREATE TABLE OWNER_CODE
     PRIMARY KEY (ID)
 );
 
-COMMENT ON TABLE OWNER_CODE IS '所有者コード';
-COMMENT ON COLUMN OWNER_CODE.ID IS 'OID';
-COMMENT ON COLUMN OWNER_CODE.OWNER_ID IS '所有者ID';
-COMMENT ON COLUMN OWNER_CODE.CI_CODE_SYSTEM_ID IS '所有者コード情報 コード体系ID';
-COMMENT ON COLUMN OWNER_CODE.CI_CODE IS '所有者コード情報 コード';
-COMMENT ON COLUMN OWNER_CODE.CI_REVISION IS '所有者コード情報 リビジョン';
-COMMENT ON COLUMN OWNER_CODE.CI_REGISTERER_DATE IS '所有者コード情報 登録日時';
-COMMENT ON COLUMN OWNER_CODE.CI_VALID_DATE IS '所有者コード情報 有効開始日時';
-COMMENT ON COLUMN OWNER_CODE.CI_INVALID_DATE IS '所有者コード情報 無効開始日時';
+COMMENT ON TABLE PARTY_CODE IS 'パーティコード';
+COMMENT ON COLUMN PARTY_CODE.ID IS 'OID';
+COMMENT ON COLUMN PARTY_CODE.PARTY_ID IS 'パーティID';
+COMMENT ON COLUMN PARTY_CODE.CI_CODE_SYSTEM_ID IS 'パーティコード情報 コード体系ID';
+COMMENT ON COLUMN PARTY_CODE.CI_CODE IS 'パーティコード情報 コード';
+COMMENT ON COLUMN PARTY_CODE.CI_REVISION IS 'パーティコード情報 リビジョン';
+COMMENT ON COLUMN PARTY_CODE.CI_REGISTERER_DATE IS 'パーティコード情報 登録日時';
+COMMENT ON COLUMN PARTY_CODE.CI_VALID_DATE IS 'パーティコード情報 有効開始日時';
+COMMENT ON COLUMN PARTY_CODE.CI_INVALID_DATE IS 'パーティコード情報 無効開始日時';
 
 
 
 -----------------------------------------------------------------------------
--- OWNER
+-- PARTY
 -----------------------------------------------------------------------------
-DROP TABLE OWNER;
+DROP TABLE PARTY;
 
 
-CREATE TABLE OWNER
+CREATE TABLE PARTY
 (
     ID int8 NOT NULL,
     NAME varchar (256) NOT NULL,
     PRIMARY KEY (ID)
 );
 
-COMMENT ON TABLE OWNER IS '所有者';
-COMMENT ON COLUMN OWNER.ID IS 'OID';
-COMMENT ON COLUMN OWNER.NAME IS '所有者名';
+COMMENT ON TABLE PARTY IS 'パーティ';
+COMMENT ON COLUMN PARTY.ID IS 'OID';
+COMMENT ON COLUMN PARTY.NAME IS 'パーティ名';
 
 
 -----------------------------------------------------------------------------

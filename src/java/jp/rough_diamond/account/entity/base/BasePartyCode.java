@@ -12,17 +12,17 @@ import  java.io.Serializable;
 
 
 /**
- * 所有者のHibernateマッピングベースクラス
+ * パーティコードのHibernateマッピングベースクラス
  * @hibernate.class
- *    table="OWNER"
- *    realClass="jp.rough_diamond.account.entity.Owner"
+ *    table="PARTY_CODE"
+ *    realClass="jp.rough_diamond.account.entity.PartyCode"
 **/
-public abstract class BaseOwner  implements Serializable {
+public abstract class BasePartyCode  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**
      * デフォルトコンストラクタ
     **/
-    public BaseOwner() {
+    public BasePartyCode() {
     }
 
     /**
@@ -60,9 +60,9 @@ public abstract class BaseOwner  implements Serializable {
     }
     
     public boolean equals(Object o) {
-        if(o instanceof BaseOwner) {
+        if(o instanceof BasePartyCode) {
             if(hashCode() == o.hashCode()) {
-                BaseOwner obj = (BaseOwner)o;
+                BasePartyCode obj = (BasePartyCode)o;
                 if(getId() == null) {
                     return super.equals(o);
                 }
@@ -117,34 +117,70 @@ public abstract class BaseOwner  implements Serializable {
         jp.rough_diamond.commons.service.BasicService.getService().update(this);
     }
     /**
-     * 所有者名
+     * パーティコード情報
     **/ 
-    private String name;
-    public final static String NAME = "name";
+    private jp.rough_diamond.account.entity.Code codeInfo =  new jp.rough_diamond.account.entity.Code();
+
+    public final static String CI = "codeInfo.";
 
     /**
-     * 所有者名を取得する
-     * @hibernate.property
-     *    column="NAME"
-     *    not-null="true"
-     *    length="256"
-     * @return 所有者名
+     * パーティコード情報を取得する
+     * @hibernate.component
+     *    prefix="CI_"
+     * @return パーティコード情報
     **/
-    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Owner.name")
-    @jp.rough_diamond.commons.service.annotation.NotNull(property="Owner.name")
-    public String getName() {
-        return name;
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="PartyCode.codeInfo")
+    @jp.rough_diamond.commons.service.annotation.NestedComponent(property="PartyCode.codeInfo")
+    public jp.rough_diamond.account.entity.Code getCodeInfo() {
+        return codeInfo;
     }
 
     /**
-     * 所有者名を設定する
-     * @param name  所有者名
+     * パーティコード情報を設定する
+     * @param codeInfo  パーティコード情報
     **/
-    public void setName(String name) {
-        this.name = name;
+    public void setCodeInfo(jp.rough_diamond.account.entity.Code codeInfo) {
+        this.codeInfo = codeInfo;
     }
+
 //ForeignProperties.vm start.
 
     
+    private jp.rough_diamond.account.entity.Party target;
+    public final static String TARGET = "target";
+
+    /**
+     * Get the associated Party object
+     * @hibernate.many-to-one
+     *   outer-join = "true"
+     * @hibernate.column name = "PARTY_ID"
+     *
+     * @return the associated Party object
+     */
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="PartyCode.partyId")
+    public jp.rough_diamond.account.entity.Party getTarget() {
+        return this.target;
+    }
+
+    /**
+     * Declares an association between this object and a Party object
+     *
+     * @param v Party
+     */
+    public void setTarget(jp.rough_diamond.account.entity.Party v) {
+        this.target = v;
+    }
+
+    @jp.rough_diamond.commons.service.annotation.PostLoad
+    public void loadTarget() {
+        jp.rough_diamond.account.entity.Party target = getTarget();
+        if(target != null) {
+            Long pk = target.getId();
+            setTarget(
+                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Party.class, pk)
+            );
+        }
+    }
+
 //ForeignProperties.vm finish.
 }

@@ -8,8 +8,8 @@
 >
 
     <class
-        name="jp.rough_diamond.account.entity.OwnerCode"
-        table="OWNER_CODE"
+        name="jp.rough_diamond.account.entity.PartyCode"
+        table="PARTY_CODE"
     >
 
         <id
@@ -20,7 +20,7 @@
             <generator class="assigned">
               <!--  
                   To add non XDoclet generator parameters, create a file named 
-                  hibernate-generator-params-BaseOwnerCode.xml 
+                  hibernate-generator-params-BasePartyCode.xml 
                   containing the additional parameters and place it in your merge dir. 
               --> 
             </generator>
@@ -30,6 +30,7 @@
             name="codeInfo"
             class="jp.rough_diamond.account.entity.Code"
         >
+
         <property
             name="code"
             type="java.lang.String"
@@ -93,20 +94,20 @@
 
         <many-to-one
             name="target"
-            class="jp.rough_diamond.account.entity.Owner"
+            class="jp.rough_diamond.account.entity.Party"
             cascade="none"
             outer-join="true"
             update="true"
             insert="true"
         >
             <column
-                name="OWNER_ID" 
+                name="PARTY_ID" 
             />
         </many-to-one>
 
         <!--
             To add non XDoclet property mappings, create a file named
-                hibernate-properties-BaseOwnerCode.xml
+                hibernate-properties-BasePartyCode.xml
             containing the additional properties and place it in your merge dir.
         -->
 

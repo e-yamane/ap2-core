@@ -24,8 +24,8 @@ public class MasterLoader extends DBInitializer {
      */
     final static String[] NAMES = new String[]{
         "jp/rough_diamond/account/entity/CODE_SYSTEM.xls",    	
-        "jp/rough_diamond/account/entity/OWNER.xls",    	
-        "jp/rough_diamond/account/entity/OWNER_CODE.xls",    	
+        "jp/rough_diamond/account/entity/PARTY.xls",    	
+        "jp/rough_diamond/account/entity/PARTY_CODE.xls",    	
         "jp/rough_diamond/account/entity/ITEM.xls",
         "jp/rough_diamond/account/entity/PLACE.xls",
         "jp/rough_diamond/account/entity/PLACE_CODE.xls",    	

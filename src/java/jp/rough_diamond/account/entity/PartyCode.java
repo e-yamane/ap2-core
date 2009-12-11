@@ -11,6 +11,6 @@ package jp.rough_diamond.account.entity;
 /**
  * 所有者コードのHibernateマッピングクラス
 **/
-public class OwnerCode extends jp.rough_diamond.account.entity.base.BaseOwnerCode {
+public class PartyCode extends jp.rough_diamond.account.entity.base.BasePartyCode {
     private static final long serialVersionUID = 1L;
 }

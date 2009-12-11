@@ -63,7 +63,7 @@
 
         <many-to-one
             name="owner"
-            class="jp.rough_diamond.account.entity.Owner"
+            class="jp.rough_diamond.account.entity.Party"
             cascade="none"
             outer-join="true"
             update="true"

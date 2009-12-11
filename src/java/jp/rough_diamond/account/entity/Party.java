@@ -11,30 +11,30 @@ import jp.rough_diamond.commons.service.BasicService;
 /**
  * 所有者のHibernateマッピングクラス
 **/
-public class Owner extends jp.rough_diamond.account.entity.base.BaseOwner {
+public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     private static final long serialVersionUID = 1L;
 
-    public static List<Owner> getAll() {
-    	Extractor extractor = new Extractor(Owner.class);
+    public static List<Party> getAll() {
+    	Extractor extractor = new Extractor(Party.class);
     	extractor.addOrder(Order.asc(new Property(ID)));
     	return BasicService.getService().findByExtractor(extractor);
     }
     
-    public static Owner getOwnerByCode(String systemName, String code) {
+    public static Party getOwnerByCode(String systemName, String code) {
     	return getOwnerByCode(CodeSystem.getCodeSystemByName(systemName), code);
     }
     
-    public static Owner getOwnerByCode(String systemName, String code, Date date) {
+    public static Party getOwnerByCode(String systemName, String code, Date date) {
     	return getOwnerByCode(CodeSystem.getCodeSystemByName(systemName), code, date);
     }
     
-    public static Owner getOwnerByCode(CodeSystem system, String code) {
+    public static Party getOwnerByCode(CodeSystem system, String code) {
     	return getOwnerByCode(system, code, new Date());
     }
     
-    public static Owner getOwnerByCode(CodeSystem system, String code, Date date) {
-    	List<OwnerCode> targets = Code.getTargetHoldersByCode(OwnerCode.class, OwnerCode.CI, system, code, date);
-    	for(OwnerCode target : targets) {
+    public static Party getOwnerByCode(CodeSystem system, String code, Date date) {
+    	List<PartyCode> targets = Code.getTargetHoldersByCode(PartyCode.class, PartyCode.CI, system, code, date);
+    	for(PartyCode target : targets) {
     		String code2 = target.getTarget().getCode(system, date);
     		if(code2.equals(code)) {
     			return target.getTarget();
@@ -56,6 +56,6 @@ public class Owner extends jp.rough_diamond.account.entity.base.BaseOwner {
     }
     
 	public String getCode(CodeSystem system, Date date) {
-		return Code.getCode(OwnerCode.class, this, OwnerCode.TARGET, OwnerCode.CI, system, date);
+		return Code.getCode(PartyCode.class, this, PartyCode.TARGET, PartyCode.CI, system, date);
     }
 }

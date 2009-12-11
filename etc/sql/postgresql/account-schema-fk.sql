@@ -70,7 +70,7 @@ ALTER TABLE ACCOUNT
     ADD CONSTRAINT fk_ACCOUNT__3 FOREIGN KEY (
       OWNER_ID
     )
-    REFERENCES OWNER (ID)
+    REFERENCES PARTY (ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE 
 ;
@@ -112,7 +112,7 @@ ALTER TABLE PLACE
     ADD CONSTRAINT fk_PLACE__2 FOREIGN KEY (
       OWNER_ID
     )
-    REFERENCES OWNER (ID)
+    REFERENCES PARTY (ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE 
 ;
@@ -134,16 +134,16 @@ ALTER TABLE ITEM
 -- ITEM                                                      
 ----------------------------------------------------------------------
 
-ALTER TABLE OWNER_CODE
-    ADD CONSTRAINT fk_OWNER_CODE__1 FOREIGN KEY (
-      OWNER_ID
+ALTER TABLE PARTY_CODE
+    ADD CONSTRAINT fk_PARTY_CODE__1 FOREIGN KEY (
+      PARTY_ID
     )
-    REFERENCES OWNER (ID)
+    REFERENCES PARTY (ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE 
 ;
-ALTER TABLE OWNER_CODE
-    ADD CONSTRAINT fk_OWNER_CODE__2 FOREIGN KEY (
+ALTER TABLE PARTY_CODE
+    ADD CONSTRAINT fk_PARTY_CODE__2 FOREIGN KEY (
       CI_CODE_SYSTEM_ID
     )
     REFERENCES CODE_SYSTEM (ID)
@@ -152,11 +152,11 @@ ALTER TABLE OWNER_CODE
 ;
 
 ----------------------------------------------------------------------
--- OWNER_CODE                                                      
+-- PARTY_CODE                                                      
 ----------------------------------------------------------------------
 
 
 ----------------------------------------------------------------------
--- OWNER                                                      
+-- PARTY                                                      
 ----------------------------------------------------------------------
 

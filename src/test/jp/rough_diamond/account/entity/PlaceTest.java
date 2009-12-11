@@ -84,7 +84,7 @@ public class PlaceTest extends DataLoadingTestCase {
 		newPlace.setVirtual(false);
 		
 		// 所有者設定
-		Owner newOwner = service.findByPK(Owner.class, 2L);
+		Party newOwner = service.findByPK(Party.class, 2L);
 		newPlace.setOwner(newOwner);
 		try {
 			service.insert(newPlace);
@@ -104,7 +104,7 @@ public class PlaceTest extends DataLoadingTestCase {
 		newPlace.setParent(kansai);
 		
 		// 所有者設定
-		newOwner = service.findByPK(Owner.class, 2L);
+		newOwner = service.findByPK(Party.class, 2L);
 		newPlace.setOwner(newOwner);
 		
 		try {
@@ -148,7 +148,7 @@ public class PlaceTest extends DataLoadingTestCase {
 
 	public void testGetChildIdsWhenRecesive() throws Exception {
 		BasicService service = BasicService.getService();
-		Owner o = service.findByPK(Owner.class, 1L);
+		Party o = service.findByPK(Party.class, 1L);
 		Place p1 = new Place();
 		p1.setOwner(o);
 		p1.setName("再帰項目１");

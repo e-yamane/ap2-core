@@ -90,7 +90,7 @@ public class AccountTest extends DataLoadingTestCase {
 	public void testGrossItemBalance() throws Exception {
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 4L);
-		Owner o = p.getOwner();
+		Party o = p.getOwner();
 		Item i = service.findByPK(Item.class, 2L);
 		Account a = new Account();
 		a.setPlace(p);
@@ -104,7 +104,7 @@ public class AccountTest extends DataLoadingTestCase {
 	public void testGrossItemTrend() throws Exception {
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 4L);
-		Owner o = p.getOwner();
+		Party o = p.getOwner();
 		Item i = service.findByPK(Item.class, 2L);
 		Account a = new Account();
 		a.setPlace(p);
@@ -119,7 +119,7 @@ public class AccountTest extends DataLoadingTestCase {
 	public void testGrossPlaceBalance() throws Exception {
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 2L);
-		Owner o = p.getOwner();
+		Party o = p.getOwner();
 		Item i = service.findByPK(Item.class, 4L);
 		Account a = new Account();
 		a.setPlace(p);
@@ -133,7 +133,7 @@ public class AccountTest extends DataLoadingTestCase {
 	public void testGrossPlaceTrend() throws Exception {
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 2L);
-		Owner o = p.getOwner();
+		Party o = p.getOwner();
 		Item i = service.findByPK(Item.class, 4L);
 		Account a = new Account();
 		a.setPlace(p);
@@ -148,7 +148,7 @@ public class AccountTest extends DataLoadingTestCase {
 	public void testGrossPlaceAndItemBalance() throws Exception {
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 2L);
-		Owner o = p.getOwner();
+		Party o = p.getOwner();
 		Item i = service.findByPK(Item.class, 2L);
 		Account a = new Account();
 		a.setPlace(p);
@@ -162,7 +162,7 @@ public class AccountTest extends DataLoadingTestCase {
 	public void testGrossPlaceAndItemTrend() throws Exception {
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 2L);
-		Owner o = p.getOwner();
+		Party o = p.getOwner();
 		Item i = service.findByPK(Item.class, 2L);
 		Account a = new Account();
 		a.setPlace(p);
@@ -178,7 +178,7 @@ public class AccountTest extends DataLoadingTestCase {
 		new AccountTest().setUp();
 		BasicService service = BasicService.getService();
 		Place p = service.findByPK(Place.class, 2L);
-		Owner o = p.getOwner();
+		Party o = p.getOwner();
 		Item i = service.findByPK(Item.class, 2L);
 		Account a = new Account();
 		a.setPlace(p);
