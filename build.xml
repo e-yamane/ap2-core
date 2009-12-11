@@ -58,7 +58,7 @@
   </target>
 
   <target name="makeJar" depends="compile" description="Jarƒtƒ@ƒCƒ‹‚ðì¬‚·‚é">
-    <jar jarfile="${dist.dir}/rd-accountPattern.jar" basedir="${classes.dir}" />
+    <jar jarfile="${dist.dir}/rd-ap2.jar" basedir="${classes.dir}" />
   </target>
 
   <target name="compile" depends="makeAndCopyFramework">
