@@ -43,7 +43,7 @@
 
         <property
             name="revision"
-            type="java.lang.Integer"
+            type="java.lang.Long"
             update="true"
             insert="true"
             column="CI_REVISION"

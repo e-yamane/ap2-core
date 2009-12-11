@@ -52,7 +52,7 @@ public abstract class BaseCode  implements Serializable {
     /**
      * リビジョン
     **/ 
-    private Integer revision;
+    private Long revision;
     public final static String REVISION = "revision";
 
     /**
@@ -62,7 +62,7 @@ public abstract class BaseCode  implements Serializable {
      *    not-null="true"
      * @return リビジョン
     **/
-    public Integer getRevision() {
+    public Long getRevision() {
         return revision;
     }
 
@@ -70,7 +70,7 @@ public abstract class BaseCode  implements Serializable {
      * リビジョンを設定する
      * @param revision  リビジョン
     **/
-    public void setRevision(Integer revision) {
+    public void setRevision(Long revision) {
         this.revision = revision;
     }
     /**

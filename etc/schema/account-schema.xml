@@ -132,7 +132,7 @@ DTDは、
   <table name="CODE" description="コード" skipSql="true">
     <column name="CODE_SYSTEM_ID"               required="true"   domain="oid"                description="コード体系ID" />
     <column name="CODE"                         required="true"   type="VARCHAR"  size="1024" description="コード" />
-    <column name="REVISION"                     required="true"   type="INTEGER"              description="リビジョン" />
+    <column name="REVISION"                     required="true"   type="BIGINT"               description="リビジョン" />
     <column name="REGISTERER_DATE"              required="true"   type="TIMESTAMP"            description="登録日時" />
     <column name="VALID_DATE"                                     type="TIMESTAMP"            description="有効開始日時" />
     <column name="INVALID_DATE"                                   type="TIMESTAMP"            description="無効開始日時" />
