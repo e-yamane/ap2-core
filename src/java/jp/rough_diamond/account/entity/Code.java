@@ -25,6 +25,11 @@ import jp.rough_diamond.commons.service.BasicService;
 public class Code extends jp.rough_diamond.account.entity.base.BaseCode {
     private static final long serialVersionUID = 1L;
 
+    public Code() {
+    	setRegistererDate(new Date());	//dummy
+    	setRevision(0L);				//dummy
+    }
+    
 	public static <T> List<T> getTargetHoldersByCode(Class<T> holderType, String prefix, CodeSystem system, String code, Date date) {
     	Extractor ex = new Extractor(holderType);
     	ex.add(Condition.eq(new Property(prefix + Code.CODESYSTEM), system));
