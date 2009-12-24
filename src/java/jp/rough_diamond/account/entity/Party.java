@@ -3,7 +3,10 @@ package jp.rough_diamond.account.entity;
 import java.util.Date;
 import java.util.List;
 
+import jp.rough_diamond.commons.extractor.Condition;
+import jp.rough_diamond.commons.extractor.ExtractValue;
 import jp.rough_diamond.commons.extractor.Extractor;
+import jp.rough_diamond.commons.extractor.Max;
 import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
@@ -105,7 +108,16 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     	return null;
     }
     
-    public String getCode(String systemName) {
+	public long getUpdateCount() {
+		Extractor ex = new Extractor(PartyCode.class);
+		ex.add(Condition.eq(new Property(PartyCode.TARGET), this));
+		ex.addExtractValue(new ExtractValue("rev", new Max(new Property(PartyCode.CI + Code.REVISION))));
+		ex.setReturnType(Long.class);
+		long revMax = (Long)BasicService.getService().findByExtractor(ex).get(0);
+		return Math.max(revMax, getRevision());
+	}
+
+	public String getCode(String systemName) {
     	return getCode(CodeSystem.getCodeSystemByName(systemName));
     }
     

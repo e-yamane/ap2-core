@@ -159,6 +159,19 @@ public class PartyTest extends DataLoadingTestCase {
     	assertEquals("ロード時リビジョンが更新されていません", theParty.getRevision(), theParty.loadedRevision);
 	}
 
+	public void testUpdateCount() {
+		Party p = BasicService.getService().findByPK(Party.class, 1L);
+		assertEquals("更新カウントが誤っています。", 3L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Party.class, 2L);
+		assertEquals("更新カウントが誤っています。", 4L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Party.class, 3L);
+		assertEquals("更新カウントが誤っています。", 5L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Party.class, 4L);
+		assertEquals("更新カウントが誤っています。", 11L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Party.class, 5L);
+		assertEquals("更新カウントが誤っています。", 12L, p.getUpdateCount());
+	}
+
 	public void testGetCode() throws Exception {
 		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
