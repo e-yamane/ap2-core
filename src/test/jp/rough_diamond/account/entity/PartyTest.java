@@ -4,10 +4,13 @@
 package jp.rough_diamond.account.entity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import jp.rough_diamond.NumberingLoader;
+import jp.rough_diamond.commons.extractor.Extractor;
+import jp.rough_diamond.commons.resource.Messages;
 import jp.rough_diamond.commons.resource.MessagesIncludingException;
 import jp.rough_diamond.commons.service.BasicService;
 import jp.rough_diamond.commons.testing.DataLoadingTestCase;
@@ -34,68 +37,128 @@ public class PartyTest extends DataLoadingTestCase {
 		assertEquals("IDが誤っています。", 5L, list.get(4).getId().longValue());
     }
 
-	public void testOwnerInsert() {
-		BasicService service = BasicService.getService();
-		
-    	try {
-    		// 1.新規登録
-    		Party newOwner = new Party();
-        	newOwner.setName("地頭");
-			service.insert(newOwner);
-		} catch(MessagesIncludingException e) {
-			e.printStackTrace();
-			fail("例外が発生しました。");
-		} catch(Exception e) {
-			e.printStackTrace();
-			fail("その他例外が発生しています。");
-		}
-
-//XXX ユニーク解除		
-//    	try {
-//    		// 2.同一名称は登録不可
-//    		Owner newOwner = new Owner();
-//        	newOwner.setName("本田");
-//			service.insert(newOwner);
-//			fail("例外が発生していません。");
-//		} catch(MessagesIncludingException e) {
-//			e.printStackTrace();
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			fail("その他例外が発生しています。");
-//		}
+	public void testPartyInsert() throws Exception {
+		//新規登録ができること
+		Extractor ex = new Extractor(Party.class);
+		long before = BasicService.getService().getCountByExtractor(ex);
+		Party newOwner = new Party();
+		newOwner.setPartyCode("PTY-000000006");
+    	newOwner.setName("テスト用パーティ");
+    	newOwner.save();
+    	long after = BasicService.getService().getCountByExtractor(ex);
+    	assertEquals("追加後の件数が誤っています。", before + 1, after);
 	}
 	
-	public void testOwnerUpdate() {
-		BasicService service = BasicService.getService();
-		
+	public void testPartyInsertUniqueCheck() throws Exception {
+		//新規登録ができること
+		Extractor ex = new Extractor(Party.class);
+		long before = BasicService.getService().getCountByExtractor(ex);
+		Party newOwner = new Party();
+		newOwner.setPartyCode("PTY-000000001");
+    	newOwner.setName("テスト用パーティ");
     	try {
-    		// 1.名称更新
-    		Party newOwner = service.findByPK(Party.class, 1L);
-        	newOwner.setName("本田　哉樹");
-			service.update(newOwner);
-		} catch(MessagesIncludingException e) {
-			e.printStackTrace();
-			fail("例外が発生しました。");
-		} catch(Exception e) {
-			e.printStackTrace();
-			fail("その他例外が発生しています。");
-		}
-
-//XXX ユニーク解除		
-//    	try {
-//    		// 2.同一名称は登録不可
-//    		Owner newOwner = service.findByPK(Owner.class, 1L);
-//        	newOwner.setName("江並");
-//			service.update(newOwner);
-//			fail("例外が発生していません。");
-//		} catch(MessagesIncludingException e) {
-//			e.printStackTrace();
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			fail("その他例外が発生しています。");
-//		}
+        	newOwner.save();
+        	fail("例外が送出されていません");
+    	} catch(MessagesIncludingException e) {
+    		e.printStackTrace();
+    		Messages msgs = e.getMessages();
+    		List<String> props = new ArrayList<String>(msgs.getProperties());
+    		assertEquals("エラー発生件数が誤っています。", 1, props.size());
+    		assertEquals("エラーメッセージ数が誤っています。", 1, msgs.get(props.get(0)).size());
+    		assertEquals("エラーメッセージキーが誤っています。", "errors.duplicate", msgs.get(props.get(0)).get(0).getKey());
+    	}
+    	long after = BasicService.getService().getCountByExtractor(ex);
+    	assertEquals("データが登録されています", before, after);
 	}
 	
+	public void testPartyInsertAndDefaultValue() throws Exception {
+		Party newOwner = new Party();
+		newOwner.setPartyCode("PTY-000000006");
+    	newOwner.setName("テスト用パーティ");
+    	newOwner.save();
+    	newOwner = BasicService.getService().findByPK(Party.class, newOwner.getId());
+    	assertEquals("ステータスが誤っています。", Party.Status.TEST, newOwner.getStatus());
+    	assertTrue("リビジョンが更新されていません。", (-1L != newOwner.getRevision().longValue()));
+    	assertEquals("ロード時リビジョンが更新されていません", newOwner.getRevision(), newOwner.loadedRevision);
+	}
+	
+	public void testPartyInsertデフォルトでセットされる値を明示的に設定したらデフォルト値にならないこと() throws Exception {
+		Party newOwner = new Party();
+		newOwner.setPartyCode("PTY-000000006");
+    	newOwner.setName("テスト用パーティ");
+    	newOwner.setStatusCode(Party.Status.AVAILABLE.getCode());
+    	newOwner.setRevision(9999L);
+    	newOwner.save();
+    	newOwner = BasicService.getService().findByPK(Party.class, newOwner.getId());
+    	assertEquals("ステータスが誤っています。", Party.Status.AVAILABLE, newOwner.getStatus());
+    	assertEquals("リビジョンが更新されていません。", 9999L, newOwner.getRevision().longValue());
+    	assertEquals("ロード時リビジョンが更新されていません", newOwner.getRevision(), newOwner.loadedRevision);
+	}
+	
+	public void testPartyUpdate() throws Exception {
+		//更新ができること
+		Extractor ex = new Extractor(Party.class);
+		long before = BasicService.getService().getCountByExtractor(ex);
+		Party theParty = BasicService.getService().findByPK(Party.class, 4L);
+		theParty.setPartyCode("PTY-000000006");
+    	theParty.setName("テスト用パーティ");
+    	theParty.save();
+    	long after = BasicService.getService().getCountByExtractor(ex);
+    	assertEquals("追加後の件数が誤っています。", before, after);
+    	theParty = BasicService.getService().findByPK(Party.class, 4L);
+    	assertEquals("名前が誤っています。", "テスト用パーティ", theParty.getName());
+	}
+	
+	public void testPartyUpdateUniqueCheck() throws Exception {
+		//更新ができること
+		Extractor ex = new Extractor(Party.class);
+		long before = BasicService.getService().getCountByExtractor(ex);
+		Party theParty = BasicService.getService().findByPK(Party.class, 4L);
+		theParty.setPartyCode("PTY-000000001");
+    	theParty.setName("テスト用パーティ");
+    	theParty.save();
+		theParty.setPartyCode("PTY-000000002");
+    	try {
+        	theParty.save();
+        	fail("例外が送出されていません");
+    	} catch(MessagesIncludingException e) {
+    		e.printStackTrace();
+    		Messages msgs = e.getMessages();
+    		List<String> props = new ArrayList<String>(msgs.getProperties());
+    		assertEquals("エラー発生件数が誤っています。", 1, props.size());
+    		assertEquals("エラーメッセージ数が誤っています。", 1, msgs.get(props.get(0)).size());
+    		assertEquals("エラーメッセージキーが誤っています。", "errors.duplicate", msgs.get(props.get(0)).get(0).getKey());
+    	}
+    	long after = BasicService.getService().getCountByExtractor(ex);
+    	assertEquals("データが登録されています", before, after);
+	}
+	
+	public void testPartyUpdateAndDefaultValue() throws Exception {
+		Party theParty = BasicService.getService().findByPK(Party.class, 4L);
+		theParty.setPartyCode("PTY-000000006");
+    	theParty.setName("テスト用パーティ");
+    	theParty.setStatusCode("??");
+    	long oldRivision = theParty.loadedRevision;
+    	theParty.save();
+    	theParty = BasicService.getService().findByPK(Party.class, theParty.getId());
+    	assertEquals("ステータスが誤っています。", Party.Status.TEST, theParty.getStatus());
+    	assertTrue("リビジョンが更新されていません。", (oldRivision != theParty.getRevision().longValue()));
+    	assertEquals("ロード時リビジョンが更新されていません", theParty.getRevision(), theParty.loadedRevision);
+	}
+	
+	public void testPartyUpdateデフォルトでセットされる値を明示的に設定したらデフォルト値にならないこと() throws Exception {
+		Party theParty = BasicService.getService().findByPK(Party.class, 4L);
+		theParty.setPartyCode("PTY-000000006");
+    	theParty.setName("テスト用パーティ");
+    	theParty.setStatusCode(Party.Status.AVAILABLE.getCode());
+    	theParty.setRevision(9999L);
+    	theParty.save();
+    	theParty = BasicService.getService().findByPK(Party.class, theParty.getId());
+    	assertEquals("ステータスが誤っています。", Party.Status.AVAILABLE, theParty.getStatus());
+    	assertEquals("リビジョンが更新されていません。", 9999L, theParty.getRevision().longValue());
+    	assertEquals("ロード時リビジョンが更新されていません", theParty.getRevision(), theParty.loadedRevision);
+	}
+
 	public void testGetCode() throws Exception {
 		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");

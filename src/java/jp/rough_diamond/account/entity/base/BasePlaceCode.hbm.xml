@@ -36,7 +36,7 @@
             type="java.lang.String"
             update="true"
             insert="true"
-            column="CI_CODE"
+            column="CICODE"
             length="1024"
             not-null="true"
         />
@@ -46,16 +46,7 @@
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="CI_REVISION"
-            not-null="true"
-        />
-
-        <property
-            name="registererDate"
-            type="java.util.Date"
-            update="true"
-            insert="true"
-            column="CI_REGISTERER_DATE"
+            column="CIREVISION"
             not-null="true"
         />
 
@@ -64,7 +55,7 @@
             type="java.util.Date"
             update="true"
             insert="true"
-            column="CI_VALID_DATE"
+            column="CIVALID_DATE"
             not-null="false"
         />
 
@@ -73,7 +64,7 @@
             type="java.util.Date"
             update="true"
             insert="true"
-            column="CI_INVALID_DATE"
+            column="CIINVALID_DATE"
             not-null="false"
         />
 
@@ -86,9 +77,34 @@
             insert="true"
         >
             <column
-                name="CI_CODE_SYSTEM_ID" 
+                name="CICODE_SYSTEM_ID" 
             />
         </many-to-one>
+
+        </component>
+
+        <component
+            name="timeStamp"
+            class="jp.rough_diamond.account.entity.UpdateTimestamp"
+        >
+
+        <property
+            name="registererDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="TSREGISTERER_DATE"
+            not-null="true"
+        />
+
+        <property
+            name="lastModifiedDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="TSLAST_MODIFIED_DATE"
+            not-null="true"
+        />
 
         </component>
 

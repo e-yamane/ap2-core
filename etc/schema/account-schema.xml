@@ -8,7 +8,7 @@ DTDは、
 です。
  /database/table/columnタグにencrypt属性（デフォルトfalse）を追加しています。
 -->
-<database defaultIdMethod="none" name="lidic" package="jp.rough_diamond.account.entity" defaultJavaType="object">
+<database defaultIdMethod="none" name="ap2-core" package="jp.rough_diamond.account.entity" defaultJavaType="object">
 <!-- 
       Hibernate強引対応拡張ルール
       その１．
@@ -84,9 +84,10 @@ DTDは、
   </table>
 
   <table name="PLACE_CODE" description="場所コード">
-    <column name="ID"         primaryKey="true"   required="true"   domain="oid"  description="OID" />
-    <column name="PLACE_ID"                       required="true"   domain="oid"  description="場所ID" />
-    <column name="CI"         javaName="codeInfo" required="true"   type="CODE"   description="場所コード情報" />
+    <column name="ID"         primaryKey="true"   required="true"   domain="oid"            description="OID" />
+    <column name="PLACE_ID"                       required="true"   domain="oid"            description="場所ID" />
+    <column name="CI"       javaName="codeInfo"   required="true"   type="CODE"             description="場所コード情報" />
+    <column name="TS"       javaName="timeStamp"  required="true"   type="UPDATE_TIMESTAMP" description="更新日時情報" />
     <foreign-key foreignTable="PLACE" name="target" onUpdate="cascade" onDelete="cascade">
       <reference local="PLACE_ID" foreign="ID" />
     </foreign-key>
@@ -116,9 +117,10 @@ DTDは、
   </table>
 
   <table name="PARTY_CODE" description="パーティコード">
-    <column name="ID"         primaryKey="true"   required="true"   domain="oid"  description="OID" />
-    <column name="PARTY_ID"                       required="true"   domain="oid"  description="パーティID" />
-    <column name="CI"         javaName="codeInfo" required="true"   type="CODE"   description="パーティコード情報" />
+    <column name="ID"         primaryKey="true"   required="true"   domain="oid"            description="OID" />
+    <column name="PARTY_ID"                       required="true"   domain="oid"            description="パーティID" />
+    <column name="CI"       javaName="codeInfo"   required="true"   type="CODE"             description="パーティコード情報" />
+    <column name="TS"       javaName="timeStamp"  required="true"   type="UPDATE_TIMESTAMP" description="更新日時情報" />
     <foreign-key foreignTable="PARTY" name="target" onUpdate="cascade" onDelete="cascade">
       <reference local="PARTY_ID" foreign="ID" />
     </foreign-key>
@@ -126,19 +128,30 @@ DTDは、
 
   <table name="PARTY" description="パーティ">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
+    <column name="PARTY_CODE"                   required="true"   type="VARCHAR"  size="256"  description="内部管理用パーティコード" />
     <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="パーティ名" />
+    <column name="REVISION"                     required="true"   type="BIGINT"               description="リビジョン" />
+    <column name="STATUS_CODE"                  required="true"   type="VARCHAR"  size="2"    description="ステータスコード" />
+    <column name="TS" javaName="timeStamp"      required="true"   type="UPDATE_TIMESTAMP"     description="更新日時情報" />
+    <unique name="1">
+      <unique-column name="PARTY_CODE" />
+    </unique>
   </table>
 
   <table name="CODE" description="コード" skipSql="true">
     <column name="CODE_SYSTEM_ID"               required="true"   domain="oid"                description="コード体系ID" />
     <column name="CODE"                         required="true"   type="VARCHAR"  size="1024" description="コード" />
     <column name="REVISION"                     required="true"   type="BIGINT"               description="リビジョン" />
-    <column name="REGISTERER_DATE"              required="true"   type="TIMESTAMP"            description="登録日時" />
     <column name="VALID_DATE"                                     type="TIMESTAMP"            description="有効開始日時" />
     <column name="INVALID_DATE"                                   type="TIMESTAMP"            description="無効開始日時" />
     <foreign-key foreignTable="CODE_SYSTEM" name="codeSystem" onUpdate="restrict" onDelete="restrict">
       <reference local="CODE_SYSTEM_ID" foreign="ID" />
     </foreign-key>
+  </table>
+
+  <table name="UPDATE_TIMESTAMP" description="更新日時情報" skipSql="true">
+    <column name="REGISTERER_DATE"              required="true"   type="TIMESTAMP"            description="登録日時" />
+    <column name="LAST_MODIFIED_DATE"           required="true"   type="TIMESTAMP"            description="最終更新日" />
   </table>
 
   <table name="CODE_SYSTEM" description="コード体系">

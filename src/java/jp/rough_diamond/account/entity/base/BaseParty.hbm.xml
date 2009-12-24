@@ -27,6 +27,16 @@
         </id>
 
         <property
+            name="partyCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PARTY_CODE"
+            length="256"
+            not-null="true"
+        />
+
+        <property
             name="name"
             type="java.lang.String"
             update="true"
@@ -35,6 +45,50 @@
             length="256"
             not-null="true"
         />
+
+        <property
+            name="revision"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="REVISION"
+            not-null="true"
+        />
+
+        <property
+            name="statusCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STATUS_CODE"
+            length="2"
+            not-null="true"
+        />
+
+        <component
+            name="timeStamp"
+            class="jp.rough_diamond.account.entity.UpdateTimestamp"
+        >
+
+        <property
+            name="registererDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="TSREGISTERER_DATE"
+            not-null="true"
+        />
+
+        <property
+            name="lastModifiedDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="TSLAST_MODIFIED_DATE"
+            not-null="true"
+        />
+
+        </component>
 
         <!--
             To add non XDoclet property mappings, create a file named

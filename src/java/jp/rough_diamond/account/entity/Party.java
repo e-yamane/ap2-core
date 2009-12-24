@@ -7,6 +7,11 @@ import jp.rough_diamond.commons.extractor.Extractor;
 import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
+import jp.rough_diamond.commons.service.annotation.PostLoad;
+import jp.rough_diamond.commons.service.annotation.PostPersist;
+import jp.rough_diamond.commons.service.annotation.PostUpdate;
+import jp.rough_diamond.commons.service.annotation.PrePersist;
+import jp.rough_diamond.commons.service.annotation.PreUpdate;
 
 /**
  * 所有者のHibernateマッピングクラス
@@ -14,6 +19,63 @@ import jp.rough_diamond.commons.service.BasicService;
 public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     private static final long serialVersionUID = 1L;
 
+    public static enum Status {
+    	/**
+    	 * 未定（初期値用）
+    	 */
+    	UNKNOWN("00"),
+    	/**
+    	 * テスト運用
+    	 */
+    	TEST("10"),
+    	/**
+    	 * 稼働中
+    	 */
+    	AVAILABLE("20"),
+    	/**
+    	 * 停止中
+    	 */
+    	STOP("30"),
+    	/**
+    	 * 削除
+    	 */
+    	DELETED("40");
+    	public final String code;
+    	private Status(String code) {
+    		this.code = code;
+    	}
+    	
+    	public String getCode() {
+    		return code;
+    	}
+    	
+    	public static Status getStstusByCode(String code) {
+    		if(code == null) {
+    			return UNKNOWN;
+    		}
+    		for(Status s : values()) {
+    			if(s.code.equals(code)) {
+    				return s;
+    			}
+    		}
+    		return UNKNOWN;
+    	}
+    }
+    
+    Long loadedRevision = -1L;
+    
+    public Party() {
+    	setStatusCode(Status.UNKNOWN.code);		//dummy
+    	setRevision(loadedRevision);			//dummy
+    }
+
+    @PostLoad
+    @PostUpdate
+    @PostPersist
+    public void resetLoadedRevision() {
+    	loadedRevision = getRevision();
+    }
+    
     public static List<Party> getAll() {
     	Extractor extractor = new Extractor(Party.class);
     	extractor.addOrder(Order.asc(new Property(ID)));
@@ -58,4 +120,25 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
 	public String getCode(CodeSystem system, Date date) {
 		return Code.getCode(PartyCode.class, this, PartyCode.TARGET, PartyCode.CI, system, date);
     }
+	
+	public Status getStatus() {
+		return Status.getStstusByCode(getStatusCode());
+	}
+	
+	@PrePersist
+	@PreUpdate
+	public void refreshStatus() {
+		if(getStatus() == Status.UNKNOWN) {
+			setStatusCode(Status.TEST.code);
+		}
+	}
+	
+	@PrePersist
+	@PreUpdate
+	public void refreshRevision() {
+		//XXX 強制アップデートにしてもよいかもね。
+		if(getRevision().equals(loadedRevision)) {
+			setRevision(PartyCode.getRevisionInTransaction());
+		}
+	}
 }

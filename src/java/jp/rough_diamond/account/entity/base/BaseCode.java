@@ -62,6 +62,7 @@ public abstract class BaseCode  implements Serializable {
      *    not-null="true"
      * @return リビジョン
     **/
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Code.revision")
     public Long getRevision() {
         return revision;
     }
@@ -72,31 +73,6 @@ public abstract class BaseCode  implements Serializable {
     **/
     public void setRevision(Long revision) {
         this.revision = revision;
-    }
-    /**
-     * 登録日時
-    **/ 
-    private Date registererDate;
-    public final static String REGISTERER_DATE = "registererDate";
-
-    /**
-     * 登録日時を取得する
-     * @hibernate.property
-     *    column="REGISTERER_DATE"
-     *    not-null="true"
-     * @return 登録日時
-    **/
-    @jp.rough_diamond.commons.service.annotation.NotNull(property="Code.registererDate")
-    public Date getRegistererDate() {
-        return registererDate;
-    }
-
-    /**
-     * 登録日時を設定する
-     * @param registererDate  登録日時
-    **/
-    public void setRegistererDate(Date registererDate) {
-        this.registererDate = registererDate;
     }
     /**
      * 有効開始日時

@@ -17,6 +17,14 @@ import  java.io.Serializable;
  *    table="PARTY"
  *    realClass="jp.rough_diamond.account.entity.Party"
 **/
+@jp.rough_diamond.commons.service.annotation.Unique(
+    entity="Party",
+    groups= {
+          @jp.rough_diamond.commons.service.annotation.Check(properties={
+              "partyCode"
+        })
+    }
+)
 public abstract class BaseParty  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**
@@ -117,6 +125,33 @@ public abstract class BaseParty  implements Serializable {
         jp.rough_diamond.commons.service.BasicService.getService().update(this);
     }
     /**
+     * 内部管理用パーティコード
+    **/ 
+    private String partyCode;
+    public final static String PARTY_CODE = "partyCode";
+
+    /**
+     * 内部管理用パーティコードを取得する
+     * @hibernate.property
+     *    column="PARTY_CODE"
+     *    not-null="true"
+     *    length="256"
+     * @return 内部管理用パーティコード
+    **/
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Party.partyCode")
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Party.partyCode")
+    public String getPartyCode() {
+        return partyCode;
+    }
+
+    /**
+     * 内部管理用パーティコードを設定する
+     * @param partyCode  内部管理用パーティコード
+    **/
+    public void setPartyCode(String partyCode) {
+        this.partyCode = partyCode;
+    }
+    /**
      * パーティ名
     **/ 
     private String name;
@@ -143,6 +178,85 @@ public abstract class BaseParty  implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    /**
+     * リビジョン
+    **/ 
+    private Long revision;
+    public final static String REVISION = "revision";
+
+    /**
+     * リビジョンを取得する
+     * @hibernate.property
+     *    column="REVISION"
+     *    not-null="true"
+     * @return リビジョン
+    **/
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Party.revision")
+    public Long getRevision() {
+        return revision;
+    }
+
+    /**
+     * リビジョンを設定する
+     * @param revision  リビジョン
+    **/
+    public void setRevision(Long revision) {
+        this.revision = revision;
+    }
+    /**
+     * ステータスコード
+    **/ 
+    private String statusCode;
+    public final static String STATUS_CODE = "statusCode";
+
+    /**
+     * ステータスコードを取得する
+     * @hibernate.property
+     *    column="STATUS_CODE"
+     *    not-null="true"
+     *    length="2"
+     * @return ステータスコード
+    **/
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=2, property="Party.statusCode")
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Party.statusCode")
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     * ステータスコードを設定する
+     * @param statusCode  ステータスコード
+    **/
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+    /**
+     * 更新日時情報
+    **/ 
+    private jp.rough_diamond.account.entity.UpdateTimestamp timeStamp =  new jp.rough_diamond.account.entity.UpdateTimestamp();
+
+    public final static String TS = "timeStamp.";
+
+    /**
+     * 更新日時情報を取得する
+     * @hibernate.component
+     *    prefix="TS"
+     * @return 更新日時情報
+    **/
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Party.timeStamp")
+    @jp.rough_diamond.commons.service.annotation.NestedComponent(property="Party.timeStamp")
+    public jp.rough_diamond.account.entity.UpdateTimestamp getTimeStamp() {
+        return timeStamp;
+    }
+
+    /**
+     * 更新日時情報を設定する
+     * @param timeStamp  更新日時情報
+    **/
+    public void setTimeStamp(jp.rough_diamond.account.entity.UpdateTimestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
 //ForeignProperties.vm start.
 
     

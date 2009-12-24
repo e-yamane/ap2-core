@@ -126,7 +126,7 @@ public abstract class BasePlaceCode  implements Serializable {
     /**
      * 場所コード情報を取得する
      * @hibernate.component
-     *    prefix="CI_"
+     *    prefix="CI"
      * @return 場所コード情報
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PlaceCode.codeInfo")
@@ -141,6 +141,33 @@ public abstract class BasePlaceCode  implements Serializable {
     **/
     public void setCodeInfo(jp.rough_diamond.account.entity.Code codeInfo) {
         this.codeInfo = codeInfo;
+    }
+
+    /**
+     * 更新日時情報
+    **/ 
+    private jp.rough_diamond.account.entity.UpdateTimestamp timeStamp =  new jp.rough_diamond.account.entity.UpdateTimestamp();
+
+    public final static String TS = "timeStamp.";
+
+    /**
+     * 更新日時情報を取得する
+     * @hibernate.component
+     *    prefix="TS"
+     * @return 更新日時情報
+    **/
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="PlaceCode.timeStamp")
+    @jp.rough_diamond.commons.service.annotation.NestedComponent(property="PlaceCode.timeStamp")
+    public jp.rough_diamond.account.entity.UpdateTimestamp getTimeStamp() {
+        return timeStamp;
+    }
+
+    /**
+     * 更新日時情報を設定する
+     * @param timeStamp  更新日時情報
+    **/
+    public void setTimeStamp(jp.rough_diamond.account.entity.UpdateTimestamp timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
 //ForeignProperties.vm start.

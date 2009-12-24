@@ -129,6 +129,7 @@ public abstract class BaseEntry  implements Serializable {
      *    not-null="true"
      * @return 移動量
     **/
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Entry.quantity")
     public Long getQuantity() {
         return quantity;
     }

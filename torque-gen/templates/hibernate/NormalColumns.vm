@@ -1,0 +1,188 @@
+##
+##主キー（外部キー）以外のプロファイルのアクセサ
+##
+#foreach ($col in $table.Columns)
+#if(!$col.skipColumn)
+#if(!$col.primaryKey)
+#if($col.foreignKey)
+##外部キーの参照なのでプロパティは展開しません。
+#elseif($col.inheritance)
+##継承キーなのでプロパティの展開はしません。
+#elseif($table.database.getTable($col.torqueType))
+#set ( $refTable = $table.database.getTable($col.torqueType) )
+#set ( $cfc= $col.JavaName)
+#set ( $clo=$col.UncapitalisedJavaName )
+#set ( $cjtype= "${refTable.package}.${refTable.javaName}")
+#set ($description = $col.description)
+#if($description && $description.trim() != "")
+#set ($description = $description)
+#else
+#set ($description = $col.name.toUpperCase())
+#end
+    /**
+     * $description
+    **/ 
+    private $cjtype $clo =  new $cjtype();
+
+    public final static String ${col.Name.toUpperCase()} = "${clo.trim()}.";
+
+    /**
+     * $descriptionを取得する
+     * @hibernate.component
+     *    prefix="${col.Name}"
+     * @return $description
+    **/
+#if($col.notNull)
+    @${frameworkPrefix}.commons.service.annotation.NotNull(property="${table.JavaName}.${clo}")
+#end
+    @${frameworkPrefix}.commons.service.annotation.NestedComponent(property="${table.JavaName}.${clo}")
+    public $cjtype get${cfc}() {
+        return $clo;
+    }
+
+    /**
+     * $descriptionを設定する
+     * @param $clo  $description
+    **/
+    public void set${cfc}($cjtype $clo) {
+        this.$clo = $clo;
+    }
+
+#else
+#set ( $cfc=$col.JavaName )
+#set ( $clo=$col.UncapitalisedJavaName )
+#set ( $cjtype = $col.JavaNative )
+#set ($description = $col.description)
+#if($description && $description.trim() != "")
+#set ($description = $description)
+#else
+#set ($description = $col.name.toUpperCase())
+#end
+    /**
+     * $description
+    **/ 
+#if($cjtype.endsWith("Boolean"))
+    private $cjtype $clo = Boolean.FALSE;
+#else
+    private $cjtype $clo;
+#end
+#set($suffix = "")
+#if("BOOLEANCHAR" == $col.torqueType )
+#set($suffix = "InDB")
+#end
+#if("BOOLEANCHAR" == $col.torqueType)
+#set($suffix = "InDB")
+#end
+    public final static String ${col.Name.toUpperCase()} = "${clo.trim()}$suffix";
+
+    /**
+     * $descriptionを取得する
+#if($col.autoIncrement || $col.domain.name == 'optimistickLockKey')
+     * @hibernate.version
+     *    column="$col.name.toUpperCase()"
+#else
+     * @hibernate.property
+     *    column="$col.name.toUpperCase()"
+     *    not-null="$col.notNull"
+#if ($col.size != "")
+     *    length="$col.size"
+#end
+#end
+     * @return $description
+    **/
+#if("BOOLEANCHAR" == $col.torqueType)
+#if(!($col.autoIncrement || $col.domain.name == 'optimistickLockKey'))
+    @${frameworkPrefix}.commons.service.annotation.MaxLength(length=1, property="${table.JavaName}.${clo}")
+    @${frameworkPrefix}.commons.service.annotation.NotNull(property="${table.JavaName}.${clo}")
+#end
+    public String get${cfc}InDB() {
+        return ($clo) ? "Y" : "N";
+    }
+
+    /**
+     * $descriptionを取得する
+     * @return $description
+    **/
+    public $cjtype is${cfc}() {
+        return $clo;
+    }
+
+    /**
+     * $descriptionを取得する
+     * @return $description
+    **/
+    public $cjtype get${cfc}() {
+        return $clo;
+    }
+
+#elseif("BOOLEANINT" == $col.torqueType)
+#if(!($col.autoIncrement || $col.domain.name == 'optimistickLockKey'))
+    @${frameworkPrefix}.commons.service.annotation.NotNull(property="${table.JavaName}.${clo}")
+#end
+##
+    public int get${cfc}InDB() {
+        return ($clo) ? 1 : 0;
+    }
+
+    /**
+     * $descriptionを取得する
+     * @return $description
+    **/
+    public $cjtype is${cfc}() {
+        return $clo;
+    }
+
+    /**
+     * $descriptionを取得する
+     * @return $description
+    **/
+    public $cjtype get${cfc}() {
+        return $clo;
+    }
+#else 
+#if(!($col.autoIncrement || $col.domain.name == 'optimistickLockKey'))
+#if($col.textType)
+#if($col.size)
+    @${frameworkPrefix}.commons.service.annotation.MaxLength(length=${col.size}, property="${table.JavaName}.${clo}")
+#end
+#end
+#if($col.notNull)
+    @${frameworkPrefix}.commons.service.annotation.NotNull(property="${table.JavaName}.${clo}")
+#end
+#end
+##
+    public $cjtype get${cfc}() {
+        return $clo;
+    }
+#end
+
+#if("BOOLEANCHAR" == $col.torqueType)
+    /**
+     * $descriptionを設定する
+     * @param $clo  $description
+    **/
+    public void set${cfc}InDB(String $clo) {
+        this.$clo = ("Y".equalsIgnoreCase($clo));
+    }
+
+#elseif("BOOLEANINT" == $col.torqueType)
+    /**
+     * $descriptionを設定する
+     * @param $clo  $description
+    **/
+    public void set${cfc}InDB(int $clo) {
+        this.$clo = ($clo != 0);
+    }
+
+#end
+    /**
+     * $descriptionを設定する
+     * @param $clo  $description
+    **/
+    public void set${cfc}($cjtype $clo) {
+        this.$clo = $clo;
+    }
+#end
+#end
+#end
+#end
