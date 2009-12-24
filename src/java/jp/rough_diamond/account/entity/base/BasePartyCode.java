@@ -126,7 +126,7 @@ public abstract class BasePartyCode  implements Serializable {
     /**
      * パーティコード情報を取得する
      * @hibernate.component
-     *    prefix="CI"
+     *    prefix="CI_"
      * @return パーティコード情報
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PartyCode.codeInfo")
@@ -153,7 +153,7 @@ public abstract class BasePartyCode  implements Serializable {
     /**
      * 更新日時情報を取得する
      * @hibernate.component
-     *    prefix="TS"
+     *    prefix="TS_"
      * @return 更新日時情報
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PartyCode.timeStamp")

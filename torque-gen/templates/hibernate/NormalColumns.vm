@@ -29,7 +29,7 @@
     /**
      * $description‚ðŽæ“¾‚·‚é
      * @hibernate.component
-     *    prefix="${col.Name}"
+     *    prefix="${col.Name}_"
      * @return $description
     **/
 #if($col.notNull)

@@ -36,7 +36,7 @@
             type="java.lang.String"
             update="true"
             insert="true"
-            column="CICODE"
+            column="CI_CODE"
             length="1024"
             not-null="true"
         />
@@ -46,7 +46,7 @@
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="CIREVISION"
+            column="CI_REVISION"
             not-null="true"
         />
 
@@ -55,7 +55,7 @@
             type="java.util.Date"
             update="true"
             insert="true"
-            column="CIVALID_DATE"
+            column="CI_VALID_DATE"
             not-null="false"
         />
 
@@ -64,7 +64,7 @@
             type="java.util.Date"
             update="true"
             insert="true"
-            column="CIINVALID_DATE"
+            column="CI_INVALID_DATE"
             not-null="false"
         />
 
@@ -77,7 +77,7 @@
             insert="true"
         >
             <column
-                name="CICODE_SYSTEM_ID" 
+                name="CI_CODE_SYSTEM_ID" 
             />
         </many-to-one>
 
@@ -93,7 +93,7 @@
             type="java.util.Date"
             update="true"
             insert="true"
-            column="TSREGISTERER_DATE"
+            column="TS_REGISTERER_DATE"
             not-null="true"
         />
 
@@ -102,7 +102,7 @@
             type="java.util.Date"
             update="true"
             insert="true"
-            column="TSLAST_MODIFIED_DATE"
+            column="TS_LAST_MODIFIED_DATE"
             not-null="true"
         />
 

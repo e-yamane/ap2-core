@@ -126,7 +126,7 @@ public abstract class BasePlaceCode  implements Serializable {
     /**
      * 場所コード情報を取得する
      * @hibernate.component
-     *    prefix="CI"
+     *    prefix="CI_"
      * @return 場所コード情報
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PlaceCode.codeInfo")
@@ -153,7 +153,7 @@ public abstract class BasePlaceCode  implements Serializable {
     /**
      * 更新日時情報を取得する
      * @hibernate.component
-     *    prefix="TS"
+     *    prefix="TS_"
      * @return 更新日時情報
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PlaceCode.timeStamp")
