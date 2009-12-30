@@ -172,6 +172,17 @@ public class PartyTest extends DataLoadingTestCase {
 		assertEquals("更新カウントが誤っています。", 12L, p.getUpdateCount());
 	}
 
+	public void testGetPartyCodes() throws Exception {
+		Party p = BasicService.getService().findByPK(Party.class, 4L);
+		List<PartyCode> codes = p.getPartyCodes();
+		assertEquals("返却数が誤っています。", 5, codes.size());
+		assertEquals("返却順が誤っています。", 6L, codes.get(0).getId().longValue());
+		assertEquals("返却順が誤っています。", 5L, codes.get(1).getId().longValue());
+		assertEquals("返却順が誤っています。", 4L, codes.get(2).getId().longValue());
+		assertEquals("返却順が誤っています。", 3L, codes.get(3).getId().longValue());
+		assertEquals("返却順が誤っています。", 1L, codes.get(4).getId().longValue());
+	}
+	
 	public void testGetCode() throws Exception {
 		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");

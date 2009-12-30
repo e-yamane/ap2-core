@@ -117,6 +117,14 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
 		return Math.max(revMax, getRevision());
 	}
 
+	public List<PartyCode> getPartyCodes() {
+		Extractor ex = new Extractor(PartyCode.class);
+		ex.add(Condition.eq(new Property(PartyCode.TARGET), this));
+		ex.addOrder(Order.desc(new Property(PartyCode.TS + UpdateTimestamp.LAST_MODIFIED_DATE)));
+		ex.addOrder(Order.desc(new Property(PartyCode.ID)));
+		return BasicService.getService().findByExtractor(ex);
+	}
+	
 	public String getCode(String systemName) {
     	return getCode(CodeSystem.getCodeSystemByName(systemName));
     }
