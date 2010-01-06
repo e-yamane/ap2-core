@@ -27,6 +27,10 @@ public class PartyTest extends DataLoadingTestCase {
 		NumberingLoader.init();
 	}
 	
+	public void testGetMaxRevision() throws Exception {
+		assertEquals("返却値が誤っています。", 12L, Party.getMaxRevision().longValue());
+	}
+	
     public void testGetAll() {
 		List<Party> list = Party.getAll();
 		assertEquals("返却数が誤っています。", 5, list.size());

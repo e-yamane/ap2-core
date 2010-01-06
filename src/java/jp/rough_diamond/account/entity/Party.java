@@ -79,6 +79,17 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     	loadedRevision = getRevision();
     }
     
+    public static Long getMaxRevision() {
+    	Extractor ex1 = new Extractor(Party.class);
+    	ex1.addExtractValue(new ExtractValue("max", new Max(new Property(Party.REVISION))));
+    	ex1.setReturnType(Long.class);
+    	Long ret = (Long)BasicService.getService().findByExtractor(ex1).get(0);
+    	Extractor ex2 = new Extractor(PartyCode.class);
+    	ex2.addExtractValue(new ExtractValue("max", new Max(new Property(PartyCode.CI + Code.REVISION))));
+    	ex2.setReturnType(Long.class);
+    	return Math.max(ret, (Long)BasicService.getService().findByExtractor(ex2).get(0));
+    }
+    
     public static List<Party> getAll() {
     	Extractor extractor = new Extractor(Party.class);
     	extractor.addOrder(Order.asc(new Property(ID)));
