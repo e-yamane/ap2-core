@@ -41,6 +41,14 @@ public class PartyTest extends DataLoadingTestCase {
 		assertEquals("IDが誤っています。", 5L, list.get(4).getId().longValue());
     }
 
+    public void testGetPartyByPartyCode() throws Exception {
+    	Party p = Party.getPartyByPartyCode("PTY-000000001");
+    	assertEquals("パーティが誤っています。", "ラフダイアモンド", p.getName());
+    	
+    	p = Party.getPartyByPartyCode("存在しないコード" + System.currentTimeMillis());
+    	assertNull("パーティが返却されています。", p);
+    }
+    
 	public void testPartyInsert() throws Exception {
 		//新規登録ができること
 		Extractor ex = new Extractor(Party.class);
@@ -362,7 +370,7 @@ public class PartyTest extends DataLoadingTestCase {
 		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
 		
-		Party o = Party.getOwnerByCode(cs, "code_x", sdf.parse("2009/12/01"));
+		Party o = Party.getPartyByCode(cs, "code_x", sdf.parse("2009/12/01"));
 		assertEquals("所有者IDが誤っています。", 5L, o.getId().longValue());
 
 		Calendar cal = Calendar.getInstance();
@@ -370,10 +378,10 @@ public class PartyTest extends DataLoadingTestCase {
 		//12/1
 		cal.setTime(sdf.parse("2009/12/01"));
 		System.out.println(cal.getTime());
-		Party o1 = Party.getOwnerByCode(cs, "code_1", cal.getTime());
-		Party o2 = Party.getOwnerByCode(cs, "code_2", cal.getTime());
-		Party o3 = Party.getOwnerByCode(cs, "code_3", cal.getTime());
-		Party o4 = Party.getOwnerByCode(cs, "code_4", cal.getTime());
+		Party o1 = Party.getPartyByCode(cs, "code_1", cal.getTime());
+		Party o2 = Party.getPartyByCode(cs, "code_2", cal.getTime());
+		Party o3 = Party.getPartyByCode(cs, "code_3", cal.getTime());
+		Party o4 = Party.getPartyByCode(cs, "code_4", cal.getTime());
 		assertNull("返却値が誤っています。", o1);
 		assertNull("返却値が誤っています。", o2);
 		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
@@ -381,10 +389,10 @@ public class PartyTest extends DataLoadingTestCase {
 
 		cal.setTime(sdf.parse("2009/12/19"));
 		System.out.println(cal.getTime());
-		o1 = Party.getOwnerByCode(cs, "code_1", cal.getTime());
-		o2 = Party.getOwnerByCode(cs, "code_2", cal.getTime());
-		o3 = Party.getOwnerByCode(cs, "code_3", cal.getTime());
-		o4 = Party.getOwnerByCode(cs, "code_4", cal.getTime());
+		o1 = Party.getPartyByCode(cs, "code_1", cal.getTime());
+		o2 = Party.getPartyByCode(cs, "code_2", cal.getTime());
+		o3 = Party.getPartyByCode(cs, "code_3", cal.getTime());
+		o4 = Party.getPartyByCode(cs, "code_4", cal.getTime());
 		assertNull("返却値が誤っています。", o1);
 		assertNull("返却値が誤っています。", o2);
 		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
@@ -392,10 +400,10 @@ public class PartyTest extends DataLoadingTestCase {
 
 		cal.setTime(sdf.parse("2009/12/20"));
 		System.out.println(cal.getTime());
-		o1 = Party.getOwnerByCode(cs, "code_1", cal.getTime());
-		o2 = Party.getOwnerByCode(cs, "code_2", cal.getTime());
-		o3 = Party.getOwnerByCode(cs, "code_3", cal.getTime());
-		o4 = Party.getOwnerByCode(cs, "code_4", cal.getTime());
+		o1 = Party.getPartyByCode(cs, "code_1", cal.getTime());
+		o2 = Party.getPartyByCode(cs, "code_2", cal.getTime());
+		o3 = Party.getPartyByCode(cs, "code_3", cal.getTime());
+		o4 = Party.getPartyByCode(cs, "code_4", cal.getTime());
 		assertNull("返却値が誤っています。", o1);
 		assertNull("返却値が誤っています。", o2);
 		assertNull("返却値が誤っています。", o3);
@@ -403,10 +411,10 @@ public class PartyTest extends DataLoadingTestCase {
 
 		cal.setTime(sdf.parse("2009/12/24"));
 		System.out.println(cal.getTime());
-		o1 = Party.getOwnerByCode(cs, "code_1", cal.getTime());
-		o2 = Party.getOwnerByCode(cs, "code_2", cal.getTime());
-		o3 = Party.getOwnerByCode(cs, "code_3", cal.getTime());
-		o4 = Party.getOwnerByCode(cs, "code_4", cal.getTime());
+		o1 = Party.getPartyByCode(cs, "code_1", cal.getTime());
+		o2 = Party.getPartyByCode(cs, "code_2", cal.getTime());
+		o3 = Party.getPartyByCode(cs, "code_3", cal.getTime());
+		o4 = Party.getPartyByCode(cs, "code_4", cal.getTime());
 		assertNull("返却値が誤っています。", o1);
 		assertNull("返却値が誤っています。", o2);
 		assertNull("返却値が誤っています。", o3);
@@ -414,10 +422,10 @@ public class PartyTest extends DataLoadingTestCase {
 
 		cal.setTime(sdf.parse("2009/12/25"));
 		System.out.println(cal.getTime());
-		o1 = Party.getOwnerByCode(cs, "code_1", cal.getTime());
-		o2 = Party.getOwnerByCode(cs, "code_2", cal.getTime());
-		o3 = Party.getOwnerByCode(cs, "code_3", cal.getTime());
-		o4 = Party.getOwnerByCode(cs, "code_4", cal.getTime());
+		o1 = Party.getPartyByCode(cs, "code_1", cal.getTime());
+		o2 = Party.getPartyByCode(cs, "code_2", cal.getTime());
+		o3 = Party.getPartyByCode(cs, "code_3", cal.getTime());
+		o4 = Party.getPartyByCode(cs, "code_4", cal.getTime());
 		assertNull("返却値が誤っています。", o1);
 		assertNull("返却値が誤っています。", o2);
 		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
@@ -425,10 +433,10 @@ public class PartyTest extends DataLoadingTestCase {
 
 		cal.setTime(sdf.parse("2009/12/30"));
 		System.out.println(cal.getTime());
-		o1 = Party.getOwnerByCode(cs, "code_1", cal.getTime());
-		o2 = Party.getOwnerByCode(cs, "code_2", cal.getTime());
-		o3 = Party.getOwnerByCode(cs, "code_3", cal.getTime());
-		o4 = Party.getOwnerByCode(cs, "code_4", cal.getTime());
+		o1 = Party.getPartyByCode(cs, "code_1", cal.getTime());
+		o2 = Party.getPartyByCode(cs, "code_2", cal.getTime());
+		o3 = Party.getPartyByCode(cs, "code_3", cal.getTime());
+		o4 = Party.getPartyByCode(cs, "code_4", cal.getTime());
 		assertNull("返却値が誤っています。", o1);
 		assertNull("返却値が誤っています。", o2);
 		assertEquals("返却値が誤っています。", 4L, o3.getId().longValue());
@@ -436,10 +444,10 @@ public class PartyTest extends DataLoadingTestCase {
 
 		cal.setTime(sdf.parse("2009/12/31"));
 		System.out.println(cal.getTime());
-		o1 = Party.getOwnerByCode(cs, "code_1", cal.getTime());
-		o2 = Party.getOwnerByCode(cs, "code_2", cal.getTime());
-		o3 = Party.getOwnerByCode(cs, "code_3", cal.getTime());
-		o4 = Party.getOwnerByCode(cs, "code_4", cal.getTime());
+		o1 = Party.getPartyByCode(cs, "code_1", cal.getTime());
+		o2 = Party.getPartyByCode(cs, "code_2", cal.getTime());
+		o3 = Party.getPartyByCode(cs, "code_3", cal.getTime());
+		o4 = Party.getPartyByCode(cs, "code_4", cal.getTime());
 		assertNull("返却値が誤っています。", o1);
 		assertEquals("返却値が誤っています。", 4L, o2.getId().longValue());
 		assertNull("返却値が誤っています。", o3);
