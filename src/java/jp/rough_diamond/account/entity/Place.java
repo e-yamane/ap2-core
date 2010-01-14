@@ -21,6 +21,8 @@ import jp.rough_diamond.commons.service.BasicService;
 import jp.rough_diamond.commons.service.annotation.PostLoad;
 import jp.rough_diamond.commons.service.annotation.PostPersist;
 import jp.rough_diamond.commons.service.annotation.PostUpdate;
+import jp.rough_diamond.commons.service.annotation.PrePersist;
+import jp.rough_diamond.commons.service.annotation.PreUpdate;
 import jp.rough_diamond.framework.transaction.TransactionManager;
 
 /**
@@ -184,5 +186,14 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
 		ex.setReturnType(Long.class);
 		long revMax = (Long)BasicService.getService().findByExtractor(ex).get(0);
 		return Math.max(revMax, getRevision());
+	}
+
+	@PrePersist
+	@PreUpdate
+	public void refreshRevision() {
+		//XXX 強制アップデートにしてもよいかもね。
+		if(getRevision().equals(loadedRevision)) {
+			setRevision(PlaceCode.getRevisionInTransaction());
+		}
 	}
 }
