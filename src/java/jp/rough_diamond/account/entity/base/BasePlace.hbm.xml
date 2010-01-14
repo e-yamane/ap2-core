@@ -27,6 +27,16 @@
         </id>
 
         <property
+            name="placeCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PLACE_CODE"
+            length="256"
+            not-null="true"
+        />
+
+        <property
             name="name"
             type="java.lang.String"
             update="true"
@@ -44,6 +54,40 @@
             column="VIRTUAL"
             not-null="true"
         />
+
+        <property
+            name="revision"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="REVISION"
+            not-null="true"
+        />
+
+        <component
+            name="timeStamp"
+            class="jp.rough_diamond.account.entity.UpdateTimestamp"
+        >
+
+        <property
+            name="registererDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="TS_REGISTERER_DATE"
+            not-null="true"
+        />
+
+        <property
+            name="lastModifiedDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="TS_LAST_MODIFIED_DATE"
+            not-null="true"
+        />
+
+        </component>
 
         <many-to-one
             name="parent"

@@ -79,6 +79,19 @@ ALTER TABLE ACCOUNT
 -- ACCOUNT                                                      
 ----------------------------------------------------------------------
 
+ALTER TABLE ITEM
+    ADD CONSTRAINT fk_ITEM__1 FOREIGN KEY (
+      PARENT_ID
+    )
+    REFERENCES ITEM (ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE 
+;
+
+----------------------------------------------------------------------
+-- ITEM                                                      
+----------------------------------------------------------------------
+
 ALTER TABLE PLACE_CODE
     ADD CONSTRAINT fk_PLACE_CODE__1 FOREIGN KEY (
       PLACE_ID
@@ -119,19 +132,6 @@ ALTER TABLE PLACE
 
 ----------------------------------------------------------------------
 -- PLACE                                                      
-----------------------------------------------------------------------
-
-ALTER TABLE ITEM
-    ADD CONSTRAINT fk_ITEM__1 FOREIGN KEY (
-      PARENT_ID
-    )
-    REFERENCES ITEM (ID)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE 
-;
-
-----------------------------------------------------------------------
--- ITEM                                                      
 ----------------------------------------------------------------------
 
 ALTER TABLE PARTY_CODE

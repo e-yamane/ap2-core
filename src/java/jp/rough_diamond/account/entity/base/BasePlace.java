@@ -17,6 +17,14 @@ import  java.io.Serializable;
  *    table="PLACE"
  *    realClass="jp.rough_diamond.account.entity.Place"
 **/
+@jp.rough_diamond.commons.service.annotation.Unique(
+    entity="Place",
+    groups= {
+          @jp.rough_diamond.commons.service.annotation.Check(properties={
+              "placeCode"
+        })
+    }
+)
 public abstract class BasePlace  implements Serializable {
    private static final long serialVersionUID = 1L;
     /**
@@ -117,6 +125,33 @@ public abstract class BasePlace  implements Serializable {
         jp.rough_diamond.commons.service.BasicService.getService().update(this);
     }
     /**
+     * 内部管理用場所コード
+    **/ 
+    private String placeCode;
+    public final static String PLACE_CODE = "placeCode";
+
+    /**
+     * 内部管理用場所コードを取得する
+     * @hibernate.property
+     *    column="PLACE_CODE"
+     *    not-null="true"
+     *    length="256"
+     * @return 内部管理用場所コード
+    **/
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Place.placeCode")
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Place.placeCode")
+    public String getPlaceCode() {
+        return placeCode;
+    }
+
+    /**
+     * 内部管理用場所コードを設定する
+     * @param placeCode  内部管理用場所コード
+    **/
+    public void setPlaceCode(String placeCode) {
+        this.placeCode = placeCode;
+    }
+    /**
      * 場所名
     **/ 
     private String name;
@@ -194,6 +229,58 @@ public abstract class BasePlace  implements Serializable {
     public void setVirtual(Boolean virtual) {
         this.virtual = virtual;
     }
+    /**
+     * リビジョン
+    **/ 
+    private Long revision;
+    public final static String REVISION = "revision";
+
+    /**
+     * リビジョンを取得する
+     * @hibernate.property
+     *    column="REVISION"
+     *    not-null="true"
+     * @return リビジョン
+    **/
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Place.revision")
+    public Long getRevision() {
+        return revision;
+    }
+
+    /**
+     * リビジョンを設定する
+     * @param revision  リビジョン
+    **/
+    public void setRevision(Long revision) {
+        this.revision = revision;
+    }
+    /**
+     * 更新日時情報
+    **/ 
+    private jp.rough_diamond.account.entity.UpdateTimestamp timeStamp =  new jp.rough_diamond.account.entity.UpdateTimestamp();
+
+    public final static String TS = "timeStamp.";
+
+    /**
+     * 更新日時情報を取得する
+     * @hibernate.component
+     *    prefix="TS_"
+     * @return 更新日時情報
+    **/
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Place.timeStamp")
+    @jp.rough_diamond.commons.service.annotation.NestedComponent(property="Place.timeStamp")
+    public jp.rough_diamond.account.entity.UpdateTimestamp getTimeStamp() {
+        return timeStamp;
+    }
+
+    /**
+     * 更新日時情報を設定する
+     * @param timeStamp  更新日時情報
+    **/
+    public void setTimeStamp(jp.rough_diamond.account.entity.UpdateTimestamp timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
 //ForeignProperties.vm start.
 
     

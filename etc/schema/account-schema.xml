@@ -83,6 +83,15 @@ DTDは、
     </foreign-key>
   </table>
 
+  <table name="ITEM" description="品目">
+    <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="品目名" />
+    <column name="PARENT_ID"                    required="false"  domain="oid"                description="親品目ID" />
+    <foreign-key foreignTable="ITEM" name="parent" onUpdate="cascade" onDelete="cascade">
+      <reference local="PARENT_ID" foreign="ID" />
+    </foreign-key>
+  </table>
+
   <table name="PLACE_CODE" description="場所コード">
     <column name="ID"         primaryKey="true"   required="true"   domain="oid"            description="OID" />
     <column name="PLACE_ID"                       required="true"   domain="oid"            description="場所ID" />
@@ -95,25 +104,22 @@ DTDは、
 
   <table name="PLACE" description="場所">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                      description="OID" />
+    <column name="PLACE_CODE"                   required="true"   type="VARCHAR"      size="256"    description="内部管理用場所コード" />
     <column name="NAME"                         required="true"   type="VARCHAR"      size="256"    description="場所名" />
     <column name="VIRTUAL"                      required="true"   type="BOOLEANCHAR" default="N"    description="論理的な場所" />
     <column name="PARENT_ID"                    required="false"  domain="oid"                      description="親場所ID" />
     <column name="OWNER_ID"                     required="true"   domain="oid"                      description="所有者OID" />
+    <column name="REVISION"                     required="true"   type="BIGINT"               description="リビジョン" />
+    <column name="TS" javaName="timeStamp"      required="true"   type="UPDATE_TIMESTAMP"     description="更新日時情報" />
     <foreign-key foreignTable="PLACE" name="parent" onUpdate="cascade" onDelete="cascade">
       <reference local="PARENT_ID" foreign="ID" />
     </foreign-key>
     <foreign-key foreignTable="PARTY" name="owner" onUpdate="cascade" onDelete="cascade">
       <reference local="OWNER_ID" foreign="ID" />
     </foreign-key>
-  </table>
-
-  <table name="ITEM" description="品目">
-    <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
-    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="品目名" />
-    <column name="PARENT_ID"                    required="false"  domain="oid"                description="親品目ID" />
-    <foreign-key foreignTable="ITEM" name="parent" onUpdate="cascade" onDelete="cascade">
-      <reference local="PARENT_ID" foreign="ID" />
-    </foreign-key>
+    <unique name="1">
+      <unique-column name="PLACE_CODE" />
+    </unique>
   </table>
 
   <table name="PARTY_CODE" description="パーティコード">

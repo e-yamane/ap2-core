@@ -82,7 +82,7 @@ public class PlaceTest extends DataLoadingTestCase {
 		Place newPlace = new Place();
 		newPlace.setName("大阪");
 		newPlace.setVirtual(false);
-		
+		newPlace.setPlaceCode("PLC-000000004-002");
 		// 所有者設定
 		Party newOwner = service.findByPK(Party.class, 2L);
 		newPlace.setOwner(newOwner);
@@ -102,6 +102,7 @@ public class PlaceTest extends DataLoadingTestCase {
 		newPlace.setName("大阪");
 		newPlace.setVirtual(false);
 		newPlace.setParent(kansai);
+		newPlace.setPlaceCode("PLC-000000003-001-003");
 		
 		// 所有者設定
 		newOwner = service.findByPK(Party.class, 2L);
@@ -155,6 +156,8 @@ public class PlaceTest extends DataLoadingTestCase {
 		Place p2 = new Place();
 		p2.setName("再帰項目２");
 		p2.setOwner(o);
+		p1.setPlaceCode("xyz");
+		p2.setPlaceCode("xyz-xyz");
 		service.insert(p1, p2);
 		p1.setParent(p2);
 		service.update(p1);

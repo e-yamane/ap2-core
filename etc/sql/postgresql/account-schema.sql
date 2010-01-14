@@ -97,6 +97,27 @@ COMMENT ON COLUMN ACCOUNT.REGISTER_DATE IS '勘定作成日';
 
 
 -----------------------------------------------------------------------------
+-- ITEM
+-----------------------------------------------------------------------------
+DROP TABLE ITEM;
+
+
+CREATE TABLE ITEM
+(
+    ID int8 NOT NULL,
+    NAME varchar (256) NOT NULL,
+      -- REFERENCES ITEM (ID)
+    PARENT_ID int8,
+    PRIMARY KEY (ID)
+);
+
+COMMENT ON TABLE ITEM IS '品目';
+COMMENT ON COLUMN ITEM.ID IS 'OID';
+COMMENT ON COLUMN ITEM.NAME IS '品目名';
+COMMENT ON COLUMN ITEM.PARENT_ID IS '親品目ID';
+
+
+-----------------------------------------------------------------------------
 -- PLACE_CODE
 -----------------------------------------------------------------------------
 DROP TABLE PLACE_CODE;
@@ -141,42 +162,31 @@ DROP TABLE PLACE;
 CREATE TABLE PLACE
 (
     ID int8 NOT NULL,
+    PLACE_CODE varchar (256) NOT NULL,
     NAME varchar (256) NOT NULL,
     VIRTUAL char default 'N' NOT NULL,
       -- REFERENCES PLACE (ID)
     PARENT_ID int8,
       -- REFERENCES PARTY (ID)
     OWNER_ID int8 NOT NULL,
-    PRIMARY KEY (ID)
+    REVISION int8 NOT NULL,
+        TS_REGISTERER_DATE timestamp NOT NULL,
+    TS_LAST_MODIFIED_DATE timestamp NOT NULL,
+    PRIMARY KEY (ID),
+    CONSTRAINT unq_PLACE_1 UNIQUE (PLACE_CODE)
 );
 
 COMMENT ON TABLE PLACE IS '場所';
 COMMENT ON COLUMN PLACE.ID IS 'OID';
+COMMENT ON COLUMN PLACE.PLACE_CODE IS '内部管理用場所コード';
 COMMENT ON COLUMN PLACE.NAME IS '場所名';
 COMMENT ON COLUMN PLACE.VIRTUAL IS '論理的な場所';
 COMMENT ON COLUMN PLACE.PARENT_ID IS '親場所ID';
 COMMENT ON COLUMN PLACE.OWNER_ID IS '所有者OID';
+COMMENT ON COLUMN PLACE.REVISION IS 'リビジョン';
+COMMENT ON COLUMN PLACE.TS_REGISTERER_DATE IS '更新日時情報 登録日時';
+COMMENT ON COLUMN PLACE.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 
-
------------------------------------------------------------------------------
--- ITEM
------------------------------------------------------------------------------
-DROP TABLE ITEM;
-
-
-CREATE TABLE ITEM
-(
-    ID int8 NOT NULL,
-    NAME varchar (256) NOT NULL,
-      -- REFERENCES ITEM (ID)
-    PARENT_ID int8,
-    PRIMARY KEY (ID)
-);
-
-COMMENT ON TABLE ITEM IS '品目';
-COMMENT ON COLUMN ITEM.ID IS 'OID';
-COMMENT ON COLUMN ITEM.NAME IS '品目名';
-COMMENT ON COLUMN ITEM.PARENT_ID IS '親品目ID';
 
 
 -----------------------------------------------------------------------------

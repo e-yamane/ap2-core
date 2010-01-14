@@ -18,6 +18,8 @@ import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
 import jp.rough_diamond.commons.service.annotation.PostLoad;
+import jp.rough_diamond.commons.service.annotation.PostPersist;
+import jp.rough_diamond.commons.service.annotation.PostUpdate;
 import jp.rough_diamond.framework.transaction.TransactionManager;
 
 /**
@@ -26,6 +28,11 @@ import jp.rough_diamond.framework.transaction.TransactionManager;
 public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     private static final long serialVersionUID = 1L;
 
+    Long loadedRevision = -1L;
+
+    public Place() {
+    	setRevision(loadedRevision);	//dummy
+    }
     public static List<Place> getRootPlaces() {
     	Extractor extractor = new Extractor(Place.class);
     	extractor.add(Condition.isNull(new Property(PARENT)));
@@ -109,6 +116,13 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     		super.loadParents();
     	}
     }    
+
+    @PostLoad
+    @PostUpdate
+    @PostPersist
+    public void resetLoadedRevision() {
+    	loadedRevision = getRevision();
+    }
 
     public static Place getPlaceByCode(String systemName, String code) {
     	return getPlaceByCode(CodeSystem.getCodeSystemByName(systemName), code);
