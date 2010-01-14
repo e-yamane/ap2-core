@@ -14,6 +14,7 @@ import java.util.Set;
 import jp.rough_diamond.commons.extractor.Condition;
 import jp.rough_diamond.commons.extractor.ExtractValue;
 import jp.rough_diamond.commons.extractor.Extractor;
+import jp.rough_diamond.commons.extractor.Max;
 import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
@@ -41,7 +42,18 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
 		return (places.size() == 0) ? null : places.get(0);
     }
     
-    public List<Place> getRoutes() {
+	public static Long getMaxRevision() {
+    	Extractor ex1 = new Extractor(Place.class);
+    	ex1.addExtractValue(new ExtractValue("max", new Max(new Property(Place.REVISION))));
+    	ex1.setReturnType(Long.class);
+    	Long ret = (Long)BasicService.getService().findByExtractor(ex1).get(0);
+    	Extractor ex2 = new Extractor(PlaceCode.class);
+    	ex2.addExtractValue(new ExtractValue("max", new Max(new Property(PlaceCode.CI + Code.REVISION))));
+    	ex2.setReturnType(Long.class);
+    	return Math.max(ret, (Long)BasicService.getService().findByExtractor(ex2).get(0));
+    }
+
+	public List<Place> getRoutes() {
     	List<Place> list = new ArrayList<Place>();
     	Place parent = getParent();
     	while(parent != null) {

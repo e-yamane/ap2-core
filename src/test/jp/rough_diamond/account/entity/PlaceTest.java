@@ -25,6 +25,10 @@ public class PlaceTest extends DataLoadingTestCase {
     	assertNull("場所が返却されています。", p);
     }
 
+	public void testGetMaxRevision() throws Exception {
+		assertEquals("返却値が誤っています。", 13L, Place.getMaxRevision().longValue());
+	}
+
 	public void testGetChildren() throws Exception {
 		Place place = BasicService.getService().findByPK(Place.class, 1L);
 		List<Place> list = place.getChildren();
