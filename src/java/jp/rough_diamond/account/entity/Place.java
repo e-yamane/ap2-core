@@ -33,11 +33,12 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     public Place() {
     	setRevision(loadedRevision);	//dummy
     }
-    public static List<Place> getRootPlaces() {
-    	Extractor extractor = new Extractor(Place.class);
-    	extractor.add(Condition.isNull(new Property(PARENT)));
-    	extractor.addOrder(Order.asc(new Property(ID)));
-    	return BasicService.getService().findByExtractor(extractor);
+    
+    public static Place getPlaceByPlaceCode(String placeCode) {
+		Extractor ex = new Extractor(Place.class);
+		ex.add(Condition.eq(new Property(Place.PLACE_CODE), placeCode));
+		List<Place> places = BasicService.getService().findByExtractor(ex);
+		return (places.size() == 0) ? null : places.get(0);
     }
     
     public List<Place> getRoutes() {

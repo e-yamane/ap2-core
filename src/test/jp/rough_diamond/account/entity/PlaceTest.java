@@ -17,11 +17,14 @@ public class PlaceTest extends DataLoadingTestCase {
 		NumberingLoader.init();
 	}
 
-	public void testGetByPK() throws Exception {
-		Place place = BasicService.getService().findByPK(Place.class, 1L);
-		System.out.println(place.getClass().getName());
-	}
-	
+    public void testGetPartyByPartyCode() throws Exception {
+    	Place p = Place.getPlaceByPlaceCode("PLC-000000003-001");
+    	assertEquals("パーティが誤っています。", "関西", p.getName());
+    	
+    	p = Place.getPlaceByPlaceCode("存在しないコード" + System.currentTimeMillis());
+    	assertNull("場所が返却されています。", p);
+    }
+
 	public void testGetChildren() throws Exception {
 		Place place = BasicService.getService().findByPK(Place.class, 1L);
 		List<Place> list = place.getChildren();
@@ -39,15 +42,6 @@ public class PlaceTest extends DataLoadingTestCase {
 		assertEquals("IDが誤っています。", 2L, list.get(1).getId().longValue());
 	}
 	
-	public void testGetRootPlaces() throws Exception {
-		List<Place> list = Place.getRootPlaces();
-//		assertEquals("返却数が誤っています。", 3, list.size());
-		assertEquals("返却数が誤っています。", 4, list.size());
-		assertEquals("IDが誤っています。", 1L, list.get(0).getId().longValue());
-		assertEquals("IDが誤っています。", 5L, list.get(1).getId().longValue());
-		assertEquals("IDが誤っています。", 6L, list.get(2).getId().longValue());
-	}
-
 	public void testMultilevelUniqueCheckWhenUpdate() throws Exception {
 		//ユニーク属性を変化させずにアップデートできること
 		BasicService service = BasicService.getService();
