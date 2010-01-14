@@ -176,4 +176,13 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
 	public String getCode(CodeSystem system, Date date) {
 		return Code.getCode(PlaceCode.class, this, PlaceCode.TARGET, PlaceCode.CI, system, date);
 	}
+
+	public long getUpdateCount() {
+		Extractor ex = new Extractor(PlaceCode.class);
+		ex.add(Condition.eq(new Property(PlaceCode.TARGET), this));
+		ex.addExtractValue(new ExtractValue("rev", new Max(new Property(PlaceCode.CI + Code.REVISION))));
+		ex.setReturnType(Long.class);
+		long revMax = (Long)BasicService.getService().findByExtractor(ex).get(0);
+		return Math.max(revMax, getRevision());
+	}
 }

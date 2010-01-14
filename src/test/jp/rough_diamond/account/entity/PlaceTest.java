@@ -167,6 +167,19 @@ public class PlaceTest extends DataLoadingTestCase {
 		assertTrue("IDが含まれていません。", ids.contains(p2.getId()));
 	}
 
+	public void testUpdateCount() {
+		Place p = BasicService.getService().findByPK(Place.class, 1L);
+		assertEquals("更新カウントが誤っています。", 12L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Place.class, 2L);
+		assertEquals("更新カウントが誤っています。", 9L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Place.class, 3L);
+		assertEquals("更新カウントが誤っています。", 13L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Place.class, 4L);
+		assertEquals("更新カウントが誤っています。", 4L, p.getUpdateCount());
+		p = BasicService.getService().findByPK(Place.class, 5L);
+		assertEquals("更新カウントが誤っています。", 5L, p.getUpdateCount());
+	}
+
 	public void testGetCode() throws Exception {
 		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");
