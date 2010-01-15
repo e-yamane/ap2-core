@@ -184,6 +184,16 @@ public class PlaceTest extends DataLoadingTestCase {
 		assertEquals("更新カウントが誤っています。", 5L, p.getUpdateCount());
 	}
 
+	public void testGetPlaceCodes() throws Exception {
+		Place p = BasicService.getService().findByPK(Place.class, 1L);
+		List<PlaceCode> codes = p.getPlaceCodes();
+		assertEquals("返却数が誤っています。", 4, codes.size());
+		assertEquals("返却順が誤っています。", 6L, codes.get(0).getId().longValue());
+		assertEquals("返却順が誤っています。", 5L, codes.get(1).getId().longValue());
+		assertEquals("返却順が誤っています。", 4L, codes.get(2).getId().longValue());
+		assertEquals("返却順が誤っています。", 3L, codes.get(3).getId().longValue());
+	}
+
 	public void testGetCode() throws Exception {
 		CodeSystem cs = BasicService.getService().findByPK(CodeSystem.class, 2L);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/M/d");

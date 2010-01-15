@@ -188,6 +188,14 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
 		return Math.max(revMax, getRevision());
 	}
 
+	public List<PlaceCode> getPlaceCodes() {
+		Extractor ex = new Extractor(PlaceCode.class);
+		ex.add(Condition.eq(new Property(PlaceCode.TARGET), this));
+		ex.addOrder(Order.desc(new Property(PlaceCode.TS + UpdateTimestamp.LAST_MODIFIED_DATE)));
+		ex.addOrder(Order.desc(new Property(PlaceCode.ID)));
+		return BasicService.getService().findByExtractor(ex);
+	}
+
 	@PrePersist
 	@PreUpdate
 	public void refreshRevision() {
