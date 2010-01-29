@@ -22,53 +22,10 @@ import jp.rough_diamond.commons.service.annotation.PreUpdate;
 public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     private static final long serialVersionUID = 1L;
 
-    public static enum Status {
-    	/**
-    	 * 未定（初期値用）
-    	 */
-    	UNKNOWN("00"),
-    	/**
-    	 * テスト運用
-    	 */
-    	TEST("10"),
-    	/**
-    	 * 稼働中
-    	 */
-    	AVAILABLE("20"),
-    	/**
-    	 * 停止中
-    	 */
-    	STOP("30"),
-    	/**
-    	 * 削除
-    	 */
-    	DELETED("40");
-    	public final String code;
-    	private Status(String code) {
-    		this.code = code;
-    	}
-    	
-    	public String getCode() {
-    		return code;
-    	}
-    	
-    	public static Status getStstusByCode(String code) {
-    		if(code == null) {
-    			return UNKNOWN;
-    		}
-    		for(Status s : values()) {
-    			if(s.code.equals(code)) {
-    				return s;
-    			}
-    		}
-    		return UNKNOWN;
-    	}
-    }
-    
     Long loadedRevision = -1L;
     
     public Party() {
-    	setStatusCode(Status.UNKNOWN.code);		//dummy
+    	setStatusCode(MasterStatus.UNKNOWN.code);		//dummy
     	setRevision(loadedRevision);			//dummy
     }
 
@@ -159,15 +116,15 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
 		return Code.getCode(PartyCode.class, this, PartyCode.TARGET, PartyCode.CI, system, date);
     }
 	
-	public Status getStatus() {
-		return Status.getStstusByCode(getStatusCode());
+	public MasterStatus getStatus() {
+		return MasterStatus.getStstusByCode(getStatusCode());
 	}
 	
 	@PrePersist
 	@PreUpdate
 	public void refreshStatus() {
-		if(getStatus() == Status.UNKNOWN) {
-			setStatusCode(Status.TEST.code);
+		if(getStatus() == MasterStatus.UNKNOWN) {
+			setStatusCode(MasterStatus.TEST.code);
 		}
 	}
 	

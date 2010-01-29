@@ -64,6 +64,16 @@
             not-null="true"
         />
 
+        <property
+            name="statusCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STATUS_CODE"
+            length="2"
+            not-null="true"
+        />
+
         <component
             name="timeStamp"
             class="jp.rough_diamond.account.entity.UpdateTimestamp"

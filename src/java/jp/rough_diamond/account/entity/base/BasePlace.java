@@ -79,7 +79,6 @@ public abstract class BasePlace  implements Serializable {
         }
         return false;
     }
-
     protected boolean isLoaded;
     @jp.rough_diamond.commons.service.annotation.PostLoad
     @jp.rough_diamond.commons.service.annotation.PostPersist
@@ -101,11 +100,20 @@ public abstract class BasePlace  implements Serializable {
      * @throws MessagesIncludingException 検証例外
     **/
     public void save() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
-        if(isLoaded) {
+        if(isThisObjectAnUpdateObject()) {
             update();
         } else {
             insert();
         }
+    }
+
+    /**
+     * このオブジェクトを永続化する方法を返却する。
+     * 永続化処理実行時、本メソッドがtrueを返却された場合は更新(UPDATE)、falseの場合は登録(INSERT)して振る舞う
+     * @return trueの場合は更新、falseの場合は登録として振る舞う
+    **/
+    protected boolean isThisObjectAnUpdateObject() {
+        return isLoaded;
     }
 
     /**
@@ -124,6 +132,27 @@ public abstract class BasePlace  implements Serializable {
     protected void update() throws jp.rough_diamond.framework.transaction.VersionUnmuchException, jp.rough_diamond.commons.resource.MessagesIncludingException {
         jp.rough_diamond.commons.service.BasicService.getService().update(this);
     }
+
+    /**
+     * オブジェクトの永続可能性を検証する
+     * @return 検証結果。msgs.hasError()==falseが成立する場合は検証成功とみなす
+    */
+    public jp.rough_diamond.commons.resource.Messages validateObject() {
+        if(isThisObjectAnUpdateObject()) {
+            return validateObject(jp.rough_diamond.commons.service.WhenVerifier.UPDATE);
+        } else {
+            return validateObject(jp.rough_diamond.commons.service.WhenVerifier.INSERT);
+        }
+    }
+
+    /**
+     * オブジェクトの永続可能性を検証する
+     * @return 検証結果。msgs.hasError()==falseが成立する場合は検証成功とみなす
+    */
+    protected jp.rough_diamond.commons.resource.Messages validateObject(jp.rough_diamond.commons.service.WhenVerifier when) {
+        return jp.rough_diamond.commons.service.BasicService.getService().validate(this, when);
+    }
+
     /**
      * 内部管理用場所コード
     **/ 
@@ -253,6 +282,33 @@ public abstract class BasePlace  implements Serializable {
     **/
     public void setRevision(Long revision) {
         this.revision = revision;
+    }
+    /**
+     * ステータスコード
+    **/ 
+    private String statusCode;
+    public final static String STATUS_CODE = "statusCode";
+
+    /**
+     * ステータスコードを取得する
+     * @hibernate.property
+     *    column="STATUS_CODE"
+     *    not-null="true"
+     *    length="2"
+     * @return ステータスコード
+    **/
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=2, property="Place.statusCode")
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Place.statusCode")
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     * ステータスコードを設定する
+     * @param statusCode  ステータスコード
+    **/
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
     }
     /**
      * 更新日時情報

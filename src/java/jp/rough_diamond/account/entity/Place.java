@@ -34,6 +34,7 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     Long loadedRevision = -1L;
 
     public Place() {
+    	setStatusCode(MasterStatus.UNKNOWN.code);		//dummy
     	setRevision(loadedRevision);	//dummy
     }
     
@@ -132,7 +133,18 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     	}
     }    
 
-    @PostLoad
+	public MasterStatus getStatus() {
+		return MasterStatus.getStstusByCode(getStatusCode());
+	}
+
+	@PreUpdate
+	public void refreshStatus() {
+		if(getStatus() == MasterStatus.UNKNOWN) {
+			setStatusCode(MasterStatus.TEST.code);
+		}
+	}
+
+	@PostLoad
     @PostUpdate
     @PostPersist
     public void resetLoadedRevision() {

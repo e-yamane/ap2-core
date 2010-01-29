@@ -89,7 +89,7 @@ public class PartyTest extends DataLoadingTestCase {
     	newOwner.setName("テスト用パーティ");
     	newOwner.save();
     	newOwner = BasicService.getService().findByPK(Party.class, newOwner.getId());
-    	assertEquals("ステータスが誤っています。", Party.Status.TEST, newOwner.getStatus());
+    	assertEquals("ステータスが誤っています。", MasterStatus.TEST, newOwner.getStatus());
     	assertTrue("リビジョンが更新されていません。", (-1L != newOwner.getRevision().longValue()));
     	assertEquals("ロード時リビジョンが更新されていません", newOwner.getRevision(), newOwner.loadedRevision);
 	}
@@ -98,11 +98,11 @@ public class PartyTest extends DataLoadingTestCase {
 		Party newOwner = new Party();
 		newOwner.setPartyCode("PTY-000000006");
     	newOwner.setName("テスト用パーティ");
-    	newOwner.setStatusCode(Party.Status.AVAILABLE.getCode());
+    	newOwner.setStatusCode(MasterStatus.AVAILABLE.getCode());
     	newOwner.setRevision(9999L);
     	newOwner.save();
     	newOwner = BasicService.getService().findByPK(Party.class, newOwner.getId());
-    	assertEquals("ステータスが誤っています。", Party.Status.AVAILABLE, newOwner.getStatus());
+    	assertEquals("ステータスが誤っています。", MasterStatus.AVAILABLE, newOwner.getStatus());
     	assertEquals("リビジョンが更新されていません。", 9999L, newOwner.getRevision().longValue());
     	assertEquals("ロード時リビジョンが更新されていません", newOwner.getRevision(), newOwner.loadedRevision);
 	}
@@ -153,7 +153,7 @@ public class PartyTest extends DataLoadingTestCase {
     	long oldRivision = theParty.loadedRevision;
     	theParty.save();
     	theParty = BasicService.getService().findByPK(Party.class, theParty.getId());
-    	assertEquals("ステータスが誤っています。", Party.Status.TEST, theParty.getStatus());
+    	assertEquals("ステータスが誤っています。", MasterStatus.TEST, theParty.getStatus());
     	assertTrue("リビジョンが更新されていません。", (oldRivision != theParty.getRevision().longValue()));
     	assertEquals("ロード時リビジョンが更新されていません", theParty.getRevision(), theParty.loadedRevision);
 	}
@@ -162,11 +162,11 @@ public class PartyTest extends DataLoadingTestCase {
 		Party theParty = BasicService.getService().findByPK(Party.class, 4L);
 		theParty.setPartyCode("PTY-000000006");
     	theParty.setName("テスト用パーティ");
-    	theParty.setStatusCode(Party.Status.AVAILABLE.getCode());
+    	theParty.setStatusCode(MasterStatus.AVAILABLE.getCode());
     	theParty.setRevision(9999L);
     	theParty.save();
     	theParty = BasicService.getService().findByPK(Party.class, theParty.getId());
-    	assertEquals("ステータスが誤っています。", Party.Status.AVAILABLE, theParty.getStatus());
+    	assertEquals("ステータスが誤っています。", MasterStatus.AVAILABLE, theParty.getStatus());
     	assertEquals("リビジョンが更新されていません。", 9999L, theParty.getRevision().longValue());
     	assertEquals("ロード時リビジョンが更新されていません", theParty.getRevision(), theParty.loadedRevision);
 	}
