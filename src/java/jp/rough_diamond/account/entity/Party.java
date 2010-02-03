@@ -10,9 +10,6 @@ import jp.rough_diamond.commons.extractor.Max;
 import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
-import jp.rough_diamond.commons.service.annotation.PostLoad;
-import jp.rough_diamond.commons.service.annotation.PostPersist;
-import jp.rough_diamond.commons.service.annotation.PostUpdate;
 import jp.rough_diamond.commons.service.annotation.PrePersist;
 import jp.rough_diamond.commons.service.annotation.PreUpdate;
 
@@ -21,21 +18,13 @@ import jp.rough_diamond.commons.service.annotation.PreUpdate;
 **/
 public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     private static final long serialVersionUID = 1L;
-
-    Long loadedRevision = -1L;
+    public final static Long DUMMY_REVISION = Long.MIN_VALUE;
     
     public Party() {
     	setStatusCode(MasterStatus.UNKNOWN.code);		//dummy
-    	setRevision(loadedRevision);			//dummy
+    	setRevision(DUMMY_REVISION);					//dummy
     }
 
-    @PostLoad
-    @PostUpdate
-    @PostPersist
-    public void resetLoadedRevision() {
-    	loadedRevision = getRevision();
-    }
-    
 	public static Party getPartyByPartyCode(String partyCode) {
 		Extractor ex = new Extractor(Party.class);
 		ex.add(Condition.eq(new Property(Party.PARTY_CODE), partyCode));
@@ -125,15 +114,6 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
 	public void refreshStatus() {
 		if(getStatus() == MasterStatus.UNKNOWN) {
 			setStatusCode(MasterStatus.TEST.code);
-		}
-	}
-	
-	@PrePersist
-	@PreUpdate
-	public void refreshRevision() {
-		//XXX 強制アップデートにしてもよいかもね。
-		if(getRevision().equals(loadedRevision)) {
-			setRevision(PartyCode.getRevisionInTransaction());
 		}
 	}
 }

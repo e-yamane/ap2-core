@@ -18,29 +18,21 @@ import jp.rough_diamond.commons.extractor.Extractor;
 import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
-import jp.rough_diamond.commons.service.annotation.PostLoad;
-import jp.rough_diamond.commons.service.annotation.PostPersist;
-import jp.rough_diamond.commons.service.annotation.PostUpdate;
+//import jp.rough_diamond.commons.service.annotation.PostLoad;
+//import jp.rough_diamond.commons.service.annotation.PostPersist;
+//import jp.rough_diamond.commons.service.annotation.PostUpdate;
 
 /**
  * コードのHibernateマッピングクラス
 **/
 public class Code extends jp.rough_diamond.account.entity.base.BaseCode {
     private static final long serialVersionUID = 1L;
-
-    Long loadedRevision = -1L;
+    public final static Long DUMMY_REVISION = Long.MIN_VALUE;
 
     public Code() {
-    	setRevision(loadedRevision);				//dummy
+    	setRevision(DUMMY_REVISION);				//dummy
     }
     
-    @PostLoad
-    @PostUpdate
-    @PostPersist
-    public void resetLoadedRevision() {
-    	loadedRevision = getRevision();
-    }
-
     public static <T> List<T> getTargetHoldersByCode(Class<T> holderType, String prefix, CodeSystem system, String code, Date date) {
     	Extractor ex = new Extractor(holderType);
     	ex.add(Condition.eq(new Property(prefix + Code.CODESYSTEM), system));

@@ -19,9 +19,6 @@ import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
 import jp.rough_diamond.commons.service.annotation.PostLoad;
-import jp.rough_diamond.commons.service.annotation.PostPersist;
-import jp.rough_diamond.commons.service.annotation.PostUpdate;
-import jp.rough_diamond.commons.service.annotation.PrePersist;
 import jp.rough_diamond.commons.service.annotation.PreUpdate;
 import jp.rough_diamond.framework.transaction.TransactionManager;
 
@@ -30,12 +27,13 @@ import jp.rough_diamond.framework.transaction.TransactionManager;
 **/
 public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     private static final long serialVersionUID = 1L;
+    public final static Long DUMMY_REVISION = Long.MIN_VALUE;
 
-    Long loadedRevision = -1L;
+//    Long loadedRevision = -1L;
 
     public Place() {
     	setStatusCode(MasterStatus.UNKNOWN.code);		//dummy
-    	setRevision(loadedRevision);	//dummy
+    	setRevision(DUMMY_REVISION);					//dummy
     }
     
     public static Place getPlaceByPlaceCode(String placeCode) {
@@ -144,13 +142,6 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
 		}
 	}
 
-	@PostLoad
-    @PostUpdate
-    @PostPersist
-    public void resetLoadedRevision() {
-    	loadedRevision = getRevision();
-    }
-
     public static Place getPlaceByCode(String systemName, String code) {
     	return getPlaceByCode(CodeSystem.getCodeSystemByName(systemName), code);
     }
@@ -206,14 +197,5 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
 		ex.addOrder(Order.desc(new Property(PlaceCode.TS + UpdateTimestamp.LAST_MODIFIED_DATE)));
 		ex.addOrder(Order.desc(new Property(PlaceCode.ID)));
 		return BasicService.getService().findByExtractor(ex);
-	}
-
-	@PrePersist
-	@PreUpdate
-	public void refreshRevision() {
-		//XXX 強制アップデートにしてもよいかもね。
-		if(getRevision().equals(loadedRevision)) {
-			setRevision(PlaceCode.getRevisionInTransaction());
-		}
 	}
 }

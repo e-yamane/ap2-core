@@ -53,7 +53,6 @@ public class PlaceTest extends DataLoadingTestCase {
 		target.setVirtual(true);
 		try {
 			service.update(target);
-			assertEquals("リビジョンがアップしていません。", 14L, target.getRevision().longValue());
 		} catch(Exception e) {
 			e.printStackTrace();
 			fail("例外が発生しています。");
@@ -87,7 +86,6 @@ public class PlaceTest extends DataLoadingTestCase {
 		newPlace.setOwner(newOwner);
 		try {
 			service.insert(newPlace);
-			assertEquals("リビジョンがアップしていません。", 14L, newPlace.getRevision().longValue());
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
 			fail("例外が発生しました。");
@@ -110,7 +108,6 @@ public class PlaceTest extends DataLoadingTestCase {
 		
 		try {
 			service.insert(newPlace);
-			assertEquals("リビジョンがアップしていません。", 15L, newPlace.getRevision().longValue());
 		} catch(MessagesIncludingException e) {
 			e.printStackTrace();
 			fail("例外が発生しました。");

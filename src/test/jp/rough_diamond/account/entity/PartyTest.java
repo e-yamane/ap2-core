@@ -90,8 +90,6 @@ public class PartyTest extends DataLoadingTestCase {
     	newOwner.save();
     	newOwner = BasicService.getService().findByPK(Party.class, newOwner.getId());
     	assertEquals("ステータスが誤っています。", MasterStatus.TEST, newOwner.getStatus());
-    	assertTrue("リビジョンが更新されていません。", (-1L != newOwner.getRevision().longValue()));
-    	assertEquals("ロード時リビジョンが更新されていません", newOwner.getRevision(), newOwner.loadedRevision);
 	}
 	
 	public void testPartyInsertデフォルトでセットされる値を明示的に設定したらデフォルト値にならないこと() throws Exception {
@@ -103,8 +101,6 @@ public class PartyTest extends DataLoadingTestCase {
     	newOwner.save();
     	newOwner = BasicService.getService().findByPK(Party.class, newOwner.getId());
     	assertEquals("ステータスが誤っています。", MasterStatus.AVAILABLE, newOwner.getStatus());
-    	assertEquals("リビジョンが更新されていません。", 9999L, newOwner.getRevision().longValue());
-    	assertEquals("ロード時リビジョンが更新されていません", newOwner.getRevision(), newOwner.loadedRevision);
 	}
 	
 	public void testPartyUpdate() throws Exception {
@@ -150,12 +146,9 @@ public class PartyTest extends DataLoadingTestCase {
 		theParty.setPartyCode("PTY-000000006");
     	theParty.setName("テスト用パーティ");
     	theParty.setStatusCode("??");
-    	long oldRivision = theParty.loadedRevision;
     	theParty.save();
     	theParty = BasicService.getService().findByPK(Party.class, theParty.getId());
     	assertEquals("ステータスが誤っています。", MasterStatus.TEST, theParty.getStatus());
-    	assertTrue("リビジョンが更新されていません。", (oldRivision != theParty.getRevision().longValue()));
-    	assertEquals("ロード時リビジョンが更新されていません", theParty.getRevision(), theParty.loadedRevision);
 	}
 	
 	public void testPartyUpdateデフォルトでセットされる値を明示的に設定したらデフォルト値にならないこと() throws Exception {
@@ -167,8 +160,6 @@ public class PartyTest extends DataLoadingTestCase {
     	theParty.save();
     	theParty = BasicService.getService().findByPK(Party.class, theParty.getId());
     	assertEquals("ステータスが誤っています。", MasterStatus.AVAILABLE, theParty.getStatus());
-    	assertEquals("リビジョンが更新されていません。", 9999L, theParty.getRevision().longValue());
-    	assertEquals("ロード時リビジョンが更新されていません", theParty.getRevision(), theParty.loadedRevision);
 	}
 
 	public void testUpdateCount() {
