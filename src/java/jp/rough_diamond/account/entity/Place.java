@@ -29,8 +29,6 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     private static final long serialVersionUID = 1L;
     public final static Long DUMMY_REVISION = Long.MIN_VALUE;
 
-//    Long loadedRevision = -1L;
-
     public Place() {
     	setStatusCode(MasterStatus.UNKNOWN.code);		//dummy
     	setRevision(DUMMY_REVISION);					//dummy
