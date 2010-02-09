@@ -3,6 +3,7 @@ package jp.rough_diamond.account.entity;
 import java.util.Date;
 import java.util.List;
 
+import jp.rough_diamond.commons.entity.UpdateTimestamp;
 import jp.rough_diamond.commons.extractor.Condition;
 import jp.rough_diamond.commons.extractor.ExtractValue;
 import jp.rough_diamond.commons.extractor.Extractor;

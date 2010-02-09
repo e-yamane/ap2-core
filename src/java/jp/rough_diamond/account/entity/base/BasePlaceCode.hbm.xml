@@ -85,7 +85,7 @@
 
         <component
             name="timeStamp"
-            class="jp.rough_diamond.account.entity.UpdateTimestamp"
+            class="jp.rough_diamond.commons.entity.UpdateTimestamp"
         >
 
         <property

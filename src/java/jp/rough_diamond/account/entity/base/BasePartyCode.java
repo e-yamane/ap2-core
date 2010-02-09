@@ -175,7 +175,7 @@ public abstract class BasePartyCode  implements Serializable {
     /**
      * 更新日時情報
     **/ 
-    private jp.rough_diamond.account.entity.UpdateTimestamp timeStamp =  new jp.rough_diamond.account.entity.UpdateTimestamp();
+    private jp.rough_diamond.commons.entity.UpdateTimestamp timeStamp =  new jp.rough_diamond.commons.entity.UpdateTimestamp();
 
     public final static String TS = "timeStamp.";
 
@@ -187,7 +187,7 @@ public abstract class BasePartyCode  implements Serializable {
     **/
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PartyCode.timeStamp")
     @jp.rough_diamond.commons.service.annotation.NestedComponent(property="PartyCode.timeStamp")
-    public jp.rough_diamond.account.entity.UpdateTimestamp getTimeStamp() {
+    public jp.rough_diamond.commons.entity.UpdateTimestamp getTimeStamp() {
         return timeStamp;
     }
 
@@ -195,7 +195,7 @@ public abstract class BasePartyCode  implements Serializable {
      * 更新日時情報を設定する
      * @param timeStamp  更新日時情報
     **/
-    public void setTimeStamp(jp.rough_diamond.account.entity.UpdateTimestamp timeStamp) {
+    public void setTimeStamp(jp.rough_diamond.commons.entity.UpdateTimestamp timeStamp) {
         this.timeStamp = timeStamp;
     }
 

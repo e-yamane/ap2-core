@@ -156,11 +156,6 @@ DTDは、
     </foreign-key>
   </table>
 
-  <table name="UPDATE_TIMESTAMP" description="更新日時情報" skipSql="true">
-    <column name="REGISTERER_DATE"              required="true"   type="TIMESTAMP"            description="登録日時" />
-    <column name="LAST_MODIFIED_DATE"           required="true"   type="TIMESTAMP"            description="最終更新日" />
-  </table>
-
   <table name="CODE_SYSTEM" description="コード体系">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
     <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="コード体系名" />
