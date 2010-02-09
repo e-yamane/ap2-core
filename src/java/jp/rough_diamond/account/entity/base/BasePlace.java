@@ -340,6 +340,43 @@ public abstract class BasePlace  implements Serializable {
 //ForeignProperties.vm start.
 
     
+    private jp.rough_diamond.account.entity.Place parent;
+    public final static String PARENT = "parent";
+
+    /**
+     * Get the associated Place object
+     * @hibernate.many-to-one
+     *   outer-join = "true"
+     * @hibernate.column name = "PARENT_ID"
+     *
+     * @return the associated Place object
+     */
+    public jp.rough_diamond.account.entity.Place getParent() {
+        return this.parent;
+    }
+
+    /**
+     * Declares an association between this object and a Place object
+     *
+     * @param v Place
+     */
+    public void setParent(jp.rough_diamond.account.entity.Place v) {
+        this.parent = v;
+    }
+
+    @jp.rough_diamond.commons.service.annotation.PostLoad
+    public void loadParents() {
+        jp.rough_diamond.account.entity.Place parent = getParent();
+        if(parent != null) {
+            jp.rough_diamond.account.entity.Place tmp = parent.getParent();
+            if(tmp != null) {
+                Long pk = tmp.getId();
+                parent.setParent(
+                        jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Place.class, pk));
+            }
+        }
+    }
+
     private jp.rough_diamond.account.entity.Party owner;
     public final static String OWNER = "owner";
 

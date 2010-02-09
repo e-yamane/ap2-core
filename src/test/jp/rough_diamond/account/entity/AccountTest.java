@@ -116,6 +116,64 @@ public class AccountTest extends DataLoadingTestCase {
 		assertEquals("件数が誤っています。", 4, entries.size());
 	}
 	
+	public void testGrossPlaceBalance() throws Exception {
+		BasicService service = BasicService.getService();
+		Place p = service.findByPK(Place.class, 2L);
+		Party o = p.getOwner();
+		Item i = service.findByPK(Item.class, 4L);
+		Account a = new Account();
+		a.setPlace(p);
+		a.setItem(i);
+		a.setOwner(o);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date d = sdf.parse("20080720");
+		assertEquals("残量が誤っています。", 20L, a.getBalance(d, false, true).longValue());
+	}
+	
+	public void testGrossPlaceTrend() throws Exception {
+		BasicService service = BasicService.getService();
+		Place p = service.findByPK(Place.class, 2L);
+		Party o = p.getOwner();
+		Item i = service.findByPK(Item.class, 4L);
+		Account a = new Account();
+		a.setPlace(p);
+		a.setItem(i);
+		a.setOwner(o);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date d = sdf.parse("20080720");
+		List<Entry> entries = a.getTrend(null, d, false, true);
+		assertEquals("件数が誤っています。", 4, entries.size());
+	}
+
+	public void testGrossPlaceAndItemBalance() throws Exception {
+		BasicService service = BasicService.getService();
+		Place p = service.findByPK(Place.class, 2L);
+		Party o = p.getOwner();
+		Item i = service.findByPK(Item.class, 2L);
+		Account a = new Account();
+		a.setPlace(p);
+		a.setItem(i);
+		a.setOwner(o);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date d = sdf.parse("20080720");
+		assertEquals("残量が誤っています。", 20L, a.getBalance(d, true, true).longValue());
+	}
+	
+	public void testGrossPlaceAndItemTrend() throws Exception {
+		BasicService service = BasicService.getService();
+		Place p = service.findByPK(Place.class, 2L);
+		Party o = p.getOwner();
+		Item i = service.findByPK(Item.class, 2L);
+		Account a = new Account();
+		a.setPlace(p);
+		a.setItem(i);
+		a.setOwner(o);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date d = sdf.parse("20080720");
+		List<Entry> entries = a.getTrend(null, d, true, true);
+		assertEquals("件数が誤っています。", 4, entries.size());
+	}
+	
 	public static void main(String[] args) throws Exception {
 		new AccountTest().setUp();
 		BasicService service = BasicService.getService();

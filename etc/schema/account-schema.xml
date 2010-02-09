@@ -107,10 +107,14 @@ DTDは、
     <column name="PLACE_CODE"                   required="true"   type="VARCHAR"      size="256"    description="内部管理用場所コード" />
     <column name="NAME"                         required="true"   type="VARCHAR"      size="256"    description="場所名" />
     <column name="VIRTUAL"                      required="true"   type="BOOLEANCHAR" default="N"    description="論理的な場所" />
+    <column name="PARENT_ID"                    required="false"  domain="oid"                      description="親場所ID" />
     <column name="OWNER_ID"                     required="true"   domain="oid"                      description="所有者OID" />
     <column name="REVISION"                     required="true"   type="BIGINT"                     description="リビジョン" />
     <column name="STATUS_CODE"                  required="true"   type="VARCHAR"  size="2"          description="ステータスコード" />
     <column name="TS" javaName="timeStamp"      required="true"   type="UPDATE_TIMESTAMP"           description="更新日時情報" />
+    <foreign-key foreignTable="PLACE" name="parent" onUpdate="cascade" onDelete="cascade">
+      <reference local="PARENT_ID" foreign="ID" />
+    </foreign-key>
     <foreign-key foreignTable="PARTY" name="owner" onUpdate="cascade" onDelete="cascade">
       <reference local="OWNER_ID" foreign="ID" />
     </foreign-key>

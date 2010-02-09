@@ -100,6 +100,19 @@
         </component>
 
         <many-to-one
+            name="parent"
+            class="jp.rough_diamond.account.entity.Place"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="PARENT_ID" 
+            />
+        </many-to-one>
+
+        <many-to-one
             name="owner"
             class="jp.rough_diamond.account.entity.Party"
             cascade="none"

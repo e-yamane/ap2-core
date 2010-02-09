@@ -260,20 +260,19 @@ public class DefaultAccountService implements AccountService {
 	protected Set<Long> getAccountIdsByChildrenPlaces(
 			Account account, boolean isGrossPlace) {
 		Set<Long> placeIds;
-//TODO 場所をフラットにすると場所集約ができないので一端コメントアウト。どーするかはまた考える
-//		if(isGrossPlace) {
-//			if(account.getPlace() == null) {
-//				placeIds = Place.getAllIds();
-//			} else {
-//				placeIds = account.getPlace().getChildIds();
-//				placeIds.add(account.getPlace().getId());
-//			}
-//		} else {
+		if(isGrossPlace) {
+			if(account.getPlace() == null) {
+				placeIds = Place.getAllIds();
+			} else {
+				placeIds = account.getPlace().getChildIds();
+				placeIds.add(account.getPlace().getId());
+			}
+		} else {
 			placeIds = new HashSet<Long>();
 			if(account.getPlace() != null) {
 				placeIds.add(account.getPlace().getId());
 			}
-//		}
+		}
 		if(placeIds.size() == 0) {
 			return new HashSet<Long>();
 		}
