@@ -215,6 +215,9 @@ public abstract class BasePlaceCode  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PlaceCode.placeId")
     public jp.rough_diamond.account.entity.Place getTarget() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.target)) {
+            this.target = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.target);
+        }
         return this.target;
     }
 
@@ -225,17 +228,6 @@ public abstract class BasePlaceCode  implements Serializable {
      */
     public void setTarget(jp.rough_diamond.account.entity.Place v) {
         this.target = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadTarget() {
-        jp.rough_diamond.account.entity.Place target = getTarget();
-        if(target != null) {
-            Long pk = target.getId();
-            setTarget(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Place.class, pk)
-            );
-        }
     }
 
 //ForeignProperties.vm finish.

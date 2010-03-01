@@ -2,7 +2,7 @@
 -----------------------------------------------------------------------------
 -- TRANSACTION_MAPPER
 -----------------------------------------------------------------------------
-DROP TABLE TRANSACTION_MAPPER CASCADE;
+DROP TABLE TRANSACTION_MAPPER;
 
 
 CREATE TABLE TRANSACTION_MAPPER
@@ -25,7 +25,7 @@ COMMENT ON COLUMN TRANSACTION_MAPPER.AFTER_TRANSACTION_ID IS '先トランザクション
 -----------------------------------------------------------------------------
 -- ENTRY
 -----------------------------------------------------------------------------
-DROP TABLE ENTRY CASCADE;
+DROP TABLE ENTRY;
 
 
 CREATE TABLE ENTRY
@@ -49,7 +49,7 @@ COMMENT ON COLUMN ENTRY.TRANSACTION_ID IS 'トランザクションID';
 -----------------------------------------------------------------------------
 -- TRANSACTION
 -----------------------------------------------------------------------------
-DROP TABLE TRANSACTION CASCADE;
+DROP TABLE TRANSACTION;
 
 
 CREATE TABLE TRANSACTION
@@ -71,7 +71,7 @@ COMMENT ON COLUMN TRANSACTION.PROCESS_DATE IS '取引日';
 -----------------------------------------------------------------------------
 -- ACCOUNT
 -----------------------------------------------------------------------------
-DROP TABLE ACCOUNT CASCADE;
+DROP TABLE ACCOUNT;
 
 
 CREATE TABLE ACCOUNT
@@ -99,7 +99,7 @@ COMMENT ON COLUMN ACCOUNT.REGISTER_DATE IS '勘定作成日';
 -----------------------------------------------------------------------------
 -- ITEM
 -----------------------------------------------------------------------------
-DROP TABLE ITEM CASCADE;
+DROP TABLE ITEM;
 
 
 CREATE TABLE ITEM
@@ -120,7 +120,7 @@ COMMENT ON COLUMN ITEM.PARENT_ID IS '親品目ID';
 -----------------------------------------------------------------------------
 -- PLACE_CODE
 -----------------------------------------------------------------------------
-DROP TABLE PLACE_CODE CASCADE;
+DROP TABLE PLACE_CODE;
 
 
 CREATE TABLE PLACE_CODE
@@ -156,7 +156,7 @@ COMMENT ON COLUMN PLACE_CODE.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- PLACE
 -----------------------------------------------------------------------------
-DROP TABLE PLACE CASCADE;
+DROP TABLE PLACE;
 
 
 CREATE TABLE PLACE
@@ -194,7 +194,7 @@ COMMENT ON COLUMN PLACE.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- PARTY_CODE
 -----------------------------------------------------------------------------
-DROP TABLE PARTY_CODE CASCADE;
+DROP TABLE PARTY_CODE;
 
 
 CREATE TABLE PARTY_CODE
@@ -230,7 +230,7 @@ COMMENT ON COLUMN PARTY_CODE.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- PARTY
 -----------------------------------------------------------------------------
-DROP TABLE PARTY CASCADE;
+DROP TABLE PARTY;
 
 
 CREATE TABLE PARTY
@@ -260,7 +260,7 @@ COMMENT ON COLUMN PARTY.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- CODE_SYSTEM
 -----------------------------------------------------------------------------
-DROP TABLE CODE_SYSTEM CASCADE;
+DROP TABLE CODE_SYSTEM;
 
 
 CREATE TABLE CODE_SYSTEM

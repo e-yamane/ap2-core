@@ -16,7 +16,6 @@ import jp.rough_diamond.commons.extractor.Extractor;
 import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
-import jp.rough_diamond.commons.service.annotation.PostLoad;
 import jp.rough_diamond.framework.transaction.TransactionManager;
 
 /**
@@ -100,12 +99,4 @@ public class Item extends jp.rough_diamond.account.entity.base.BaseItem {
     		map.put(SKIP_LOAD_PARENT_KEY, Boolean.TRUE);
     	}
     }
-    
-    @PostLoad
-    @Override
-    public void loadParents() {
-    	if(!TransactionManager.getTransactionContext().containsKey(SKIP_LOAD_PARENT_KEY)) {
-    		super.loadParents();
-    	}
-    }    
 }

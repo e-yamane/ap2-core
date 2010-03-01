@@ -138,6 +138,9 @@ public abstract class BaseCode  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Code.codeSystemId")
     public jp.rough_diamond.account.entity.CodeSystem getCodeSystem() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.codeSystem)) {
+            this.codeSystem = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.codeSystem);
+        }
         return this.codeSystem;
     }
 
@@ -148,17 +151,6 @@ public abstract class BaseCode  implements Serializable {
      */
     public void setCodeSystem(jp.rough_diamond.account.entity.CodeSystem v) {
         this.codeSystem = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadCodeSystem() {
-        jp.rough_diamond.account.entity.CodeSystem codeSystem = getCodeSystem();
-        if(codeSystem != null) {
-            Long pk = codeSystem.getId();
-            setCodeSystem(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.CodeSystem.class, pk)
-            );
-        }
     }
 
 //ForeignProperties.vm finish.

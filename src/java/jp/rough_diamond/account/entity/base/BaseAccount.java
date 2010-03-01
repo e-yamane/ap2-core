@@ -196,6 +196,9 @@ public abstract class BaseAccount  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Account.placeId")
     public jp.rough_diamond.account.entity.Place getPlace() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.place)) {
+            this.place = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.place);
+        }
         return this.place;
     }
 
@@ -206,17 +209,6 @@ public abstract class BaseAccount  implements Serializable {
      */
     public void setPlace(jp.rough_diamond.account.entity.Place v) {
         this.place = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadPlace() {
-        jp.rough_diamond.account.entity.Place place = getPlace();
-        if(place != null) {
-            Long pk = place.getId();
-            setPlace(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Place.class, pk)
-            );
-        }
     }
 
     private jp.rough_diamond.account.entity.Item item;
@@ -232,6 +224,9 @@ public abstract class BaseAccount  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Account.itemId")
     public jp.rough_diamond.account.entity.Item getItem() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.item)) {
+            this.item = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.item);
+        }
         return this.item;
     }
 
@@ -242,17 +237,6 @@ public abstract class BaseAccount  implements Serializable {
      */
     public void setItem(jp.rough_diamond.account.entity.Item v) {
         this.item = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadItem() {
-        jp.rough_diamond.account.entity.Item item = getItem();
-        if(item != null) {
-            Long pk = item.getId();
-            setItem(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Item.class, pk)
-            );
-        }
     }
 
     private jp.rough_diamond.account.entity.Party owner;
@@ -268,6 +252,9 @@ public abstract class BaseAccount  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Account.ownerId")
     public jp.rough_diamond.account.entity.Party getOwner() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.owner)) {
+            this.owner = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.owner);
+        }
         return this.owner;
     }
 
@@ -278,17 +265,6 @@ public abstract class BaseAccount  implements Serializable {
      */
     public void setOwner(jp.rough_diamond.account.entity.Party v) {
         this.owner = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadOwner() {
-        jp.rough_diamond.account.entity.Party owner = getOwner();
-        if(owner != null) {
-            Long pk = owner.getId();
-            setOwner(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Party.class, pk)
-            );
-        }
     }
 
 //ForeignProperties.vm finish.

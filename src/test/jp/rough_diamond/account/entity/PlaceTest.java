@@ -26,7 +26,7 @@ public class PlaceTest extends DataLoadingTestCase {
     }
 
 	public void testGetMaxRevision() throws Exception {
-		assertEquals("返却値が誤っています。", 13L, Place.getMaxRevision().longValue());
+		assertEquals("返却値が誤っています。", 38L, Place.getMaxRevision().longValue());
 	}
 
 	public void testGetChildren() throws Exception {

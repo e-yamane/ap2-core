@@ -215,6 +215,9 @@ public abstract class BasePartyCode  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="PartyCode.partyId")
     public jp.rough_diamond.account.entity.Party getTarget() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.target)) {
+            this.target = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.target);
+        }
         return this.target;
     }
 
@@ -225,17 +228,6 @@ public abstract class BasePartyCode  implements Serializable {
      */
     public void setTarget(jp.rough_diamond.account.entity.Party v) {
         this.target = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadTarget() {
-        jp.rough_diamond.account.entity.Party target = getTarget();
-        if(target != null) {
-            Long pk = target.getId();
-            setTarget(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Party.class, pk)
-            );
-        }
     }
 
 //ForeignProperties.vm finish.

@@ -186,6 +186,9 @@ public abstract class BaseEntry  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Entry.accountId")
     public jp.rough_diamond.account.entity.Account getAccount() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.account)) {
+            this.account = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.account);
+        }
         return this.account;
     }
 
@@ -196,17 +199,6 @@ public abstract class BaseEntry  implements Serializable {
      */
     public void setAccount(jp.rough_diamond.account.entity.Account v) {
         this.account = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadAccount() {
-        jp.rough_diamond.account.entity.Account account = getAccount();
-        if(account != null) {
-            Long pk = account.getId();
-            setAccount(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Account.class, pk)
-            );
-        }
     }
 
     private jp.rough_diamond.account.entity.Transaction transaction;
@@ -222,6 +214,9 @@ public abstract class BaseEntry  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Entry.transactionId")
     public jp.rough_diamond.account.entity.Transaction getTransaction() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.transaction)) {
+            this.transaction = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.transaction);
+        }
         return this.transaction;
     }
 
@@ -232,17 +227,6 @@ public abstract class BaseEntry  implements Serializable {
      */
     public void setTransaction(jp.rough_diamond.account.entity.Transaction v) {
         this.transaction = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadTransaction() {
-        jp.rough_diamond.account.entity.Transaction transaction = getTransaction();
-        if(transaction != null) {
-            Long pk = transaction.getId();
-            setTransaction(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Transaction.class, pk)
-            );
-        }
     }
 
 //ForeignProperties.vm finish.

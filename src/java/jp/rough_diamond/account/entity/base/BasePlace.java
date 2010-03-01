@@ -352,6 +352,9 @@ public abstract class BasePlace  implements Serializable {
      * @return the associated Place object
      */
     public jp.rough_diamond.account.entity.Place getParent() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.parent)) {
+            this.parent = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.parent);
+        }
         return this.parent;
     }
 
@@ -362,19 +365,6 @@ public abstract class BasePlace  implements Serializable {
      */
     public void setParent(jp.rough_diamond.account.entity.Place v) {
         this.parent = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadParents() {
-        jp.rough_diamond.account.entity.Place parent = getParent();
-        if(parent != null) {
-            jp.rough_diamond.account.entity.Place tmp = parent.getParent();
-            if(tmp != null) {
-                Long pk = tmp.getId();
-                parent.setParent(
-                        jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Place.class, pk));
-            }
-        }
     }
 
     private jp.rough_diamond.account.entity.Party owner;
@@ -390,6 +380,9 @@ public abstract class BasePlace  implements Serializable {
      */
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Place.ownerId")
     public jp.rough_diamond.account.entity.Party getOwner() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.owner)) {
+            this.owner = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.owner);
+        }
         return this.owner;
     }
 
@@ -400,17 +393,6 @@ public abstract class BasePlace  implements Serializable {
      */
     public void setOwner(jp.rough_diamond.account.entity.Party v) {
         this.owner = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadOwner() {
-        jp.rough_diamond.account.entity.Party owner = getOwner();
-        if(owner != null) {
-            Long pk = owner.getId();
-            setOwner(
-                    jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Party.class, pk)
-            );
-        }
     }
 
 //ForeignProperties.vm finish.

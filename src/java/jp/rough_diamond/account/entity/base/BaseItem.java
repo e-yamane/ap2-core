@@ -187,6 +187,9 @@ public abstract class BaseItem  implements Serializable {
      * @return the associated Item object
      */
     public jp.rough_diamond.account.entity.Item getParent() {
+        if(jp.rough_diamond.commons.service.BasicService.isProxy(this.parent)) {
+            this.parent = jp.rough_diamond.commons.service.BasicService.getService().replaceProxy(this.parent);
+        }
         return this.parent;
     }
 
@@ -197,19 +200,6 @@ public abstract class BaseItem  implements Serializable {
      */
     public void setParent(jp.rough_diamond.account.entity.Item v) {
         this.parent = v;
-    }
-
-    @jp.rough_diamond.commons.service.annotation.PostLoad
-    public void loadParents() {
-        jp.rough_diamond.account.entity.Item parent = getParent();
-        if(parent != null) {
-            jp.rough_diamond.account.entity.Item tmp = parent.getParent();
-            if(tmp != null) {
-                Long pk = tmp.getId();
-                parent.setParent(
-                        jp.rough_diamond.commons.service.BasicService.getService().findByPK(jp.rough_diamond.account.entity.Item.class, pk));
-            }
-        }
     }
 
 //ForeignProperties.vm finish.

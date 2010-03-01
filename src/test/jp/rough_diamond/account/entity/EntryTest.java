@@ -16,4 +16,8 @@ public class EntryTest extends DataLoadingTestCase {
 		Entry e = BasicService.getService().findByPK(Entry.class, 7L);
 		assertEquals("残数が誤っています。", 20L, e.getBalance().longValue());
 	}
+
+//	public void testGetEntry() throws Exception {
+//		Entry e = BasicService.getService().findByPK(Entry.class, 1L);
+//	}
 }
