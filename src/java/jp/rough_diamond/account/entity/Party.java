@@ -26,11 +26,11 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     	setRevision(DUMMY_REVISION);					//dummy
     }
 
-	public static Party getPartyByPartyCode(String partyCode) {
+	public static <T extends Party> T getPartyByPartyCode(String partyCode) {
 		Extractor ex = new Extractor(Party.class);
 		ex.add(Condition.eq(new Property(Party.PARTY_CODE), partyCode));
-		List<Party> parties = BasicService.getService().findByExtractor(ex);
-		return (parties.size() == 0) ? null : parties.get(0);
+		List<T> parties = BasicService.getService().findByExtractor(ex);
+		return (parties.size() == 0) ? null : (T)parties.get(0);
 	}
 
 	public static Long getMaxRevision() {
@@ -50,24 +50,25 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     	return BasicService.getService().findByExtractor(extractor);
     }
     
-    public static Party getPartyByCode(String systemName, String code) {
+    public static <T extends Party> T getPartyByCode(String systemName, String code) {
     	return getPartyByCode(CodeSystem.getCodeSystemByName(systemName), code);
     }
     
-    public static Party getPartyByCode(String systemName, String code, Date date) {
+    public static <T extends Party> T getPartyByCode(String systemName, String code, Date date) {
     	return getPartyByCode(CodeSystem.getCodeSystemByName(systemName), code, date);
     }
     
-    public static Party getPartyByCode(CodeSystem system, String code) {
+    public static <T extends Party> T getPartyByCode(CodeSystem system, String code) {
     	return getPartyByCode(system, code, new Date());
     }
     
-    public static Party getPartyByCode(CodeSystem system, String code, Date date) {
+    @SuppressWarnings("unchecked")
+	public static <T extends Party> T getPartyByCode(CodeSystem system, String code, Date date) {
     	List<PartyCode> targets = Code.getTargetHoldersByCode(PartyCode.class, PartyCode.CI, system, code, date);
     	for(PartyCode target : targets) {
     		String code2 = target.getTarget().getCode(system, date);
     		if(code2.equals(code)) {
-    			return target.getTarget();
+    			return (T)target.getTarget();
     		}
     	}
     	return null;

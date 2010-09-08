@@ -34,10 +34,10 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     	setRevision(DUMMY_REVISION);					//dummy
     }
     
-    public static Place getPlaceByPlaceCode(String placeCode) {
+    public static <T extends Place> T getPlaceByPlaceCode(String placeCode) {
 		Extractor ex = new Extractor(Place.class);
 		ex.add(Condition.eq(new Property(Place.PLACE_CODE), placeCode));
-		List<Place> places = BasicService.getService().findByExtractor(ex);
+		List<T> places = BasicService.getService().findByExtractor(ex);
 		return (places.size() == 0) ? null : places.get(0);
     }
     
@@ -132,24 +132,25 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
 		}
 	}
 
-    public static Place getPlaceByCode(String systemName, String code) {
+    public static <T extends Place> T getPlaceByCode(String systemName, String code) {
     	return getPlaceByCode(CodeSystem.getCodeSystemByName(systemName), code);
     }
     
-    public static Place getPlaceByCode(String systemName, String code, Date date) {
+    public static <T extends Place> T getPlaceByCode(String systemName, String code, Date date) {
     	return getPlaceByCode(CodeSystem.getCodeSystemByName(systemName), code, date);
     }
     
-    public static Place getPlaceByCode(CodeSystem system, String code) {
+    public static <T extends Place> T getPlaceByCode(CodeSystem system, String code) {
     	return getPlaceByCode(system, code, new Date());
     }
     
-    public static Place getPlaceByCode(CodeSystem system, String code, Date date) {
+    @SuppressWarnings("unchecked")
+	public static <T extends Place> T getPlaceByCode(CodeSystem system, String code, Date date) {
     	List<PlaceCode> targets = Code.getTargetHoldersByCode(PlaceCode.class, PlaceCode.CI, system, code, date);
     	for(PlaceCode target : targets) {
     		String code2 = target.getTarget().getCode(system, date);
     		if(code2.equals(code)) {
-    			return target.getTarget();
+    			return (T)target.getTarget();
     		}
     	}
     	return null;
