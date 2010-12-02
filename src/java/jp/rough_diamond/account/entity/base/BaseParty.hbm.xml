@@ -32,7 +32,7 @@
             update="true"
             insert="true"
             column="PARTY_CODE"
-            length="256"
+            length="255"
             not-null="true"
         />
 
@@ -42,7 +42,7 @@
             update="true"
             insert="true"
             column="NAME"
-            length="256"
+            length="255"
             not-null="true"
         />
 

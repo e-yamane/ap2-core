@@ -164,10 +164,10 @@ public abstract class BaseParty  implements Serializable {
      * @hibernate.property
      *    column="PARTY_CODE"
      *    not-null="true"
-     *    length="256"
+     *    length="255"
      * @return 内部管理用パーティコード
     **/
-    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Party.partyCode")
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=255, property="Party.partyCode")
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Party.partyCode")
     public String getPartyCode() {
         return partyCode;
@@ -191,10 +191,10 @@ public abstract class BaseParty  implements Serializable {
      * @hibernate.property
      *    column="NAME"
      *    not-null="true"
-     *    length="256"
+     *    length="255"
      * @return パーティ名
     **/
-    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Party.name")
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=255, property="Party.name")
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Party.name")
     public String getName() {
         return name;

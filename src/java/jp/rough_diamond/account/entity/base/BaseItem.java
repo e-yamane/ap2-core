@@ -156,10 +156,10 @@ public abstract class BaseItem  implements Serializable {
      * @hibernate.property
      *    column="NAME"
      *    not-null="true"
-     *    length="256"
+     *    length="255"
      * @return 品目名
     **/
-    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Item.name")
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=255, property="Item.name")
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Item.name")
     public String getName() {
         return name;

@@ -2,7 +2,7 @@
 -----------------------------------------------------------------------------
 -- UNIT
 -----------------------------------------------------------------------------
-DROP TABLE UNIT;
+DROP TABLE UNIT CASCADE;
 
 
 CREATE TABLE UNIT
@@ -11,7 +11,7 @@ CREATE TABLE UNIT
     NAME varchar (32) NOT NULL,
     DESCRIPTION varchar (64),
       -- REFERENCES UNIT (ID)
-    BASE_UNIT_ID int8 NOT NULL,
+    BASE_UNIT_ID int8,
         RATE_VALUE int8 NOT NULL,
     RATE_SCALE integer NOT NULL,
     SCALE integer NOT NULL,
@@ -34,7 +34,7 @@ COMMENT ON COLUMN UNIT.VERSION IS '楽観的ロッキングキー';
 -----------------------------------------------------------------------------
 -- numbering
 -----------------------------------------------------------------------------
-DROP TABLE numbering;
+DROP TABLE numbering CASCADE;
 
 
 CREATE TABLE numbering

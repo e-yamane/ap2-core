@@ -164,10 +164,10 @@ public abstract class BasePlace  implements Serializable {
      * @hibernate.property
      *    column="PLACE_CODE"
      *    not-null="true"
-     *    length="256"
+     *    length="255"
      * @return 内部管理用場所コード
     **/
-    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Place.placeCode")
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=255, property="Place.placeCode")
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Place.placeCode")
     public String getPlaceCode() {
         return placeCode;
@@ -191,10 +191,10 @@ public abstract class BasePlace  implements Serializable {
      * @hibernate.property
      *    column="NAME"
      *    not-null="true"
-     *    length="256"
+     *    length="255"
      * @return 場所名
     **/
-    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="Place.name")
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=255, property="Place.name")
     @jp.rough_diamond.commons.service.annotation.NotNull(property="Place.name")
     public String getName() {
         return name;

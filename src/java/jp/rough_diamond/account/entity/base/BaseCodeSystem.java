@@ -164,10 +164,10 @@ public abstract class BaseCodeSystem  implements Serializable {
      * @hibernate.property
      *    column="NAME"
      *    not-null="true"
-     *    length="256"
+     *    length="255"
      * @return コード体系名
     **/
-    @jp.rough_diamond.commons.service.annotation.MaxLength(length=256, property="CodeSystem.name")
+    @jp.rough_diamond.commons.service.annotation.MaxLength(length=255, property="CodeSystem.name")
     @jp.rough_diamond.commons.service.annotation.NotNull(property="CodeSystem.name")
     public String getName() {
         return name;

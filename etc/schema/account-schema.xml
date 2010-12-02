@@ -85,7 +85,7 @@ DTDは、
 
   <table name="ITEM" description="品目">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
-    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="品目名" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="255"  description="品目名" />
     <column name="PARENT_ID"                    required="false"  domain="oid"                description="親品目ID" />
     <foreign-key foreignTable="ITEM" name="parent" onUpdate="cascade" onDelete="cascade">
       <reference local="PARENT_ID" foreign="ID" />
@@ -104,8 +104,8 @@ DTDは、
 
   <table name="PLACE" description="場所">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                      description="OID" />
-    <column name="PLACE_CODE"                   required="true"   type="VARCHAR"      size="256"    description="内部管理用場所コード" />
-    <column name="NAME"                         required="true"   type="VARCHAR"      size="256"    description="場所名" />
+    <column name="PLACE_CODE"                   required="true"   type="VARCHAR"      size="255"    description="内部管理用場所コード" />
+    <column name="NAME"                         required="true"   type="VARCHAR"      size="255"    description="場所名" />
     <column name="VIRTUAL"                      required="true"   type="BOOLEANCHAR" default="N"    description="論理的な場所" />
     <column name="PARENT_ID"                    required="false"  domain="oid"                      description="親場所ID" />
     <column name="OWNER_ID"                     required="true"   domain="oid"                      description="所有者OID" />
@@ -135,8 +135,8 @@ DTDは、
 
   <table name="PARTY" description="パーティ">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
-    <column name="PARTY_CODE"                   required="true"   type="VARCHAR"  size="256"  description="内部管理用パーティコード" />
-    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="パーティ名" />
+    <column name="PARTY_CODE"                   required="true"   type="VARCHAR"  size="255"  description="内部管理用パーティコード" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="255"  description="パーティ名" />
     <column name="REVISION"                     required="true"   type="BIGINT"               description="リビジョン" />
     <column name="STATUS_CODE"                  required="true"   type="VARCHAR"  size="2"    description="ステータスコード" />
     <column name="TS" javaName="timeStamp"      required="true"   type="UPDATE_TIMESTAMP"     description="更新日時情報" />
@@ -158,7 +158,7 @@ DTDは、
 
   <table name="CODE_SYSTEM" description="コード体系">
     <column name="ID"         primaryKey="true" required="true"   domain="oid"                description="OID" />
-    <column name="NAME"                         required="true"   type="VARCHAR"  size="256"  description="コード体系名" />
+    <column name="NAME"                         required="true"   type="VARCHAR"  size="255"  description="コード体系名" />
     <unique name="1">
       <unique-column name="NAME" />
     </unique>

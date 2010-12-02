@@ -2,7 +2,7 @@
 -----------------------------------------------------------------------------
 -- TRANSACTION_MAPPER
 -----------------------------------------------------------------------------
-DROP TABLE TRANSACTION_MAPPER;
+DROP TABLE TRANSACTION_MAPPER CASCADE;
 
 
 CREATE TABLE TRANSACTION_MAPPER
@@ -25,7 +25,7 @@ COMMENT ON COLUMN TRANSACTION_MAPPER.AFTER_TRANSACTION_ID IS '先トランザクション
 -----------------------------------------------------------------------------
 -- ENTRY
 -----------------------------------------------------------------------------
-DROP TABLE ENTRY;
+DROP TABLE ENTRY CASCADE;
 
 
 CREATE TABLE ENTRY
@@ -49,7 +49,7 @@ COMMENT ON COLUMN ENTRY.TRANSACTION_ID IS 'トランザクションID';
 -----------------------------------------------------------------------------
 -- TRANSACTION
 -----------------------------------------------------------------------------
-DROP TABLE TRANSACTION;
+DROP TABLE TRANSACTION CASCADE;
 
 
 CREATE TABLE TRANSACTION
@@ -71,7 +71,7 @@ COMMENT ON COLUMN TRANSACTION.PROCESS_DATE IS '取引日';
 -----------------------------------------------------------------------------
 -- ACCOUNT
 -----------------------------------------------------------------------------
-DROP TABLE ACCOUNT;
+DROP TABLE ACCOUNT CASCADE;
 
 
 CREATE TABLE ACCOUNT
@@ -99,13 +99,13 @@ COMMENT ON COLUMN ACCOUNT.REGISTER_DATE IS '勘定作成日';
 -----------------------------------------------------------------------------
 -- ITEM
 -----------------------------------------------------------------------------
-DROP TABLE ITEM;
+DROP TABLE ITEM CASCADE;
 
 
 CREATE TABLE ITEM
 (
     ID int8 NOT NULL,
-    NAME varchar (256) NOT NULL,
+    NAME varchar (255) NOT NULL,
       -- REFERENCES ITEM (ID)
     PARENT_ID int8,
     PRIMARY KEY (ID)
@@ -120,7 +120,7 @@ COMMENT ON COLUMN ITEM.PARENT_ID IS '親品目ID';
 -----------------------------------------------------------------------------
 -- PLACE_CODE
 -----------------------------------------------------------------------------
-DROP TABLE PLACE_CODE;
+DROP TABLE PLACE_CODE CASCADE;
 
 
 CREATE TABLE PLACE_CODE
@@ -156,14 +156,14 @@ COMMENT ON COLUMN PLACE_CODE.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- PLACE
 -----------------------------------------------------------------------------
-DROP TABLE PLACE;
+DROP TABLE PLACE CASCADE;
 
 
 CREATE TABLE PLACE
 (
     ID int8 NOT NULL,
-    PLACE_CODE varchar (256) NOT NULL,
-    NAME varchar (256) NOT NULL,
+    PLACE_CODE varchar (255) NOT NULL,
+    NAME varchar (255) NOT NULL,
     VIRTUAL char default 'N' NOT NULL,
       -- REFERENCES PLACE (ID)
     PARENT_ID int8,
@@ -194,7 +194,7 @@ COMMENT ON COLUMN PLACE.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- PARTY_CODE
 -----------------------------------------------------------------------------
-DROP TABLE PARTY_CODE;
+DROP TABLE PARTY_CODE CASCADE;
 
 
 CREATE TABLE PARTY_CODE
@@ -230,14 +230,14 @@ COMMENT ON COLUMN PARTY_CODE.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- PARTY
 -----------------------------------------------------------------------------
-DROP TABLE PARTY;
+DROP TABLE PARTY CASCADE;
 
 
 CREATE TABLE PARTY
 (
     ID int8 NOT NULL,
-    PARTY_CODE varchar (256) NOT NULL,
-    NAME varchar (256) NOT NULL,
+    PARTY_CODE varchar (255) NOT NULL,
+    NAME varchar (255) NOT NULL,
     REVISION int8 NOT NULL,
     STATUS_CODE varchar (2) NOT NULL,
         TS_REGISTERER_DATE timestamp NOT NULL,
@@ -260,13 +260,13 @@ COMMENT ON COLUMN PARTY.TS_LAST_MODIFIED_DATE IS '更新日時情報 最終更新日';
 -----------------------------------------------------------------------------
 -- CODE_SYSTEM
 -----------------------------------------------------------------------------
-DROP TABLE CODE_SYSTEM;
+DROP TABLE CODE_SYSTEM CASCADE;
 
 
 CREATE TABLE CODE_SYSTEM
 (
     ID int8 NOT NULL,
-    NAME varchar (256) NOT NULL,
+    NAME varchar (255) NOT NULL,
     PRIMARY KEY (ID),
     CONSTRAINT unq_CODE_SYSTEM_1 UNIQUE (NAME)
 );
