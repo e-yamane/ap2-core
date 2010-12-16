@@ -148,28 +148,30 @@ public abstract class BaseEntry  implements Serializable {
     /**
      * 移動量
     **/ 
-    private Long quantity;
-    public final static String QUANTITY = "quantity";
+    private jp.rough_diamond.commons.entity.Amount amount =  new jp.rough_diamond.commons.entity.Amount();
+
+    public final static String AMOUNT = "amount.";
 
     /**
      * 移動量を取得する
-     * @hibernate.property
-     *    column="QUANTITY"
-     *    not-null="true"
+     * @hibernate.component
+     *    prefix="AMOUNT_"
      * @return 移動量
     **/
-    @jp.rough_diamond.commons.service.annotation.NotNull(property="Entry.quantity")
-    public Long getQuantity() {
-        return quantity;
+    @jp.rough_diamond.commons.service.annotation.NotNull(property="Entry.amount")
+    @jp.rough_diamond.commons.service.annotation.NestedComponent(property="Entry.amount")
+    public jp.rough_diamond.commons.entity.Amount getAmount() {
+        return amount;
     }
 
     /**
      * 移動量を設定する
-     * @param quantity  移動量
+     * @param amount  移動量
     **/
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
+    public void setAmount(jp.rough_diamond.commons.entity.Amount amount) {
+        this.amount = amount;
     }
+
 //ForeignProperties.vm start.
 
     

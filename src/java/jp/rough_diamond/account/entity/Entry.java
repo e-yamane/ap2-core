@@ -1,5 +1,11 @@
 package jp.rough_diamond.account.entity;
 
+import jp.rough_diamond.commons.entity.Amount;
+import jp.rough_diamond.commons.entity.ScalableNumber;
+import jp.rough_diamond.commons.extractor.FreeFormat;
+import jp.rough_diamond.commons.extractor.Property;
+import jp.rough_diamond.commons.extractor.Value;
+
 /**
  * エントリーのHibernateマッピングクラス
 **/
@@ -25,5 +31,27 @@ public class Entry extends jp.rough_diamond.account.entity.base.BaseEntry {
     		return getQuantity();
     	}
     	return a.getBalance(t.getProcessDate(), isGrossItem, isGrossPlace) + getQuantity();
+    }
+
+    @Deprecated
+    public Long getQuantity() {
+    	return getAmount().getQuantity().longValue();
+    }
+    
+    @Deprecated
+    public void setQuantity(Long quantity) {
+    	getAmount().setQuantity(new ScalableNumber(quantity, 0));
+    }
+    
+    public static Value getQuantityProperty() {
+    	return getQuantityProperty(null);
+    }
+    
+    public static Value getQuantityProperty(String alias) {
+    	FreeFormat ff = new FreeFormat("? * power(10, ?)",
+    			new Property(Entry.class, alias, Entry.AMOUNT + Amount.Q + ScalableNumber.VALUE), 
+    			new Property(Entry.class, alias, Entry.AMOUNT + Amount.Q + ScalableNumber.SCALE)
+    	);
+    	return ff;
     }
 }

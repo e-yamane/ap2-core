@@ -37,6 +37,16 @@ ALTER TABLE ENTRY
     ON UPDATE CASCADE
     ON DELETE CASCADE 
 ;
+ALTER TABLE ENTRY
+    ADD CONSTRAINT fk_ENTRY__3 FOREIGN KEY (
+      AMOUNT_UNIT_ID
+    )
+    REFERENCES UNIT (ID)
+    ON UPDATE RESTRICT
+    ON DELETE RESTRICT 
+;
+
+
 
 # -----------------------------------------------------------------------
 # ENTRY

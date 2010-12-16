@@ -26,14 +26,50 @@
             </generator>
         </id>
 
-        <property
+        <component
+            name="amount"
+            class="jp.rough_diamond.commons.entity.Amount"
+        >
+
+        <component
             name="quantity"
+            class="jp.rough_diamond.commons.entity.ScalableNumber"
+        >
+
+        <property
+            name="value"
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="QUANTITY"
+            column="AMOUNT_Q_VALUE"
             not-null="true"
         />
+
+        <property
+            name="scale"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="AMOUNT_Q_SCALE"
+            not-null="true"
+        />
+
+        </component>
+
+        <many-to-one
+            name="unit"
+            class="jp.rough_diamond.commons.entity.Unit"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="AMOUNT_UNIT_ID" 
+            />
+        </many-to-one>
+
+        </component>
 
         <many-to-one
             name="account"

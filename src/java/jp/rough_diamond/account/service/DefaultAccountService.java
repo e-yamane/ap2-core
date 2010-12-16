@@ -121,7 +121,7 @@ public class DefaultAccountService implements AccountService {
 		if(e == null) {
 			return 0L;
 		}
-		e.addExtractValue(new ExtractValue("quantity", new Sum(new Property(Entry.QUANTITY))));
+		e.addExtractValue(new ExtractValue("quantity", new Sum(Entry.getQuantityProperty())));
 		List<Map<String, Long>> list = BasicService.getService().findByExtractor(e);
 		if(list.size() == 0) {
 			return 0L;

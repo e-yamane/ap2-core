@@ -43,7 +43,7 @@ DTDは、
 
   <table name="ENTRY" description="エントリー">
     <column name="ID"           primaryKey="true" required="true"   domain="oid"  description="OID" />
-    <column name="QUANTITY"                       required="true"   type="BIGINT" description="移動量" />
+    <column name="AMOUNT"                         required="true"   type="AMOUNT" description="移動量" />
     <column name="ACCOUNT_ID"                     required="true"   domain="oid"  description="勘定ID" />
     <column name="TRANSACTION_ID"                 required="true"   domain="oid"  description="トランザクションID" />
     <foreign-key foreignTable="ACCOUNT" name="account" onUpdate="cascade" onDelete="cascade">

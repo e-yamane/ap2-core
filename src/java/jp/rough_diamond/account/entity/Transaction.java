@@ -139,7 +139,7 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     public List<Entry> getFromEntries() {
         List<Entry> ret = new ArrayList<Entry>();
         for(Entry e : getEntries()) {
-            if(e.getQuantity() < 0L) {
+            if(e.getAmount().getQuantity().getValue() < 0L) {
                 ret.add(e);
             }
         }
