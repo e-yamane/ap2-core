@@ -154,11 +154,12 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     }
     
     private List<Entry> loadEntries() {
-        if(getId() == null) {
+        Long id = (oldId == null) ? getId() : oldId;
+        if(id == null) {
             return new ArrayList<Entry>();
         }
         Extractor e = new Extractor(Entry.class);
-        e.add(Condition.eq(new Property(Entry.TRANSACTION), this));
+        e.add(Condition.eq(new Property(Entry.TRANSACTION + "." + Transaction.ID), id));
         e.addOrder(Order.asc(new Property(Entry.ID)));
         return BasicService.getService().findByExtractor(e, true);
     }

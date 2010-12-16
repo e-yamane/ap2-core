@@ -65,6 +65,15 @@ public class TransactionTest extends DataLoadingTestCase {
 		return t;
 	}
 	
+	public void test読み込み直後に何もせずに保存すてもEntryとの関係は保たれていること() throws Exception {
+		Transaction t1 = BasicService.getService().findByPK(Transaction.class, 1L);
+		assertEquals("Entryの個数が誤っています。", 2, t1.getEntries().size());
+		t1 = BasicService.getService().findByPK(Transaction.class, 1L);
+		t1.save();
+		t1 = BasicService.getService().findByPK(Transaction.class, t1.getId());
+		assertEquals("Entryの個数が誤っています。", 2, t1.getEntries().size());
+	}
+	
 	public static class TransactionTestService implements Service {
 		public Transaction doIt() throws VersionUnmuchException, MessagesIncludingException {
 			return doInsert();
