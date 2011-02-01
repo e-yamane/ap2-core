@@ -19,7 +19,7 @@ java.util.ArrayList
 
   File to be created: account-schema.sql
 
-    Primary Key: No     Primary Key: No     Primary Key: Yes     Primary Key: No     Primary Key: Yes     Primary Key: Yes       
+    Primary Key: No     Primary Key: No     Primary Key: No     Primary Key: Yes     Primary Key: No     Primary Key: Yes     Primary Key: Yes       
     Primary Key: Yes       
     Primary Key: Yes       
     Primary Key: Yes       

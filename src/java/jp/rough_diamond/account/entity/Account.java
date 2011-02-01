@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import jp.rough_diamond.account.service.AccountService;
+import jp.rough_diamond.commons.entity.Quantity;
 import jp.rough_diamond.commons.service.annotation.PrePersist;
 import jp.rough_diamond.framework.service.ServiceLocator;
 
@@ -27,15 +28,15 @@ public class Account extends jp.rough_diamond.account.entity.base.BaseAccount {
         return ServiceLocator.getService(AccountService.class);
     }
     
-    public Long getBalance() {
+    public Quantity getBalance() {
         return getBalance(new Date());
     }
     
-    public Long getBalance(Date date) {
+    public Quantity getBalance(Date date) {
         return getBalance(date, false, false);
     }
     
-    public Long getBalance(Date date, boolean isGrossItem, boolean isGrossPlace) {
+    public Quantity getBalance(Date date, boolean isGrossItem, boolean isGrossPlace) {
         return getService().getBalance(this, date, isGrossItem, isGrossPlace);
     }
     

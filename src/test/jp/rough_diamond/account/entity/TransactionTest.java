@@ -59,8 +59,8 @@ public class TransactionTest extends DataLoadingTestCase {
 		Transaction t1 = BasicService.getService().findByPK(Transaction.class, 1L);
 		System.out.println(t1.getRegisterDate());
 		Transaction t = BasicService.getService().findByPK(Transaction.class, 10L);
-		t.getFromEntries().get(0).setQuantity(-20L);
-		t.getToEntries().get(0).setQuantity(20L);
+		t.getFromEntries().get(0).setQuantityValue(-20L);
+		t.getToEntries().get(0).setQuantityValue(20L);
 		t.save();
 		return t;
 	}
@@ -89,7 +89,7 @@ public class TransactionTest extends DataLoadingTestCase {
 		Entry e = new Entry();
 		BasicService service = BasicService.getService();
 		e.setAccount(service.findByPK(Account.class, 1L));
-		e.setQuantity(10L);
+		e.setQuantityValue(10L);
 		pt.setEntries(Arrays.asList(new Entry[]{e}));
 		service.insert(pt);
 		Extractor ex = new Extractor(TransactionMapper.class);
@@ -108,7 +108,7 @@ public class TransactionTest extends DataLoadingTestCase {
 		Entry e = new Entry();
 		BasicService service = BasicService.getService();
 		e.setAccount(service.findByPK(Account.class, 1L));
-		e.setQuantity(10L);
+		e.setQuantityValue(10L);
 		pt.setEntries(Arrays.asList(new Entry[]{e}));
 
 		TransactionMapper tm = service.findByPK(TransactionMapper.class, 10L);

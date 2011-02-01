@@ -8,6 +8,7 @@ import jp.rough_diamond.account.entity.Entry;
 import jp.rough_diamond.account.entity.Item;
 import jp.rough_diamond.account.entity.Party;
 import jp.rough_diamond.account.entity.Place;
+import jp.rough_diamond.commons.entity.Quantity;
 import jp.rough_diamond.framework.service.Service;
 
 public interface AccountService extends Service {
@@ -24,7 +25,7 @@ public interface AccountService extends Service {
 
 	public Account getAccount(Long placeId, Long itemId, Party owner);
 	
-	public Long getBalance(Account account,
+	public Quantity getBalance(Account account,
 			Date date, boolean isGrossItem, boolean isGrossPlace);
 	public List<Entry> getTrend(Account account,
 			Date from, Date to, boolean isGrossItem, boolean isGrossPlace);

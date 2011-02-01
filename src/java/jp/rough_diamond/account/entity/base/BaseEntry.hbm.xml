@@ -27,12 +27,12 @@
         </id>
 
         <component
-            name="amount"
-            class="jp.rough_diamond.commons.entity.Amount"
+            name="quantity"
+            class="jp.rough_diamond.commons.entity.Quantity"
         >
 
         <component
-            name="quantity"
+            name="amount"
             class="jp.rough_diamond.commons.entity.ScalableNumber"
         >
 
@@ -41,7 +41,7 @@
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="AMOUNT_Q_VALUE"
+            column="QUANTITY_A_VALUE"
             not-null="true"
         />
 
@@ -50,7 +50,7 @@
             type="java.lang.Integer"
             update="true"
             insert="true"
-            column="AMOUNT_Q_SCALE"
+            column="QUANTITY_A_SCALE"
             not-null="true"
         />
 
@@ -65,7 +65,7 @@
             insert="true"
         >
             <column
-                name="AMOUNT_UNIT_ID" 
+                name="QUANTITY_UNIT_ID" 
             />
         </many-to-one>
 

@@ -1,6 +1,8 @@
 package jp.rough_diamond.account.entity;
 
-import jp.rough_diamond.commons.entity.Amount;
+import java.math.BigDecimal;
+
+import jp.rough_diamond.commons.entity.Quantity;
 import jp.rough_diamond.commons.entity.ScalableNumber;
 import jp.rough_diamond.commons.extractor.FreeFormat;
 import jp.rough_diamond.commons.extractor.Property;
@@ -16,7 +18,7 @@ public class Entry extends jp.rough_diamond.account.entity.base.BaseEntry {
      * 現時点のバランスを返却する
      * @return
      */
-    public Long getBalance() {
+    public Quantity getBalance() {
     	return getBalance(false, false);
     }
 
@@ -24,23 +26,27 @@ public class Entry extends jp.rough_diamond.account.entity.base.BaseEntry {
      * 現時点のバランスを返却する
      * @return
      */
-    public Long getBalance(boolean isGrossItem, boolean isGrossPlace) {
+    public Quantity getBalance(boolean isGrossItem, boolean isGrossPlace) {
     	Account a = getAccount();
     	Transaction t = getTransaction();
     	if(a == null || t == null) {
-    		return getQuantity();
+    		//TODO 単位は無視
+    		return new Quantity(BigDecimal.ZERO, null);
     	}
-    	return a.getBalance(t.getProcessDate(), isGrossItem, isGrossPlace) + getQuantity();
+    	//TODO 単位は無視
+    	Quantity q = a.getBalance(t.getProcessDate(), isGrossItem, isGrossPlace);
+    	return new Quantity(q.decimal().add(getQuantity().getAmount().decimal()), null);
     }
 
+    
     @Deprecated
-    public Long getQuantity() {
-    	return getAmount().getQuantity().longValue();
+    public Long getQuantityValue() {
+    	return getQuantity().getAmount().longValue();
     }
     
     @Deprecated
-    public void setQuantity(Long quantity) {
-    	getAmount().setQuantity(new ScalableNumber(quantity, 0));
+    public void setQuantityValue(Long quantity) {
+    	getQuantity().setAmount(new ScalableNumber(quantity, 0));
     }
     
     public static Value getQuantityProperty() {
@@ -48,9 +54,9 @@ public class Entry extends jp.rough_diamond.account.entity.base.BaseEntry {
     }
     
     public static Value getQuantityProperty(String alias) {
-    	FreeFormat ff = new FreeFormat("? * power(10, ?)",
-    			new Property(Entry.class, alias, Entry.AMOUNT + Amount.Q + ScalableNumber.VALUE), 
-    			new Property(Entry.class, alias, Entry.AMOUNT + Amount.Q + ScalableNumber.SCALE)
+    	FreeFormat ff = new FreeFormat("? * power(10, ? * -1)",
+    			new Property(Entry.class, alias, Entry.QUANTITY + Quantity.A + ScalableNumber.VALUE), 
+    			new Property(Entry.class, alias, Entry.QUANTITY + Quantity.A + ScalableNumber.SCALE)
     	);
     	return ff;
     }

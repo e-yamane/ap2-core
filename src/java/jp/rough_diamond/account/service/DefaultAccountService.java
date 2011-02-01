@@ -1,5 +1,6 @@
 package jp.rough_diamond.account.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -13,6 +14,7 @@ import jp.rough_diamond.account.entity.Item;
 import jp.rough_diamond.account.entity.Party;
 import jp.rough_diamond.account.entity.Place;
 import jp.rough_diamond.account.entity.Transaction;
+import jp.rough_diamond.commons.entity.Quantity;
 import jp.rough_diamond.commons.extractor.Condition;
 import jp.rough_diamond.commons.extractor.ExtractValue;
 import jp.rough_diamond.commons.extractor.Extractor;
@@ -100,7 +102,7 @@ public class DefaultAccountService implements AccountService {
 				owner);
 	}
 	
-	public Long getBalance(Account account,
+	public Quantity getBalance(Account account,
 			Date date, boolean isGrossItem, boolean isGrossPlace) {
 		//TODO 計算結果をキャッシュした場合の処理は未実装
 /*
@@ -119,14 +121,15 @@ public class DefaultAccountService implements AccountService {
 */
 		Extractor e = getTrendExtractor(account, null, date, isGrossItem, isGrossPlace);
 		if(e == null) {
-			return 0L;
+			return new Quantity(BigDecimal.ZERO, null);
 		}
-		e.addExtractValue(new ExtractValue("quantity", new Sum(Entry.getQuantityProperty())));
-		List<Map<String, Long>> list = BasicService.getService().findByExtractor(e);
+		e.addExtractValue(new ExtractValue("quantity", new Sum(Entry.getQuantityProperty()), BigDecimal.class));
+		e.setReturnType(BigDecimal.class);
+		List<BigDecimal> list = BasicService.getService().findByExtractor(e);
 		if(list.size() == 0) {
-			return 0L;
+			return new Quantity(BigDecimal.ZERO, null);
 		} else {
-			return list.get(0).get("quantity");
+			return new Quantity(list.get(0), null);
 		}
 	}
 	
