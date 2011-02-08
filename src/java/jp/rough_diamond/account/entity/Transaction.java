@@ -112,7 +112,9 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     @PostPersist(priority=0)
     @PostUpdate(priority=0)
     public void insertEntries() throws MessagesIncludingException {
-        log.debug("PK:" + getId());
+        if(log.isDebugEnabled()) {
+        	log.debug("PK:" + getId());
+        }
         BasicService service = BasicService.getService();
         Transaction t = service.findByPK(Transaction.class, getId());
         log.debug(t.getClass().getName());
