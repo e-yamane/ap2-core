@@ -32,7 +32,6 @@ public abstract class BaseCodeSystem  implements Serializable {
     **/
     public BaseCodeSystem() {
     }
-
     /**
      * OID
     **/ 

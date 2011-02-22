@@ -24,7 +24,6 @@ public abstract class BaseEntry  implements Serializable {
     **/
     public BaseEntry() {
     }
-
     /**
      * OID
     **/ 

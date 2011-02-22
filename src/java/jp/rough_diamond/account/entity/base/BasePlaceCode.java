@@ -24,7 +24,6 @@ public abstract class BasePlaceCode  implements Serializable {
     **/
     public BasePlaceCode() {
     }
-
     /**
      * OID
     **/ 

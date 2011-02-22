@@ -33,7 +33,6 @@ public abstract class BaseTransactionMapper  implements Serializable {
     **/
     public BaseTransactionMapper() {
     }
-
     /**
      * OID
     **/ 

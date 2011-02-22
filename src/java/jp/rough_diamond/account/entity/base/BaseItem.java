@@ -24,7 +24,6 @@ public abstract class BaseItem  implements Serializable {
     **/
     public BaseItem() {
     }
-
     /**
      * OID
     **/ 

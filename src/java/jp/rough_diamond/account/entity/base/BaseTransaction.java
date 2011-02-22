@@ -24,7 +24,6 @@ public abstract class BaseTransaction  implements Serializable {
     **/
     public BaseTransaction() {
     }
-
     /**
      * OID
     **/ 

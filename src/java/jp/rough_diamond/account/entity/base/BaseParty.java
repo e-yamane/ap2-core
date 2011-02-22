@@ -32,7 +32,6 @@ public abstract class BaseParty  implements Serializable {
     **/
     public BaseParty() {
     }
-
     /**
      * OID
     **/ 

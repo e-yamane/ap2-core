@@ -32,7 +32,6 @@ public abstract class BasePlace  implements Serializable {
     **/
     public BasePlace() {
     }
-
     /**
      * OID
     **/ 

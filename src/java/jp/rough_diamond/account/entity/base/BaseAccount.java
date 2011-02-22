@@ -34,7 +34,6 @@ public abstract class BaseAccount  implements Serializable {
     **/
     public BaseAccount() {
     }
-
     /**
      * OID
     **/ 

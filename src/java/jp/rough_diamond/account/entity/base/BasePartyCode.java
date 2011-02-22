@@ -24,7 +24,6 @@ public abstract class BasePartyCode  implements Serializable {
     **/
     public BasePartyCode() {
     }
-
     /**
      * OID
     **/ 

@@ -21,7 +21,6 @@ public abstract class BaseCode  implements Serializable {
     **/
     public BaseCode() {
     }
-
     /**
      * コード
     **/ 
