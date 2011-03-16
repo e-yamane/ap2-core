@@ -41,18 +41,24 @@
             type="java.lang.Long"
             update="true"
             insert="true"
-            column="QUANTITY_A_VALUE"
-            not-null="true"
-        />
+        >
+            <column
+                name="QUANTITY_A_VALUE" 
+                not-null="true"
+            />
+        </property>
 
         <property
             name="scale"
             type="java.lang.Integer"
             update="true"
             insert="true"
-            column="QUANTITY_A_SCALE"
-            not-null="true"
-        />
+        >
+            <column
+                name="QUANTITY_A_SCALE" 
+                not-null="true"
+            />
+        </property>
 
         </component>
 

@@ -93,18 +93,24 @@
             type="java.util.Date"
             update="true"
             insert="true"
-            column="TS_REGISTERER_DATE"
-            not-null="true"
-        />
+        >
+            <column
+                name="TS_REGISTERER_DATE" 
+                not-null="true"
+            />
+        </property>
 
         <property
             name="lastModifiedDate"
             type="java.util.Date"
             update="true"
             insert="true"
-            column="TS_LAST_MODIFIED_DATE"
-            not-null="true"
-        />
+        >
+            <column
+                name="TS_LAST_MODIFIED_DATE" 
+                not-null="true"
+            />
+        </property>
 
         </component>
 
