@@ -13,6 +13,7 @@ import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
 import jp.rough_diamond.commons.service.annotation.PrePersist;
 import jp.rough_diamond.commons.service.annotation.PreUpdate;
+import jp.rough_diamond.commons.util.DateManager;
 
 /**
  * 所有者のHibernateマッピングクラス
@@ -59,7 +60,7 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     }
     
     public static <T extends Party> T getPartyByCode(CodeSystem system, String code) {
-    	return getPartyByCode(system, code, new Date());
+    	return getPartyByCode(system, code, DateManager.DM.newDate());
     }
     
     @SuppressWarnings("unchecked")
@@ -100,7 +101,7 @@ public class Party extends jp.rough_diamond.account.entity.base.BaseParty {
     }
     
     public String getCode(CodeSystem system) {
-    	return getCode(system, new Date());
+    	return getCode(system, DateManager.DM.newDate());
     }
     
 	public String getCode(CodeSystem system, Date date) {

@@ -1,7 +1,6 @@
 package jp.rough_diamond.account.entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import jp.rough_diamond.account.service.TransactionService;
@@ -16,6 +15,7 @@ import jp.rough_diamond.commons.service.annotation.PostPersist;
 import jp.rough_diamond.commons.service.annotation.PostUpdate;
 import jp.rough_diamond.commons.service.annotation.PrePersist;
 import jp.rough_diamond.commons.service.annotation.PreUpdate;
+import jp.rough_diamond.commons.util.DateManager;
 import jp.rough_diamond.framework.service.ServiceLocator;
 import jp.rough_diamond.framework.transaction.VersionUnmuchException;
 
@@ -33,7 +33,7 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
     
     public Transaction() {
     	setActual(true);
-        setRegisterDate(new Date());    //dummy
+        setRegisterDate(DateManager.DM.newDate());    //dummy
     }
     
     public static TransactionService getService() {
@@ -99,7 +99,7 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
 
     @PrePersist
     public void refreshRegistDate() {
-        setRegisterDate(new Date());
+        setRegisterDate(DateManager.DM.newDate());
     }
 
     @PreUpdate(priority=10)

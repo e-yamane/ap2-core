@@ -6,6 +6,7 @@ import java.util.List;
 import jp.rough_diamond.account.service.AccountService;
 import jp.rough_diamond.commons.entity.Quantity;
 import jp.rough_diamond.commons.service.annotation.PrePersist;
+import jp.rough_diamond.commons.util.DateManager;
 import jp.rough_diamond.framework.service.ServiceLocator;
 
 /**
@@ -16,12 +17,12 @@ public class Account extends jp.rough_diamond.account.entity.base.BaseAccount {
 
     public Account() {
         // dummy
-        setRegisterDate(new Date());
+        setRegisterDate(DateManager.DM.newDate());
     }
     
     @PrePersist
     public void refreshRegistDate() {
-        setRegisterDate(new Date());
+        setRegisterDate(DateManager.DM.newDate());
     }
     
     public static AccountService getService() {
@@ -29,7 +30,7 @@ public class Account extends jp.rough_diamond.account.entity.base.BaseAccount {
     }
     
     public Quantity getBalance() {
-        return getBalance(new Date());
+        return getBalance(DateManager.DM.newDate());
     }
     
     public Quantity getBalance(Date date) {

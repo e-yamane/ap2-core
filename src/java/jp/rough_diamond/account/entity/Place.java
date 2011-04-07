@@ -20,6 +20,7 @@ import jp.rough_diamond.commons.extractor.Order;
 import jp.rough_diamond.commons.extractor.Property;
 import jp.rough_diamond.commons.service.BasicService;
 import jp.rough_diamond.commons.service.annotation.PreUpdate;
+import jp.rough_diamond.commons.util.DateManager;
 import jp.rough_diamond.framework.transaction.TransactionManager;
 
 /**
@@ -141,7 +142,7 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     }
     
     public static <T extends Place> T getPlaceByCode(CodeSystem system, String code) {
-    	return getPlaceByCode(system, code, new Date());
+    	return getPlaceByCode(system, code, DateManager.DM.newDate());
     }
     
     @SuppressWarnings("unchecked")
@@ -166,7 +167,7 @@ public class Place extends jp.rough_diamond.account.entity.base.BasePlace {
     }
     
     public String getCode(CodeSystem system) {
-    	return getCode(system, new Date());
+    	return getCode(system, DateManager.DM.newDate());
     }
     
 	public String getCode(CodeSystem system, Date date) {
