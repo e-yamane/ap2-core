@@ -212,4 +212,6 @@ public abstract class BaseTransactionMapper  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
+
+
 }

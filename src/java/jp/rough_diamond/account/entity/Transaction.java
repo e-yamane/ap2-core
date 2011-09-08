@@ -115,14 +115,14 @@ public class Transaction extends jp.rough_diamond.account.entity.base.BaseTransa
         if(log.isDebugEnabled()) {
         	log.debug("PK:" + getId());
         }
-        BasicService service = BasicService.getService();
-        Transaction t = service.findByPK(Transaction.class, getId());
-        log.debug(t.getClass().getName());
+//        BasicService service = BasicService.getService();
+//        Transaction t = service.findByPK(Transaction.class, getId());
+//        log.debug(t.getClass().getName());
         for(Entry e : entries) {
             e.setId(null);
-            e.setTransaction(t);
-            service.insert(e);
+            e.setTransaction(this);
         }
+        BasicService.getService().insert(entries.toArray(new Entry[entries.size()]));
     }
     
     

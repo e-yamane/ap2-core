@@ -395,4 +395,6 @@ public abstract class BasePlace  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
+
+
 }

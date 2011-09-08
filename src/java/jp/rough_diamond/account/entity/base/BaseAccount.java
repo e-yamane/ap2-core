@@ -267,4 +267,6 @@ public abstract class BaseAccount  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
+
+
 }

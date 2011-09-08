@@ -8,6 +8,7 @@ import java.util.List;
 import jp.rough_diamond.NumberingLoader;
 import jp.rough_diamond.commons.extractor.Condition;
 import jp.rough_diamond.commons.extractor.Count;
+import jp.rough_diamond.commons.extractor.DateToString;
 import jp.rough_diamond.commons.extractor.ExtractValue;
 import jp.rough_diamond.commons.extractor.Extractor;
 import jp.rough_diamond.commons.extractor.Property;
@@ -140,6 +141,23 @@ public class TransactionTest extends DataLoadingTestCase {
 		assertEquals("最新データのみ取得できていません。", 9, list.size());
 	}
 
+	public void testトランザクション内で読み込んだTransactionと違うTransactionを永続化できる事() throws Exception {
+		Transaction t = BasicService.getService().findByPK(Transaction.class, 1L);
+		t.setActual(false);
+		ServiceLocator.getService(トランザクション内で読み込んだTransactionと違うTransactionを永続化するService.class).testIt(t);
+//		t.save();
+		t = BasicService.getService().findByPK(Transaction.class, t.getId());
+		assertFalse("予実フラグが変化していません", t.isActual());
+	}
+	
+	public static class トランザクション内で読み込んだTransactionと違うTransactionを永続化するService implements Service {
+		public void testIt(Transaction t) throws VersionUnmuchException, MessagesIncludingException {
+			@SuppressWarnings("unused")
+			Transaction t2 = BasicService.getService().findByPK(Transaction.class, 1L);
+			t.save();
+		}
+	}
+	
 	//これはFrameworkで検証できなかったためテストとしてこっとに加えてみた
 	public void test条件に日付を加えて集計関数を使用した結果の件数を取得してみる() throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -151,6 +169,24 @@ public class TransactionTest extends DataLoadingTestCase {
 		assertEquals("返却数が誤っています。", 4, BasicService.getService().getCountByExtractor(ex));
 	}
 
+	public void testDateToString() throws Exception {
+		Extractor ex = new Extractor(Transaction.class);
+		ex.add(Condition.eq(new Property(Transaction.ID), 1L));
+		ex.addExtractValue(new ExtractValue("registerDate", new DateToString(new Property(Transaction.REGISTER_DATE), "yyyy/MM/dd HH:mm:ss.SSS")));
+		ex.setReturnType(String.class);
+		List<String> list = BasicService.getService().findByExtractor(ex);
+		assertEquals("返却数が誤っています。", 1, list.size());
+		assertEquals("返却値が誤っています。", "2008/04/10 01:02:03.456", list.get(0));
+
+		ex = new Extractor(Transaction.class);
+		ex.add(Condition.eq(new Property(Transaction.ID), 1L));
+		ex.addExtractValue(new ExtractValue("registerDate", new DateToString(new Property(Transaction.REGISTER_DATE), "yyyy/M/d H:m:s.S")));
+		ex.setReturnType(String.class);
+		list = BasicService.getService().findByExtractor(ex);
+		assertEquals("返却数が誤っています。", 1, list.size());
+		assertEquals("返却値が誤っています。", "2008/4/10 1:2:3.456", list.get(0));
+	}
+	
 //TODO ActualTransactionの遺品。性能劣化が多分著しいので一端コメントアウト
 //	public void testVerify() throws Exception {
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");

@@ -202,4 +202,6 @@ public abstract class BaseItem  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
+
+
 }

@@ -231,4 +231,6 @@ public abstract class BaseEntry  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
+
+
 }

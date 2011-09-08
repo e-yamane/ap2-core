@@ -289,4 +289,6 @@ public abstract class BaseParty  implements Serializable {
 
     
 //ForeignProperties.vm finish.
+
+
 }
