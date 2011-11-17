@@ -20,7 +20,9 @@ import  java.io.Serializable;
 @jp.rough_diamond.commons.service.annotation.Unique(
     entity="CodeSystem",
     groups= {
-          @jp.rough_diamond.commons.service.annotation.Check(properties={
+          @jp.rough_diamond.commons.service.annotation.Check(
+            name = "1",
+            properties={
               "name"
         })
     }
@@ -183,6 +185,4 @@ public abstract class BaseCodeSystem  implements Serializable {
 
     
 //ForeignProperties.vm finish.
-
-
 }

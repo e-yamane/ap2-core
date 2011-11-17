@@ -20,7 +20,9 @@ import  java.util.Date;
 @jp.rough_diamond.commons.service.annotation.Unique(
     entity="Account",
     groups= {
-          @jp.rough_diamond.commons.service.annotation.Check(properties={
+          @jp.rough_diamond.commons.service.annotation.Check(
+            name = "1",
+            properties={
               "place"
             , "item"
             , "owner"
@@ -267,6 +269,4 @@ public abstract class BaseAccount  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
-
-
 }

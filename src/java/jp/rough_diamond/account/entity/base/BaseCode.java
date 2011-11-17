@@ -153,6 +153,4 @@ public abstract class BaseCode  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
-
-
 }

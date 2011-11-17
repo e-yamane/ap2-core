@@ -20,7 +20,9 @@ import  java.io.Serializable;
 @jp.rough_diamond.commons.service.annotation.Unique(
     entity="Place",
     groups= {
-          @jp.rough_diamond.commons.service.annotation.Check(properties={
+          @jp.rough_diamond.commons.service.annotation.Check(
+            name = "1",
+            properties={
               "placeCode"
         })
     }
@@ -395,6 +397,4 @@ public abstract class BasePlace  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
-
-
 }

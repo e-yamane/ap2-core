@@ -230,6 +230,4 @@ public abstract class BasePlaceCode  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
-
-
 }

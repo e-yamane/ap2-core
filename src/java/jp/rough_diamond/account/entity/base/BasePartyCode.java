@@ -230,6 +230,4 @@ public abstract class BasePartyCode  implements Serializable {
     }
 
 //ForeignProperties.vm finish.
-
-
 }
